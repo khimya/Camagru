@@ -2,6 +2,8 @@ body {
   margin: 0;
 }
 ul {
+  text-decoration: none;
+
   width: 100%;
   list-style-type: none;
   margin: 0;
@@ -29,7 +31,6 @@ li .icon {
   padding: 0;
   margin: 0;
   width: 100px;
-  height: 13px;
 }
 .img_icon {
   padding: 0;
@@ -39,9 +40,10 @@ li .icon {
 }
 
 li a:hover {
+  text-decoration: none;
+
   color: red;
   background-color: #111;
-  height: 46px;
 }
 
 .active {

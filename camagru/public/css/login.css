@@ -1,9 +1,11 @@
 body {
-  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  background-repeat: no-repeat;
-  background-image: url("/camagru/public/img/background_pic.jpg");
-  background-attachment: fixed;
+  
+  background-image: url("/camagru/public/img/background_pic.jpg")no-repeat center center fixed; ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 * {
@@ -32,7 +34,8 @@ body {
 .login-container input[type="text"],
 .login-container input[type="email"],
 .login-container input[type="password"] {
-  width: 100%;
+  display: block;
+  width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
@@ -48,7 +51,7 @@ body {
 }
 
 /* Set a style for the submit/login button */
-.btn {
+.forms_buttons {
   background-color: #4caf50;
   color: white;
   padding: 16px 20px;
@@ -67,7 +70,7 @@ body {
 }
 
 /* Add some hover effects to buttons */
-.login-container .btn:hover,
+.login-container .forms_buttons:hover,
 .open-button:hover {
   color: red;
   opacity: 1;

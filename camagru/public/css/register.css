@@ -66,24 +66,11 @@ body {
   outline: none;
 }
 
-.btn {
-  background-color: #4caf50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 80%;
-  margin-bottom: 10px;
-  opacity: 0.8;
-  margin-left: 10%;
-  display: block;
-}
 
 .register-container .cancel {
   background-color: red;
 }
 
-.register-container .btn:hover,
 .open-button:hover {
   color: red;
   opacity: 1;

@@ -25,9 +25,9 @@ class User{
         }
     }
     // login user
-    public function login($email, $password){
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-        $this->db->bind(':email', $email);
+    public function login($display_name, $password){
+        $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
+        $this->db->bind(':display_name', $display_name);
   
         $row = $this->db->single();
   
@@ -39,24 +39,55 @@ class User{
         }
       }
     //find user by email
-
-    public function findUserByEmail($email)
-    {
+    
+    public function findUserByEmail($email){
         $this->db->query('SELECT * FROM users WHERE email = :email');
-
+        
         ///bind values
         $this->db->bind(':email', $email);
         // var_dump();
-
-
+        
+        
         $row = $this->db->single();
-
+        
         //check rows
-
+        
         if ($this->db->rowCount() > 0) {
             return true;
         } else {
             return false;
         }
     }
+    public function findUserByDisplayName($display_name){
+        $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
+        
+        ///bind values
+        $this->db->bind(':display_name', $display_name);
+        // var_dump();
+        
+        
+        $row = $this->db->single();
+        
+        //check rows
+        
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    //find user by id
+    public function getUserById($id){
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+
+        ///bind values
+        $this->db->bind(':id', $id);
+        // var_dump();
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+    
 }

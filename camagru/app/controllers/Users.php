@@ -1,7 +1,8 @@
 <?php
 class Users extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->userModel = $this->model('User');
     }
 
@@ -31,7 +32,7 @@ class Users extends Controller
                 $data['email_err'] = "You Entered An Invalid Email Format";
             }
             //check email repitition
-            else {
+            else if (is_string($data['email'])) {
                 if ($this->userModel->findUserByEmail($data['email'])) {
 
                     $data['email_err'] = 'email is already taken';
@@ -45,7 +46,7 @@ class Users extends Controller
             }
             //validate password
             if (empty($data['password'])) {
-               $data['password_err'] = 'Please enter a password';
+                $data['password_err'] = 'Please enter a password';
             } else {
                 if (strlen($data['password']) < '6') {
                     $data['password_err'] = "Password must be at least 6 caracters";
@@ -58,27 +59,24 @@ class Users extends Controller
             //validate confirm password
             if (empty($data['confirm_password'])) {
                 $data['confirm_password_err'] = 'Please confirm password';
-            }
-             else {
+            } else {
                 if ($data['password'] != $data['confirm_password']) {
                     $data['confirm_password_err'] = 'passwords do not match';
                 }
-            }  
+            }
             //make sure errers are empty
             if (empty($data['email_err']) && empty($data['display_name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
                 //if the form is valide do this :
                 //hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
                 //register user
 
-                if($this->userModel->register($data)){
+                if ($this->userModel->register($data)) {
                     flash('register_success', 'You are registred ! Check ur email');
                     redirect('users/login');
-                }else{
+                } else {
                     var_dump("erreur N:1");
                 }
-
             } else {
                 // Load view with the errors
                 $this->view('users/register', $data);
@@ -98,14 +96,14 @@ class Users extends Controller
             // loead he view
             $this->view('users/register', $data);
         }
-}
+    }
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function login()
     {
@@ -116,35 +114,34 @@ class Users extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             //init data
             $data = [
-                'email' => trim($_POST['email']),
+                'display_name' => trim($_POST['display_name']),
                 'password' => trim($_POST['password']),
-                'email_err' => '',
+                'display_name_err' => '',
                 'password_err' => '',
             ];
             //validate email
-            if(empty($data['email'])){
-                $data['email_err'] = 'Please enter email';
+            if (empty($data['display_name'])) {
+                $data['display_name_err'] = 'Please enter ur display name';
             }
 
             // validate password
-            if (empty($data['password'])){
+            if (empty($data['password'])) {
                 $data['password_err'] = 'Please enter password';
-
             }
-            //check for user /email
-            if($this->userModel->findUserByEmail($data['email'])){
+            //check for user /displayname
+            if ($this->userModel->findUserByDisplayName($data['display_name'])) {
                 //user found
-            }else{
+            } else {
                 //user not found
-                $data['email_err'] = 'No user found';
+                $data['display_name_err'] = 'No user found';
             }
-                // check if errors are empty
-            if (empty($data['email_err']) && empty($data['password_err'])){
+            // check if errors are empty
+            if (empty($data['display_name_err']) && empty($data['password_err'])) {
                 //validated
                 //check and set logged in user
-                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-                
-                if ($loggedInUser){
+                $loggedInUser = $this->userModel->login($data['display_name'], $data['password']);
+
+                if ($loggedInUser) {
                     //create Session
                     $this->createUserSession($loggedInUser);
                 } else {
@@ -156,42 +153,34 @@ class Users extends Controller
                 // Load error view
                 $this->view('users/login', $data);
             }
+        } else {
+            // Init data
+            $data = [
+                'display_name' => '',
+                'password' => '',
+                'display_name_err' => '',
+                'password_err' => '',
+            ];
+
+            // Load view
+            $this->view('users/login', $data);
         }
-            else {
-                // Init data
-                $data =[    
-                  'email' => '',
-                  'password' => '',
-                  'email_err' => '',
-                  'password_err' => '',        
-                ];
-        
-                // Load view
-                $this->view('users/login', $data);
-              }
-   
-  }
-
-  public function createUserSession($user){
-    $_SESSION['user_id'] = $user->id;
-    $_SESSION['user_email'] = $user->email;
-    $_SESSION['user_name'] = $user->name;
-    redirect('pages/index');
-  }
-
-  public function logout(){
-    unset($_SESSION['user_id']);
-    unset($_SESSION['user_email']);
-    unset($_SESSION['user_name']);
-    session_destroy();
-    redirect('users/login');
-  }
-
-  public function isLoggedIn(){
-    if(isset($_SESSION['user_id'])){
-      return true;
-    } else {
-      return false;
     }
-  }
+
+    public function createUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_name'] = $user->name;
+        redirect('posts');
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_email']);
+        unset($_SESSION['user_name']);
+        session_destroy();
+        redirect('users/login');
+    }
 }

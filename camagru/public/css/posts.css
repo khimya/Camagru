@@ -1,0 +1,42 @@
+.posts_container {
+  z-index: -1;
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 75%;
+  /* top: 50%; */
+  transform: translate(-50%, -50%);
+  bottom: 30%;
+  /* height: 4px; */
+  border-radius: 10px;
+}
+.addpost {
+  float: right;
+}
+.posts_wall {
+  margin-left: 55px;
+  padding: 3px;
+  border-style: outset;
+  border-color: rosybrown;
+  border-radius: 8px;
+  width: 1280px;
+  height: 960px;
+}
+
+.new_post_inputs {
+  background-color: yellow;
+}
+.profil_posts {
+  z-index: -1;
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 75%;
+  /* top: 50%; */
+  transform: translate(-50%, -50%);
+  bottom: 30%;
+  /* height: 4px; */
+  border-radius: 10px;
+}
