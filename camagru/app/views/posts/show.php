@@ -7,9 +7,7 @@
     <div class="bg-secondary text-white p-2 mb-3">
         Written by <?php echo $data['user']->display_name; ?> on <?php echo $data['post']->created_at; ?>
     </div>
-    <?php foreach ($data['posts'] as $post)  ?>
-
-    <img class="posts_wall" src="<?php echo $post->image; ?>">
+    <p><?php echo $data['post']->body; ?></p>
     <?php if ($data['post']->user_id == $_SESSION['user_id']) : ?>
         <hr>
         <a href="<?php echo URLROOT; ?>/posts/edit/<?php echo $data['post']->id; ?>" class="btn btn-dark">Edit</a>

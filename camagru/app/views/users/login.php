@@ -1,18 +1,47 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<div class="login-popup">
-    <?php flash('register_success'); ?>
-        <form method="POST" action="<?php echo URLROOT; ?>/users/login" class="login-container">
-            <h1>Login</h1>
-            <p>Please fill in with your informations to login</p>
-            <label for="display Name"><b>display name :</b></label>
-            <span class="error"><?php echo ($data['display_name_err']); ?></span>
-            <input type="text" placeholder="enter ur display name" name="display_name" value="<?php echo $data['display_name']; ?>" required>
-            <label for="password"><b>Password :</b></label>
-            <span class="error"><?php echo $data['password_err']; ?></span>
-            <input type="password" placeholder="Enter Password" name="password" value="<?php echo $data['']; ?>" required>
-            <input type="submit" class="forms_buttons"  value="Login">
-            <a class="links" href="<?php echo URLROOT; ?>/users/register">No account? Register</a>
-            <a class="links" style="margin-left:140px;" href="<?php echo URLROOT; ?>/users/recover">Forget Password?</a>
-        </form>
+<div class="main">
+
+
+    <div class="container">
+        <center>
+            <div class="middle">
+                <div id="login">
+                    <form method="POST" action="<?php echo URLROOT; ?>/users/login">
+                        <h1 style="color: black">Login</h1>
+                        <p style="color: black">Please fill in with your informations to login</p>
+
+                        <fieldset class="clearfix">
+
+
+                            <span class="error"><?php echo ($data['display_name_err']); ?></span>
+                            <p><input type="text" Placeholder="Username" name="display_name" value="<?php echo $data['display_name']; ?>" required></p>
+
+                            <span class="error"><?php echo $data['password_err']; ?></span>
+                            <p><input type="password" Placeholder="Password" name="password" value="<?php echo $data['']; ?>" required></p>
+
+                            <div>
+                                <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="<?php echo URLROOT; ?>/users/recover">Forgot
+                                        password?</a></span>
+                                <span style="width:48%; text-align:right;  display: inline-block;"><a class="small-text" href="<?php echo URLROOT; ?>/users/register">Register?</a></span>
+                                <span style="width:50%; margin:5px; text-align:right;  display: inline-block;"><input type="submit" value="Login"></span>
+                            </div>
+
+                        </fieldset>
+                        <div class="clearfix"></div>
+                    </form>
+
+                    <div class="clearfix"></div>
+
+                </div> <!-- end login -->
+                <div class="logo">
+                    <img src="/camagru/public/img/15701.svg" alt="42">
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </center>
     </div>
+
+</div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

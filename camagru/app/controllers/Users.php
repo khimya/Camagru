@@ -10,6 +10,8 @@ class Users extends Controller
     {
         //check for post
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //prepere key for confirmation email
+            $cle = md5(microtime(TRUE) * 100000);
             // process the form
             // sanitize POST data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -19,6 +21,7 @@ class Users extends Controller
                 'email' => trim($_POST['email']),
                 'password' => $_POST['password'],
                 'confirm_password' => $_POST['confirm_password'],
+                'cle' => $cle,
                 'display_name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -28,16 +31,17 @@ class Users extends Controller
             //Benbraitit1993*
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
-            } else if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,9}\.[\w\-]{2,3})/", $data['email'])) {
+            }
+            if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,9}\.[\w\-]{2,3})/", $data['email'])) {
                 $data['email_err'] = "You Entered An Invalid Email Format";
             }
-            //check email repitition
-            else if (is_string($data['email'])) {
-                if ($this->userModel->findUserByEmail($data['email'])) {
+           
+            if ($this->userModel->findUserByEmail($data['email'])) {
 
-                    $data['email_err'] = 'email is already taken';
-                }
+                $data['email_err'] = 'email is already taken';
             }
+            //check email repitition
+
             //validate display_name
             if (empty($data['display_name'])) {
                 $data['display_name_err'] = 'Please enter a display_name';
@@ -66,11 +70,9 @@ class Users extends Controller
             }
             //make sure errers are empty
             if (empty($data['email_err']) && empty($data['display_name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
-                //if the form is valide do this :
                 //hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 //register user
-
                 if ($this->userModel->register($data)) {
                     flash('register_success', 'You are registred ! Check ur email');
                     redirect('users/login');
@@ -88,6 +90,7 @@ class Users extends Controller
                 'email' => '',
                 'password' => '',
                 'confirm_password' => '',
+                'cle' => '',
                 'display_name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -183,4 +186,58 @@ class Users extends Controller
         session_destroy();
         redirect('users/login');
     }
+
+    //     public function recover()
+    //     {
+    //         //check for post
+    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //             // process the form
+    //             // sanitize POST data
+    //             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    //             //init data
+    //             $data = [
+    //                 'email' => trim($_POST['email']),
+    //                 'email_err' => '',
+    //             ];
+    //             //validate email
+    //             //Benbraitit1993*
+    //             if (empty($data['email'])) {
+    //                 $data['email_err'] = 'Please enter email';
+    //             } else if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,9}\.[\w\-]{2,3})/", $data['email'])) {
+    //                 $data['email_err'] = "You Entered An Invalid Email Format";
+    //             }
+    //             //check email existanse 
+    //             else if (is_string($data['email'])) {
+    //                 if (!$this->userModel->findUserByEmail($data['email'])) {
+
+    //                     $data['email_err'] = 'email not found';
+    //                 }
+    //             }
+    //             //make sure errers are empty
+    //             if (empty($data['email_err'])) {
+    //                 //if the form is valide do this :
+    //                 /////////////
+    //                 ////////////
+    //                 ///////////
+    //                 //send rest password
+
+    //                 if ($this->userModel->recover($data)) {
+    //                     redirect('users/login');
+    //                 } else {
+    //                     var_dump("erreur on usermodel recover");
+    //                 }
+    //             } else {
+    //                 // Load view with the errors
+    //                 $this->view('users/recover', $data);
+    //             }
+    //         } else {
+    //             //init data
+    //             $data = [
+    //                 'email' => '',
+    //                 'email_err' => '',
+    //             ];
+    //             // loead the view
+    //             $this->view('users/recover', $data);
+    //         }
+    //     }
 }

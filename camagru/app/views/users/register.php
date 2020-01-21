@@ -1,37 +1,58 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-    <div class="register-popup">
-        <form method="POST" action="<?php echo URLROOT; ?>/users/register" class="register-container">
-            <h1>New User</h1>
-
-            <label for="login"><b>Display Name</b></label>
-
-            <span class="error"><?php echo $data['display_name_err']; ?></span>
-
-            <input type="text" placeholder="Display Name" name="display_name" value="<?php echo $data['display_name']; ?>" required>
-
-            <label for="email"><b>Email</b></label>
-            <span class="error"><?php echo $data['email_err']; ?></span>
-
-            <input type="email" placeholder="Enter a Valide Email" name="email" value="<?php echo $data['email']; ?>" required>
+<div class="main">
 
 
-            <label for="psw"><b>Password</b></label>
-            <span class="error"><?php echo $data['password_err']; ?></span>
+    <div class="container">
+        <center>
+            <div class="middle">
+                <div id="login">
+
+                <form method="POST" action="<?php echo URLROOT; ?>/users/register">
+                        <h1 style="color: black">Register</h1>
+                        <p style="color: black">Please fill in with your informations to Register</p>
+
+                        <fieldset class="clearfix">
+
+                            <span class="error"><?php echo $data['display_name_err']; ?></span>
+                            <p><input name="display_name" type="text" Placeholder="Username" value="<?php echo $data['display_name']; ?>" required></p>
+                            
+                            <span class="error"><?php echo $data['email_err']; ?></span>
+                            <p><input type="email" Placeholder="email" name="email" value="<?php echo $data['email']; ?>" required></p>
 
 
-            <input type="password" placeholder="Enter Password" name="password" value="" required>
+                            <span class="error"><?php echo $data['password_err']; ?></span>
+                            <p><input type="password" Placeholder="Password" name="password" value="" required></p>
+    
+
+                            <span class="error"> <?php echo $data['confirm_password_err']; ?></span>
+                            <p><input type="password" Placeholder="Password" name="confirm_password" value="" required></p>
+
+                            <div>
 
 
-            <label for="password"><b>Repeat Password</b></label>
-            <span class="error"> <?php echo $data['confirm_password_err']; ?></span>
 
 
-            <input type="password" placeholder="Repeat The Password" name="confirm_password" value="" required>
 
-            
-            <input type="submit" name="create" value="Register" class="forms_buttons">
-            <a class="links" style="margin-right:190px" href="<?php echo URLROOT; ?>/users/recover">Forget Password?</a>
-            <a class="links" href="<?php echo URLROOT; ?>/users/login">Old Member?</a>
-        </form>
+                                <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="<?php echo URLROOT; ?>/users/login">back to login</a></span>
+                                <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" name="create" value="Register"></span>
+                            </div>
+
+                        </fieldset>
+                        <div class="clearfix"></div>
+                    </form>
+
+                    <div class="clearfix"></div>
+
+                </div> <!-- end login -->
+                <div class="logo">
+                    <img src="/camagru/public/img/15701.svg" alt="42">
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </center>
     </div>
+
+</div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
