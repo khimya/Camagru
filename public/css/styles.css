@@ -1,0 +1,26 @@
+.pages {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 220px;
+  padding: 10px;
+  border-style: outset;
+  border-color: rosybrown;
+  border-radius: 8px;
+  color: white;
+}
+
+.alert {
+  display: block;
+  padding: 10px;
+  background-color: green;
+  color: white;
+}
+.black-font {
+  color:black;
+}
+.white-font {
+  color: white;
+}
