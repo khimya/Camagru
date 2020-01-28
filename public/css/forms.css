@@ -5,8 +5,12 @@ html, body {
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background-image: linear-gradient(to left bottom,#141e30, #243b55);
+	font-family: sans-serif;
+	background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    /* background-image: linear-gradient(to left bottom,#141e30, #243b55); */
     background-position: center;
 	background-size: 100%;
     margin: 0;
@@ -48,7 +52,7 @@ body {
 	background: transparent;
 }
 .box .inputBox label {
-	position: absolute;
+	/* position: absolute; */
 	top: 0;
 	left: 0;
 	padding: 10px 0;
@@ -57,6 +61,13 @@ body {
 	pointer-events: none;
 	transition: .5s;
 	animation: LabelOnLoad 1s forwards 0s ease;
+}
+input[type="text"]
+{
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+}
 }
 @keyframes LabelOnLoad{
     0%{
@@ -70,10 +81,10 @@ body {
 }
 .box .inputBox input:focus ~ label, 
 .box .inputBox input:valid ~ label {
-	top: -19px;
-	left:0;
-	color: #03A9F4;
-	font-size: 12px;
+    display: contents;
+    left: 0;
+    color: #03A9F4;
+    font-size: 12px;
 }
 .box input[type='submit'] {
 	background: transparent;

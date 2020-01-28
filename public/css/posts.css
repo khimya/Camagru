@@ -1,8 +1,9 @@
 .posts_container {
-  position: relative;
-  padding-top: 45px;
-  width:100%;
-  height:100%;
+	display: contents;
+    position: relative;
+    padding-top: 45px;
+    width: 100%;
+    height: 100%;
 }		
 h1 {
 	font-size: 23px;
@@ -34,30 +35,36 @@ h1, h2, p, a, span{
 .icon {
 	font-size: 25px;
 }
-.profile_name_posts {
+.profile_name_posts  a{
+	color: black;
+
     float: left;
-    margin-left: 2%;
-    margin-top: 3%;
-    font-size: 33px;
+    margin-left: 0%;
+    margin-top: 6%;
+	font-size: 27px;
+	text-decoration: none;
+
 }
-.profile-picture {
+
+.post_profile_pic {
     float: left;
     border-radius: 100%;
-    overflow: hidden;
+	overflow: hidden;
+	margin: 2%;
+    border: 4px ridge #3ebe27;
+	width: 100px;
+	height: 100px;
 }
-.big-profile-picture {
-    margin: 0% 0% 3% 2%;
-    border: 5px solid #50597b;
-    width: 100px;
-    height: 100px;
+.post_profile_pic img {
+    width: 100%;
 }
-  .big-profile-picture img {
-    width: 100px;
-  }
-  .post_img{
-	margin: 0% 0% 21% 6%;
-    width: 640px;
+
+  .post_img img {
+	margin: 2% 8% 1% 10%;
+    width: 630px;
     height: 480px;
+    border-style: outset;
+    border-radius: 8px;
   }
 
 
@@ -113,14 +120,18 @@ h1, h2, p, a, span{
     width: 80%;
 	}
 		.block {
-			background: white;
-			border-radius: 5px;
+			background: aliceblue;
 		}
 
-		/************************************************** MIDDLE CONTAINER **********************************/
 
 			.profile {
-        width: 95%;
+				margin-top: 84px;
+				margin-bottom: 25px;
+				margin-left: auto;
+				margin-right: auto;
+				width: 795px;
+				border-radius: 19px;
+				display: flow-root;
 			}
 				.add-button .icon {
 					float: right;
@@ -143,16 +154,83 @@ h1, h2, p, a, span{
 				.profile-description {
 					width: 210px;
 					margin: 0 auto;
-					/* text-align: center; */
 				}
+				.reaction ul {
+					width: 150px;
+					height: 100%;
+					margin-left: 10%;
+					/* background-color: red; */
+				}
+				.likes{
+					background: url(../img/posts/feedback.svg) no-repeat;
+					display: inline-flex;
+					margin: 6px 19px 2px 15px;
 
-				.profile-options {
-					margin-left:80px;
-					background-color: greenyellow;
-					width: 500px;
-					padding:0px;
 				}
-				.profile-options li {
-					display:block;
-					margin: 0;
+				.comments{
+					background: url(../img/posts/comnt.svg) no-repeat;
+					display: inline-flex;
+					margin: 6px 19px 2px 15px;
 				}
+				.likes a{
+					text-decoration: none;
+    color: black;
+    font-size: 24px;
+    padding-top: 38px;
+				}
+				.comments a{
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    padding-top: 38px;
+				}
+				.reaction {
+					height: 85px;
+    width: 155px;
+    margin-left: 92px;
+				}
+				.post_title p{
+					float: left;
+    top: 9px;
+    width: 80%;
+    height: 100%;
+    margin: 0% 0% 0% 10%;
+    position: relative;
+    color: black;
+	font-size: larger;
+	font-family: initial;
+
+				}
+				.posts_info{
+					margin: 1px 1px 1px 1px;
+					/* float: initial; */
+					float: right;
+					padding: 5px;
+				}
+				.posts_info p{
+					color: gray;
+					width: 22vh;
+				}
+				.delete{
+					background-color: crimson;
+					margin: 31px 27px 0 0;
+					border-radius: 9px;
+					width: 50px;
+					height: 40px;
+					float: right;
+}
+.delete a:hover{
+color :white;
+				}
+				.return{
+					background-color: black;
+					margin: 31px 31px 0 27px;
+					border-radius: 9px;
+					width: 50px;
+					height: 40px;
+					float: left;
+					display: unset;
+					color: white;
+				}
+				
+				

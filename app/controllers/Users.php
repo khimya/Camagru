@@ -68,8 +68,35 @@ class Users extends Controller
                     $data['confirm_password_err'] = 'passwords do not match';
                 }
             }
+            $login = $data['display_name'];
             //make sure errers are empty
             if (empty($data['email_err']) && empty($data['display_name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+                //send confirmation email
+                $to = $data['email'];
+                $subject = "Activer votre compte";
+                $message = 'Hello '.$data['display_name'] . '! ,
+ 
+                Thanks for registering.
+
+                to Activate ur account click on the link bellow or just copy/past in your browser.
+                 
+                http://10.11.8.2/camagru/activation.php?log='.urlencode($login).'&cle='.urlencode($cle).'
+                 
+                 
+                ---------------
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+   
+                            $from = "khimya@camagru.com";
+   $headers = "MIME-Version: 1.0" . "\n";
+   $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+   $headers .= "From: $from" . "\n";
+   
+   // Send email
+   mail($to,$subject,$message,$headers);
+   //mail(to,subject,message,headers,parameters);
+   
+   // Inform the user
+   echo "Thanks for registering! We have just sent you an email with your password.";
                 //hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 //register user

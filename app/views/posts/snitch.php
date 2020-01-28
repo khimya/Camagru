@@ -5,7 +5,8 @@
             <div class="profile block">
                 <!-- <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a> -->
                 <div class="post_profile_pic">
-                <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img  alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg" ></a>                </div>
+                <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img  alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg" ></a>
+                </div>
                 <!-- poste image -->
                <div class="profile_name_posts" >
                    
@@ -16,7 +17,7 @@
                    <p><?php echo $post->title; ?></p>
                </div>
                <div class="post_img">
-               <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>"><img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>" ></a>
+               <img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>" >
                 </div>
                   <div class="reaction">
                       <div class="likes">

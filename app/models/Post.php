@@ -19,6 +19,39 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
+
+    public function getmyposts()
+    {
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        }
+        #userid = 
+        $this->db->query("SELECT *
+        FROM posts P join users U on P.user_id = U.id
+        WHERE P.user_id ='{$_SESSION['user_id']}'");
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    
+    public function getsnitching($user_id){
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        }
+        if ($_SESSION['user_id'] == $user_id)
+        redirect('posts/me');
+
+        $this->db->query("SELECT *
+        FROM posts P join users U on P.user_id = U.id
+        WHERE P.user_id = $user_id;");
+        #$this->db->query("SELECT *
+        #FROM posts P join users U on P.user_id = U.id
+        #WHERE P.user_id = U.id");
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    public function confirmAccount(){
+        
+    }
     public function addPost($data)
     {
         if (!isLoggedIn()) {
@@ -69,5 +102,19 @@ class post
         $this->db->bind(':id', $id);
         $row = $this->db->single();
         return $row;
+    }
+    public function deletePost($id){
+        $this->db->query('DELETE FROM posts WHERE id = :id');
+        //binding login values
+$this->db->bind(':id',$id);
+
+
+
+        //execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
