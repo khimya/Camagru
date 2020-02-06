@@ -12,7 +12,6 @@ class User
     public function register($data)
     {
         $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
-
         //binding register values
         $this->db->bind(':display_name', $data['display_name']);
         $this->db->bind(':email', $data['email']);
@@ -24,22 +23,9 @@ class User
         if ($this->db->execute()) {
             return true;
         } else {
+
             return false;
         }
-        // Préparation du mail contenant le lien d'activation
-        $destinataire = $data['email'];
-        $sujet = "Activer votre compte";
-        $entete .= "From: <benbraitit@gmail.com>" . '“\r\n”';
-        $entete .= "Reply-To: <benbraitit@gmail.com>" . '“\r\n”';
-        
-        // // Le lien d'activation 
-        $message = 'Bienvenue sur VotreSite, Pour activer votre compte, veuillez cliquer sur le lien ci-dessous ou copier/coller dans 
-        votre navigateur Internet. 
-         http://10.11.8.2/camagru/users/verify.php?log=' . urlencode($data['display_name']) . '&cle=' . urlencode($data['cle']) . '
-        --------------- Ceci est un mail automatique, Merci de ne pas y répondre.';
-        // echo ("am here");
-        var_dump($entete);
-        mail($destinataire, $sujet, $message, $entete);
     }
 
 
@@ -77,38 +63,104 @@ class User
     // }
     //find user by email
 
+    public function checkEmail($data)
+    {
+        if (empty($data['email']) || !isset($_POST['email'])) {
+            return ($data['email_err'] = 'Please enter email');
+        }
+        if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,}\.[\w\-]{2,3})/", $data['email'])) {
+            return ($data['email_err'] = "You Entered An Invalid Email Format");
+        }
+
+        if ($this->findUserByEmail($data['email'])) {
+
+            return ($data['email_err'] = 'email is already taken');
+        }
+        return ($data);
+    }
+
+    public function checkDisplayName($data)
+    {
+        if (empty($data['display_name']) || !isset($_POST['display_name'])) {
+            return ($data['display_name_err'] = 'Please enter a display_name');
+        } else if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '16') {
+            return ($data['display_name_err'] = "Your displayName Must Contain more than 3 and 16 Characters!");
+        }
+        if ($this->findUserByDisplayName($data['display_name'])) {
+
+            return ($data['dosplay_name_err'] = 'display name  already taken');
+        }
+        return ($data);
+    }
+
+    public function checkPassword($data)
+    {
+        if (empty($data['password']) || !isset($_POST['password'])) {
+            return ($data['password_err'] = 'Please enter a password');
+        } else {
+            if (strlen($data['password']) < '6') {
+                return ($data['password_err'] = "Password must be at least 6 caracters");
+            } elseif (!preg_match("#[0-9]+#", $data['password'])) {
+                return ($data['password_err'] = "Your Password Must Contain At Least 1 Number!");
+            } elseif (!preg_match("#[A-Z]+#", $data['password'])) {
+                return ($data['password_err'] = "Your Password Must Contain At Least 1 Capital Letter!");
+            }
+        }
+        if (empty($data['confirm_password']) || !isset($data['confirm_password'])) {
+            $data['confirm_password_err'] = 'Please confirm password';
+        } else {
+            if ($data['password'] != $data['confirm_password']) {
+                $data['confirm_password_err'] = 'passwords do not match';
+            }
+        }
+        if ($data['password_err'] == '' && $data['confirm_password_err'] == '')
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        return ($data);
+    }
+    //Benbraitit1993*
+    public function sendConfirmationEmail($data)
+    {
+        $login = $data['display_name'];
+        $data['cle'] = $cle = md5(microtime(true) * 100000);
+
+        $to = $data['email'];
+        $subject = "Activer votre compte";
+        $message = 'Hello ' . $data['display_name'] . '! ,
+ 
+                Thanks for registering.
+
+                to Activate ur account click on the link bellow or just copy/past in your browser.
+                 
+                http://10.11.8.2/camagru/activation.php?log=' . urlencode($login) . '&cle=' . urlencode($cle) . '
+                 
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+        $from = "khimya@camagru.com";
+        $headers = "MIME-Version: 1.0" . "\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+        $headers .= "From: $from" . "\n";
+        mail($to, $subject, $message, $headers);
+        die("success");
+        return ($data);
+    }
+
     public function findUserByEmail($email)
     {
         $this->db->query('SELECT * FROM users WHERE email = :email');
-
-        ///bind values
         $this->db->bind(':email', $email);
-        // var_dump();
-
-
         $row = $this->db->single();
-
-
-        //check rows
-
         if ($this->db->rowCount() > 0) {
             return true;
         } else {
             return false;
         }
     }
+
     public function findUserByDisplayName($display_name)
     {
         $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
-
-        ///bind values
         $this->db->bind(':display_name', $display_name);
-        // var_dump();
-
-
         $row = $this->db->single();
-
-        //check rows
 
         if ($this->db->rowCount() > 0) {
             return true;
@@ -117,17 +169,11 @@ class User
         }
     }
 
-    //find user by id
     public function getUserById($id)
     {
         $this->db->query('SELECT * FROM users WHERE id = :id');
-
-        ///bind values
         $this->db->bind(':id', $id);
-        // var_dump();
-
         $row = $this->db->single();
-
         return $row;
     }
 }

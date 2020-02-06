@@ -14,11 +14,11 @@
     <h1>add Post</h1>
     <p>Create a post with this form</p>
     <label for="title"><b>Title:</b>
-    <br>
-    <label style="width: 100%; color:red;" for=""><?php echo ($data['title_err']); ?></label>
-    <input class="new_post_inputs" type="text" placeholder="Enter the title of ur post" name="title" value="<?php echo $data['title']; ?>" required>
-    <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
-    <input type="submit">
+      <br>
+      <label style="width: 100%; color:red;" for=""><?php echo ($data['title_err']); ?></label>
+      <input class="new_post_inputs" type="text" placeholder="Enter the title of ur post" name="title" value="<?php echo $data['title']; ?>" required>
+      <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
+      <input type="submit">
   </form>
   <!-- sticker : -->
   <!-- <input type=" text" id="sticker" value="1"> -->

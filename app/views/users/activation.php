@@ -35,4 +35,3 @@
             echo "Erreur ! Votre compte ne peut être activé...";
         }
     }
-    ?>

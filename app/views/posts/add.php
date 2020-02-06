@@ -6,13 +6,13 @@
     <div class="controls">
       <button class="btn btn-primary" type="submit" onClick="takePhoto()">Take Photo</button>
     </div>
-    
+
     <canvas id="strip_js" class="photo"></canvas>
     <video class="player"></video>
     <div class="strip"></div>
     <input type="file" class="file-chooser">
     <!-- image : -->
-<form action="<?php echo URLROOT; ?>/posts/add" method="post">
+    <form action="<?php echo URLROOT; ?>/posts/add" method="post">
 
       <h1>add Post</h1>
       <p>Create a post with this form</p>
@@ -25,7 +25,7 @@
     <!-- sticker : -->
     <!-- <input type=" text" id="sticker" value="1"> -->
   </div>
-  
+
   <audio class="snap" src="http://wesbos.com/demos/photobooth/snap.mp3" hidden></audio>
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

@@ -59,7 +59,7 @@ class Posts extends Controller
             if (empty($data['title_err']) && empty($data['image_err'])) {
                 //validated posts
                 if ($this->postModel->addPost($data)) {
-                    flash('post_message', 'Post Added');///
+                    flash('post_message', 'Post Added'); ///
                     redirect('posts');
                 } else {
                     die('something went wrong');
@@ -78,25 +78,26 @@ class Posts extends Controller
         }
     }
 
-    public function delete($id){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          // Get existing post from model
-          $post = $this->postModel->getPostById($id);
+    public function delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Get existing post from model
+            $post = $this->postModel->getPostById($id);
 
-          // Check for owner
-          if($post->user_id != $_SESSION['user_id']){
-            redirect('posts');
-          }
+            // Check for owner
+            if ($post->user_id != $_SESSION['user_id']) {
+                redirect('posts');
+            }
 
-          if($this->postModel->deletePost($id)){
-            redirect('posts');
-          } else {
-            redirect('posts');
-          }
+            if ($this->postModel->deletePost($id)) {
+                redirect('posts');
+            } else {
+                redirect('posts');
+            }
         } else {
-          redirect('posts');
+            redirect('posts');
         }
-      }
+    }
 
     //edit function
     // public function edit($id)
@@ -149,15 +150,16 @@ class Posts extends Controller
     //         $this->view('posts/edit', $data);
     //     }
     // }
-    public function show($id){
+    public function show($id)
+    {
         $post = $this->postModel->getPostById($id);
         $user = $this->userModel->getUserById($post->user_id);
-  
+
         $data = [
-          'post' => $post,
-          'user' => $user
+            'post' => $post,
+            'user' => $user
         ];
-  
+
         $this->view('posts/show', $data);
-      }
+    }
 }

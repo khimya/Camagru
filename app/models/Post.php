@@ -32,13 +32,14 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
-    
-    public function getsnitching($user_id){
+
+    public function getsnitching($user_id)
+    {
         if (!isLoggedIn()) {
             redirect('users/login');
         }
         if ($_SESSION['user_id'] == $user_id)
-        redirect('posts/me');
+            redirect('posts/me');
 
         $this->db->query("SELECT *
         FROM posts P join users U on P.user_id = U.id
@@ -49,8 +50,8 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
-    public function confirmAccount(){
-        
+    public function confirmAccount()
+    {
     }
     public function addPost($data)
     {
@@ -102,10 +103,11 @@ class post
         $row = $this->db->single();
         return $row;
     }
-    public function deletePost($id){
+    public function deletePost($id)
+    {
         $this->db->query('DELETE FROM posts WHERE id = :id');
         //binding login values
-        $this->db->bind(':id',$id);
+        $this->db->bind(':id', $id);
 
         //execute
         if ($this->db->execute()) {

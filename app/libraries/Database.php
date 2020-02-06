@@ -6,7 +6,8 @@
 * bind values
 * return rows and results
 */
-class Database{
+class Database
+{
     private $host = DB_HOST;
     private $user = DB_USER;
     private $pass = DB_PASS;
@@ -16,7 +17,8 @@ class Database{
     private $stmt;
     private $error;
 
-    public function __construct(){
+    public function __construct()
+    {
         //set DSN
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
         $options = array(
@@ -33,12 +35,14 @@ class Database{
     }
 
     //prepare statement=
-    public function query($sql){
+    public function query($sql)
+    {
         $this->stmt = $this->dbh->prepare($sql);
     }
 
     // bind values
-    public function bind($param, $value, $type = null){
+    public function bind($param, $value, $type = null)
+    {
         if (is_null($type)) {
             switch (true) {
                 case is_int($value);
@@ -57,22 +61,26 @@ class Database{
         $this->stmt->bindValue($param, $value, $type);
     }
     //execute the prepared statment
-    public function execute(){
+    public function execute()
+    {
         return $this->stmt->execute();
     }
     // Get results set as arrat if objects
 
-    public function resultSet(){
+    public function resultSet()
+    {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function single(){
+    public function single()
+    {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
     // GEt row count
-    public function rowCount(){
+    public function rowCount()
+    {
         return $this->stmt->rowCount();
     }
 }
