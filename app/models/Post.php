@@ -75,7 +75,6 @@ class post
             return false;
         }
     }
-
     public function updatePost($data)
     {
         $this->db->query('UPDATE posts SET title = :title, image = :image WHERE id = :id');
@@ -106,9 +105,7 @@ class post
     public function deletePost($id){
         $this->db->query('DELETE FROM posts WHERE id = :id');
         //binding login values
-$this->db->bind(':id',$id);
-
-
+        $this->db->bind(':id',$id);
 
         //execute
         if ($this->db->execute()) {

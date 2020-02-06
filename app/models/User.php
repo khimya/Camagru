@@ -47,7 +47,7 @@ class User
     // login user
     public function login($display_name, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
+        $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
         $this->db->bind(':display_name', $display_name);
 
         $row = $this->db->single();

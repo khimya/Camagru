@@ -15,7 +15,7 @@
                    <p><?php echo $data['post']->title; ?></p>
                </div>
                <div class="post_img">
-               <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img  alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg" ></a>
+               <img  alt="post_picture" src="<?php echo $data['post']->image; ?>" >
                </div>
                <div class="posts_info">
                         <p>created on <?php echo $data['post']->created_at; ?></p>

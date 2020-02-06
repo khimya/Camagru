@@ -3,6 +3,7 @@ class Pages extends Controller
 {
   public function __construct()
   {
+
   }
   public function about()
   {
@@ -13,13 +14,13 @@ class Pages extends Controller
 
     $this->view('pages/about', $data);
   }
-  public function error()
-  {
-    $data = [
-      'title' => 'Error',
-      'description' => 'You cantt access this page or it doesnt exist'
-    ];
+  // public function error()
+  // {
+  //   $data = [
+  //     'title' => 'Error',
+  //     'description' => 'You cantt access this page or it doesnt exist'
+  //   ];
 
-    $this->view('pages/about', $data);
-  }
+  //   $this->view('pages/about', $data);
+  // }
 }

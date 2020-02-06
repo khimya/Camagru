@@ -32,7 +32,7 @@ class Users extends Controller
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
             }
-            if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,9}\.[\w\-]{2,3})/", $data['email'])) {
+            if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,}\.[\w\-]{2,3})/", $data['email'])) {
                 $data['email_err'] = "You Entered An Invalid Email Format";
             }
            
@@ -172,7 +172,7 @@ class Users extends Controller
                     //create Session
                     $this->createUserSession($loggedInUser);
                 } else {
-                    $data['password_err'] = 'password incorrect';
+                    $data['password_err'] = 'password incorrect or account not activated';
 
                     $this->view('users/login', $data);
                 }
