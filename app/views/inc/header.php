@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/posts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/camera.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/error.css">
     <title><?php echo SITENAME; ?></title>
 </head>
 

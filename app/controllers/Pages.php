@@ -13,13 +13,12 @@ class Pages extends Controller
 
     $this->view('pages/about', $data);
   }
-  // public function error()
-  // {
-  //   $data = [
-  //     'title' => 'Error',
-  //     'description' => 'You cantt access this page or it doesnt exist'
-  //   ];
-
-  //   $this->view('pages/about', $data);
-  // }
+  public function error()
+  {
+    $data = [
+      'title' => 'Error',
+      'description' => 'Try to go back to the home page'
+    ];
+    $this->view('pages/error', $data);
+  }
 }

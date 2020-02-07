@@ -1,7 +1,24 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-
-<div class="pages">
-    <h1><?php echo $data['title']; ?></h1>
-    <p><?php echo $data['description']; ?></p>
-</div>
+<figure>
+	<div class="sad-mac"></div>
+	<figcaption>
+		<span class="sr-text">Error 404: Not Found</span>
+		<span class="e"></span>
+		<span class="r"></span>
+		<span class="r"></span>
+		<span class="o"></span>
+		<span class="r"></span>
+		<span class="_4"></span>
+		<span class="_0"></span>
+		<span class="_4"></span>
+		<span class="n"></span>
+		<span class="o"></span>
+		<span class="t"></span>
+		<span class="f"></span>
+		<span class="o"></span>
+		<span class="u"></span>
+		<span class="n"></span>
+		<span class="d"></span>
+	</figcaption>
+</figure>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

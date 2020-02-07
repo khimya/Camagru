@@ -29,7 +29,7 @@ class Users extends Controller
                 if ($this->userModel->register($data)) {
                     redirect('users/login');
                 } else {
-                    die("erreur N:1");
+                    redirect('pages/error');
                 }
             } else {
                 // Load view with the errors
@@ -66,7 +66,7 @@ class Users extends Controller
 
                 redirect('users/login');
             } else {
-                die("erreur N:1");
+                redirect('pages/error');
             }
         } else {
             redirect('users/register');

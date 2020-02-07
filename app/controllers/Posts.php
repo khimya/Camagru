@@ -62,7 +62,7 @@ class Posts extends Controller
                     flash('post_message', 'Post Added'); ///
                     redirect('posts');
                 } else {
-                    die('something went wrong');
+                    redirect('pages/error');
                 }
             } else {
                 //load view with errors
