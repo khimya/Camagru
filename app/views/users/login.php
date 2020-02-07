@@ -16,7 +16,7 @@
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo ($data['password_err']); ?></label>
             <?php } ?>
-            <input type="password" name="password" value="<?php echo $data['']; ?>" required>
+            <input type="password" name="password" value="" required>
         </div>
         <a style="float: left;" href="<?php echo URLROOT; ?>/users/recover">Forgot
             password?</a>

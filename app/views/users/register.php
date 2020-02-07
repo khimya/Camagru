@@ -34,7 +34,7 @@
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo ($data['password_err']); ?></label>
             <?php } ?>
-            <input type="password" name="password" value="<?php echo $data['']; ?>" required>
+            <input type="password" name="password" value="" required>
         </div>
 
 
@@ -45,7 +45,7 @@
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo $data['confirm_password_err']; ?></label>
             <?php } ?>
-            <input type="password" name="confirm_password" value="<?php echo $data['']; ?>" required>
+            <input type="password" name="confirm_password" value="" required>
         </div>
 
 

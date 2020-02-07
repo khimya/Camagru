@@ -45,23 +45,15 @@ class User
             return false;
         }
     }
-    // public function recover($data)
-    // {
-    //     // $this->db->query('SELECT * FROM users WHERE email = :email');
+    public function recover($randomPassword)
+    {
+        $randomPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
+        $this->db->query('UPDATE users SET password = :randomPassword');
+        $this->db->bind(':randomPassword', $randomPassword);
+        $this->db->execute();
+        return true;
 
-    //     //binding login values
-    //     $this->db->bind(':email', $data['email']);
-    //     // $this->db->bind(':password', $data['password']);
-
-
-    //     //execute
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    //find user by email
+    }
 
     public function checkEmail($data)
     {
@@ -125,7 +117,7 @@ class User
 
         $to = $data['email'];
         $subject = "Activer votre compte";
-        $message = 'Hello ' . $data['display_name'] . '! ,
+        $message = 'Hello ' . $login . '! ,
  
                 Thanks for registering.
 
@@ -142,6 +134,29 @@ class User
         mail($to, $subject, $message, $headers);
 
         return ($data);
+    }
+    
+    public function sendRecoveryEmail($data, $randomPassword)
+    {
+        $login = $data['email'];
+
+        $to = $login;
+        $subject = "Password Recover";
+        $message = 'Hello ' . $login . '! ,
+ 
+                You Requested a password recovery this is ur new password.
+
+                Use this Random password to login Then u can change it in the profile setting section
+                 
+                ' . urlencode($randomPassword) . '
+                 
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+        $from = "khimya@camagru.com";
+        $headers = "MIME-Version: 1.0" . "\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+        $headers .= "From: $from" . "\n";
+        mail($to, $subject, $message, $headers);
     }
 
     public function findUserByEmail($email)
@@ -170,7 +185,6 @@ class User
     }
     public function activate($cle)
     {
-        error_log(print_r($cle, 1));
         $this->db->query('UPDATE users SET actif = 1 WHERE cle = :cle AND actif = 0');
         $this->db->bind(':cle', $cle);
         $this->db->execute();

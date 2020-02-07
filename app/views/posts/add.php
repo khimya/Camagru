@@ -17,7 +17,6 @@
       <h1>add Post</h1>
       <p>Create a post with this form</p>
       <label for="title"><b>Title:</b></label>
-      <span class="error"><?php echo ($data['title_err']); ?></span>
       <input class="new_post_inputs" type="text" placeholder="Enter the title of ur post" name="title" value="<?php echo $data['title']; ?>" required>
       <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
       <input type="submit">
