@@ -46,8 +46,32 @@ class Users extends Controller
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function activation()
+    {
+        // $data = [
+        //     'cle' => trim($_GET['cle']),
+        //         'cle_err' => '',
+        // ];
+        $url = $_GET['url'];
+        $path = explode("/", $url); // splitting the path
+        $data['cle'] = end($path);
+        // var_dump($cle);
+        if (empty($data['cle']) || !isset($data['cle'])) {
+            $data['cle_err'] = 'wrong verification link';
+            redirect('users/register');
+        }
+        if ($this->userModel->findUserBykey($data['cle']) && empty($data['cle_err'])) {
+            //user found
+            if ($this->userModel->activate($data['cle'])) {
 
+                redirect('users/login');
+            } else {
+                die("erreur N:1");
+            }
+        } else {
+            redirect('users/register');
+        }
+    }
     public function login()
     {
         //check for post
@@ -147,7 +171,6 @@ class Users extends Controller
             ];
             //validate email
             //Benbraitit1993*
-            var_dump($this->userModel->checkEmail($data));
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
             } else if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,9}\.[\w\-]{2,3})/", $data['email'])) {

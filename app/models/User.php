@@ -131,7 +131,7 @@ class User
 
                 to Activate ur account click on the link bellow or just copy/past in your browser.
                  
-                http://10.11.8.2/camagru/activation.php?log=' . urlencode($login) . '&cle=' . urlencode($cle) . '
+                http://10.11.8.2/camagru/users/activation/cle/' . urlencode($cle) . '
                  
                 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
@@ -140,7 +140,7 @@ class User
         $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
-        die("success");
+
         return ($data);
     }
 
@@ -154,6 +154,28 @@ class User
         } else {
             return false;
         }
+    }
+
+    public function findUserBykey($cle)
+    {
+        $this->db->query('SELECT * FROM users WHERE cle = :cle AND actif = 0');
+        $this->db->bind(':cle', $cle);
+        $row = $this->db->single();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function activate($cle)
+    {
+        error_log(print_r($cle, 1));
+        $this->db->query('UPDATE users SET actif = 1 WHERE cle = :cle AND actif = 0');
+        $this->db->bind(':cle', $cle);
+        $this->db->execute();
+        return true;
+        //execute
     }
 
     public function findUserByDisplayName($display_name)
