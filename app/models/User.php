@@ -75,25 +75,24 @@ class User
         if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,}\.[\w\-]{2,3})/", $data['email'])) {
             return ($data['email_err'] = "You Entered An Invalid Email Format");
         }
-
+        
         if ($this->findUserByEmail($data['email'])) {
-
+            
             return ($data['email_err'] = 'email is already taken');
         }
         return ($data);
     }
-
+    
     public function checkDisplayName($data)
     {
-        if (empty($data['display_name']) || !isset($_POST['display_name'])) {
-            return ($data['display_name_err'] = 'Please enter a display_name');
-        } else if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '16') {
-            return ($data['display_name_err'] = "Your displayName Must Contain more than 3 and 16 Characters!");
+        if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '25') {
+            return ($data['display_name_err'] = "Your displayName Must Contain more than 3 and 25 Characters!");
         }
-        if ($this->findUserByDisplayName($data['display_name'])) {
-
-            return ($data['dosplay_name_err'] = 'display name  already taken');
+        if ($this->findUserByDisplayName($data)) {
+            
+            return ($data['display_name_err'] = 'display name  already taken');
         }
+        
         return ($data);
     }
 
@@ -123,6 +122,7 @@ class User
     }
     public function checkChangePassword($data)
     {
+        die("am here");
         if (empty($data['currentPassword']) || !isset($_POST['currentPassword'])) {
             return ($data['currentPassword_err'] = 'Please enter a password');
         }
@@ -156,6 +156,32 @@ class User
 
         $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
         $this->db->bind(':email', $data['email']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function newDisplayName($data)
+    {
+        // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+
+        $this->db->query('UPDATE users SET display_name = :display_name  WHERE id = :user_id');
+        $this->db->bind(':display_name', $data['display_name']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function newPassword($data)
+    {
+        $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+
+        $this->db->query('UPDATE users SET password = :newPassword  WHERE id = :user_id');
+        $this->db->bind(':newPassword', $data['newPassword']);
         $this->db->bind(':user_id', $_SESSION['user_id']);
         if ($this->db->execute()) {
             return true;
@@ -252,10 +278,10 @@ class User
         //execute
     }
 
-    public function findUserByDisplayName($display_name)
+    public function findUserByDisplayName($data)
     {
         $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
-        $this->db->bind(':display_name', $display_name);
+        $this->db->bind(':display_name', $data['display_name']);
         $row = $this->db->single();
 
         if ($this->db->rowCount() > 0) {
