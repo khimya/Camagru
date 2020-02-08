@@ -111,16 +111,18 @@ class Users extends Controller
                 $data['email_err'] = 'Please enter email';
             } else if (!empty($data['email']) && is_string($data['email'])) {
                 if ($this->userModel->findUserByEmail($data['email']) && empty($data['email_err'])) {
-                    $randomPassword = bin2hex(random_bytes(10));
-                    if ($this->userModel->recover($randomPassword))
+                    $data['recover'] = md5(microtime(true) * 100000);
+                   
+                    if ($this->userModel->recover($data))
                     {
-                        $this->userModel->sendRecoveryEmail($data,$randomPassword);
-                        die("SUCCESS RECOVER");
-                        var_dump($randomPassword);
+
+                        $this->userModel->sendRecoveryEmail($data);
+                        redirect('users/login');
                     }
                     else
                     {
-                        redirect('page/error');
+                        $data['email_err'] = ' no user registred with this email';
+                        redirect('page/recover');
                     }
                         
                 }

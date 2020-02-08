@@ -11,14 +11,21 @@ class User
     // register user
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
-        //binding register values
-        $this->db->bind(':display_name', $data['display_name']);
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', $data['password']);
-        $this->db->bind(':cle', $data['cle']);
-
-
+        if (isLoggedIn()) {
+            redirect('posts');
+        }
+        else
+        {
+            
+            $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
+            //binding register values
+            $this->db->bind(':display_name', $data['display_name']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            $this->db->bind(':cle', $data['cle']);
+            
+            
+        }
         //execute
         if ($this->db->execute()) {
             return true;
@@ -33,26 +40,37 @@ class User
     // login user
     public function login($display_name, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
-        $this->db->bind(':display_name', $display_name);
+        if (isLoggedIn()) {
+            redirect('posts');
+        }
+        else
+        {
 
-        $row = $this->db->single();
-
-        $hashed_password = $row->password;
-        if (password_verify($password, $hashed_password)) {
-            return $row;
+            $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
+            $this->db->bind(':display_name', $display_name);
+            
+            $row = $this->db->single();
+            
+            $hashed_password = $row->password;
+            if (password_verify($password, $hashed_password)) {
+                return $row;
+            } else {
+                return false;
+            }
+        }
+    }
+    public function recover($data)
+    {
+        $data['password'] = password_hash($data['recover'], PASSWORD_DEFAULT);
+        $this->db->query('UPDATE users SET recover = :recover, password = :password WHERE email = :email');
+        $this->db->bind(':recover', $data['recover']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        if ($this->db->execute()) {
+            return true;
         } else {
             return false;
         }
-    }
-    public function recover($randomPassword)
-    {
-        $randomPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
-        $this->db->query('UPDATE users SET password = :randomPassword');
-        $this->db->bind(':randomPassword', $randomPassword);
-        $this->db->execute();
-        return true;
-
     }
 
     public function checkEmail($data)
@@ -135,8 +153,8 @@ class User
 
         return ($data);
     }
-    
-    public function sendRecoveryEmail($data, $randomPassword)
+
+    public function sendRecoveryEmail($data)
     {
         $login = $data['email'];
 
@@ -144,13 +162,15 @@ class User
         $subject = "Password Recover";
         $message = 'Hello ' . $login . '! ,
  
-                You Requested a password recovery this is ur new password.
-
-                Use this Random password to login Then u can change it in the profile setting section
-                 
-                ' . urlencode($randomPassword) . '
-                 
-                Ceci est un mail automatique, Merci de ne pas y répondre.';
+                This is your temerary password : Dont forget to change it at the setting Menu for security Raisons  <br>'
+                
+                
+                
+                . urlencode($data['recover']) . 
+                
+                
+                
+                '<br>  Ceci est un mail automatique, Merci de ne pas y répondre.';
 
         $from = "khimya@camagru.com";
         $headers = "MIME-Version: 1.0" . "\n";
@@ -187,8 +207,12 @@ class User
     {
         $this->db->query('UPDATE users SET actif = 1 WHERE cle = :cle AND actif = 0');
         $this->db->bind(':cle', $cle);
-        $this->db->execute();
-        return true;
+        if ($this->db->execute()) {
+            return true;
+        } else {
+
+            return false;
+        }
         //execute
     }
 

@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<div class="box">
+            <?php if (isLoggedIn()) redirect('posts'); ?>
+    <div class="box">
     <h2>Login</h2>
     <form method="POST" action="<?php echo URLROOT; ?>/users/login">
         <div class="inputBox">

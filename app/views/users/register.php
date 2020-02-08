@@ -1,4 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
+<?php if (isLoggedIn()) redirect('posts'); ?>
+
 <div class="box">
     <h2>Register</h2>
     <p style="color: white;">Fill in your informations to register</p>
