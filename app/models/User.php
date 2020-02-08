@@ -13,18 +13,14 @@ class User
     {
         if (isLoggedIn()) {
             redirect('posts');
-        }
-        else
-        {
-            
+        } else {
+
             $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
             //binding register values
             $this->db->bind(':display_name', $data['display_name']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
             $this->db->bind(':cle', $data['cle']);
-            
-            
         }
         //execute
         if ($this->db->execute()) {
@@ -42,15 +38,13 @@ class User
     {
         if (isLoggedIn()) {
             redirect('posts');
-        }
-        else
-        {
+        } else {
 
             $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
             $this->db->bind(':display_name', $display_name);
-            
+
             $row = $this->db->single();
-            
+
             $hashed_password = $row->password;
             if (password_verify($password, $hashed_password)) {
                 return $row;
@@ -127,6 +121,48 @@ class User
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         return ($data);
     }
+    public function checkChangePassword($data)
+    {
+        if (empty($data['currentPassword']) || !isset($_POST['currentPassword'])) {
+            return ($data['currentPassword_err'] = 'Please enter a password');
+        }
+        if ($_SESSION['password'] != $data['currentPassword']) {
+            return ($data['currentPassword_err'] = "Please enter the right current password !");
+        }
+        if (empty($data['newPassword']) || !isset($_POST['newPassword'])) {
+            return ($data['newPassword_err'] = 'Please enter a password');
+        } else {
+            if (strlen($data['newPassword']) < '6') {
+                return ($data['newPassword_err'] = "Password must be at least 6 caracters");
+            } elseif (!preg_match("#[0-9]+#", $data['newPassword'])) {
+                return ($data['newPassword_err'] = "Your Password Must Contain At Least 1 Number!");
+            } elseif (!preg_match("#[A-Z]+#", $data['newPassword'])) {
+                return ($data['newPassword_err'] = "Your Password Must Contain At Least 1 Capital Letter!");
+            }
+        }
+        if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
+            $data['confirmNewPassword_err'] = 'Please confirm password';
+        } else {
+            if ($data['password'] != $data['confirmNewPassword']) {
+                $data['confirmNewPassword_err'] = 'passwords do not match';
+            }
+        }            
+        return ($data);
+    }
+
+    public function newEmail($data)
+    {
+        // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+
+        $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     //Benbraitit1993*
     public function sendConfirmationEmail($data)
     {
@@ -163,14 +199,14 @@ class User
         $message = 'Hello ' . $login . '! ,
  
                 This is your temerary password : Dont forget to change it at the setting Menu for security Raisons  <br>'
-                
-                
-                
-                . urlencode($data['recover']) . 
-                
-                
-                
-                '<br>  Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+
+
+            . urlencode($data['recover']) .
+
+
+
+            '<br>  Ceci est un mail automatique, Merci de ne pas y répondre.';
 
         $from = "khimya@camagru.com";
         $headers = "MIME-Version: 1.0" . "\n";
