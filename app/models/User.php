@@ -21,11 +21,11 @@ class User
 
 
         //execute
-        if ($this->db->execute()) {
+        if($this->db->execute()){
             return true;
-        } else {
+          } else {
             return false;
-        }
+          }
     }
 
 

@@ -19,9 +19,8 @@ class Users extends Controller
                  'email_err' => '',
                 'password_err' => '',
                  'confirm_password_err' => '',
-                'cle' => '',
+                'cle' => ''
             ];
-            
             if (empty($data['display_name']) || !isset($_POST['display_name'])) {
                 return ($data['display_name_err'] = 'Please enter a display_name');
             }
@@ -32,14 +31,14 @@ class Users extends Controller
                 
                 $data = $this->userModel->sendConfirmationEmail($data);
                 if ($this->userModel->register($data)) {
-              
                     redirect('users/login');
                 } else {
                     redirect('pages/error');
                 }
             } else {
-                $this->view('users/register', $data);
+                $this->view('users/register', $data);           
             }
+            die(var_dump($data));
         } else {
             $data = ['display_name' => '', 'email' => '', 'password' => '', 'confirm_password' => '', 'cle' => '', 'display_name_err' => '', 'email_err' => '', 'password_err' => '', 'confirm_password_err' => '',];
             $this->view('users/register', $data);
