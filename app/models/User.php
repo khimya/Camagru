@@ -11,22 +11,19 @@ class User
     // register user
     public function register($data)
     {
-        if (isLoggedIn()) {
-            redirect('posts');
-        } else {
+        $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
 
-            $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
-            //binding register values
-            $this->db->bind(':display_name', $data['display_name']);
-            $this->db->bind(':email', $data['email']);
-            $this->db->bind(':password', $data['password']);
-            $this->db->bind(':cle', $data['cle']);
-        }
+        //binding register values
+        $this->db->bind(':display_name', $data['display_name']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':cle', $data['cle']);
+
+
         //execute
         if ($this->db->execute()) {
             return true;
         } else {
-
             return false;
         }
     }
@@ -69,6 +66,7 @@ class User
 
     public function checkEmail($data)
     {
+
         if (empty($data['email']) || !isset($_POST['email'])) {
             return ($data['email_err'] = 'Please enter email');
         }
@@ -281,9 +279,9 @@ class User
     public function findUserByDisplayName($data)
     {
         $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
-        $this->db->bind(':display_name', $data['display_name']);
+        $this->db->bind(':display_name', $data);
         $row = $this->db->single();
-
+        
         if ($this->db->rowCount() > 0) {
             return true;
         } else {
