@@ -4,7 +4,7 @@
 <div class="box">
     <h2>Change Settings</h2>
     <p style="color: white;">Fill in just the informations you want to change</p>
-    <form method="POST" action="<?php echo URLROOT; ?>/users/changes">
+    <form method="POST" action="<?php echo URLROOT; ?>/users/setting">
 
 
 

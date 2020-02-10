@@ -146,6 +146,25 @@ class User
             return false;
         }
     }
+    public function sendConfirmationNewEmail($data)
+    {
+        $login = $_SESSION['display_name'];
+        $to = $data['current_email'];
+        $subject = "Notification About New Email Adress";
+        $message = 'Hello ' . $login . '! ,
+ 
+                Your profil <' .  $login . ' > Email has been changed to this adress.  ' . $data['email'] . 
+
+               '    This message is just an alert
+                 
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+        $from = "khimya@camagru.com";
+        $headers = "MIME-Version: 1.0" . "\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+        $headers .= "From: $from" . "\n";
+        mail($to, $subject, $message, $headers);
+    }
     // public function newDisplayName($data)
     // {
 

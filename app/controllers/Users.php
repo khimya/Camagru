@@ -153,18 +153,21 @@ class Users extends Controller
 			redirect('users/login');
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			if (!empty($_POST['email']) && isset($_POST['email'])) {
+				$data = ['email' => trim($_POST['email']), 'email_err' => '', 'current_email' => $_SESSION['email']];
+				$data = $this->userModel->checkEmail($data);
+				if (empty($data['email_err'])) {
+					$this->userModel->newEmail($data);
+					$this->userModel->sendConfirmationNewEmail($data);
+				}
+				// die(var_dump($data));
 		// die("submit the changes form");
 		///////////// Update email //////////////////////
 
-		if (!empty($_POST['email']) && isset($_POST['email'])) {
-			die("hleleleoeo");
-			$data = ['email' => trim($_POST['email']), 'email_err' => ''];
-			$data = $this->userModel->checkEmail($data);
-			if (empty($data['email_err'])) {
-				$this->userModel->newEmail($data);
 			}
-			redirect('posts');
+			redirect('users/changes');
 		} else {
 			$this->view('users/changes', $data);
 		}
