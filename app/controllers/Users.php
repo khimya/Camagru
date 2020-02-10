@@ -8,9 +8,9 @@ class Users extends Controller
 
     public function register()
     {
-        if(isLoggedIn()){
+        if (isLoggedIn()) {
             redirect('posts');
-          }
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
@@ -25,13 +25,12 @@ class Users extends Controller
                 'cle' => ''
             ];
             if (empty($_POST['display_name']) || !isset($_POST['display_name'])) {
-                return ($data['display_name_err'] = 'Please enter a display_name');
+                $data['display_name_err'] = 'Please enter a display_name';
             }
-            $data = $this->userModel->checkEmail($data);
             $data = $this->userModel->checkDisplayName($data);
+            $data = $this->userModel->checkEmail($data);
             $data = $this->userModel->checkPassword($data);
             if (empty($data['email_err']) && empty($data['display_name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
-
                 $data = $this->userModel->sendConfirmationEmail($data);
                 if ($this->userModel->register($data)) {
                     redirect('users/login');
@@ -70,9 +69,9 @@ class Users extends Controller
 
     public function login()
     {
-        if(isLoggedIn()){
+        if (isLoggedIn()) {
             redirect('posts');
-          }
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -149,82 +148,56 @@ class Users extends Controller
             $this->view('users/recover', $data);
         }
     }
+    public function setting()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            
+            /////////////// Update email //////////////////////
+            if (!empty($_POST['email']) && isset($_POST['email'])) {
+                $data = ['email' => trim($_POST['email']), 'email_err' => ''];
+                $data = $this->userModel->checkEmail($data);
+                if (empty($data['email_err'])) {
+                    $this->userModel->newEmail($data);
+                }
+                redirect('posts');
+            }
+            else
+               $this->view('users/setting', $data);
+        }
+    }
+}
+            /*
+                    
+                /////////////// display_name //////////////////////
+                if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
+                    $data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
+                    $data = $this->userModel->checkDisplayName($data);
+                    if (empty($data['display_name_err']))
+                        $this->userModel->newDisplayName($data);
+                }
 
-    //     public function setting()
-    //     {
-    //         //check for post
-    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //             // process the form
-    //             // sanitize POSTE data
-    //             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    //             //init data
-    //             if (!empty($_POST['email'])) {
 
-    //                 $email =  ['email' => trim($_POST['email']), 'email_err' => '',];
-    //                 $email = $this->userModel->checkEmail($email);
+                /////////////// password //////////////////////
+                if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {
+                    $data = [
+                        'currentPassword' => $_POST['currentPassword'],
+                        'currentPassword_err' => '',
+                        'newPassword' => $_POST['newPassword'],
+                        'newPassword_err' => '',
+                        'confirmNewPassword' => $_POST['confirmNewPassword'],
+                        'confirmNewPassword_err' => '',
+                    ];
+                    $data = $this->userModel->checkChangePassword($data);
+                    $this->userModel->newPassword($data);
+                }
+                }
+            }
+        }
+    }
+    */
     //             }
-    //             else
-    //             {
-    //                 $email['email'] = '';
-    //                 $email['email_err'] = '';
-
-    //             }
-
-    //             if (!empty($_POST['display_name'])) {
-
-    //                 $display_name =  ['display_name' => trim($_POST['display_name']), 'display_name_err' => '',];
-    //                 $display_name = $this->userModel->checkDisplayName($display_name);
-    //             }
-    //             else
-    //             {
-    //                 $display_name['display_name'] = '';
-    //                 $display_name['display_name_err'] = '';
-
-    //             }
-
-
-    //             if (!empty($_POST['currentPassword'])) {
-    //                 $password = [
-    //                     'currentPassword' => $_POST['currentPassword'],
-    //                     'currentPassword_err' => '',
-    //                     'newPassword' => $_POST['newPassword'],
-    //                     'newPassword_err' => '',
-    //                     'confirmNewPassword' => $_POST['confirmNewPassword'],
-    //                     'confirmNewPassword_err' => '',
-    //                 ];
-    //                 $$password = $this->userModel->checkChangePassword($password);
-    //             }
-    //             else
-    //             {
-    //                 $password['currentPassword'] = '';
-    //                 $password['currentPassword_err'] = '';
-    //                 $password['newPassword'] = '';
-    //                 $password['newPassword_err'] = '';
-    //                 $password['confirmNewPassword'] = '';
-    //                 $password['confirmNewPassword_err'] = '';
-    //             }
-    //             if (empty($password['currentPassword_err']) && empty($password['newPassword_err']) && empty($password['confirmNewPassword_err']) && empty($display_name['display_name_err']) && empty($email['email_err'])) {
-    //                 // $data = $this->userModel->newSettings($data);
-    //                 if (isset($display_name['display_name']) && $display_name['display_name_err'] == '') {
-    //                     $this->userModel->newDisplayName($display_name);
-    //                 }
-    //                 if (isset($email['email'])  && $email['email_err'] == '') {
-
-    //                     $this->userModel->newEmail($email);
-    //                 }
-    //                 if (isset($password['newPassword']) && $password['currentPassword_err'] == '' && $password['newPassword_err'] == '' && $password['confirmNewPassword_err'] == '') {
-    //                     $this->userModel->newPassword($password);
-    //                     unset($_SESSION['user_id']);
-    //                     unset($_SESSION['display_name']);
-    //                     session_destroy();
-    //                     redirect('users/login');
-    //                 }
-    //                 redirect('posts');
-    //             }
-    //             $this->view('users/setting', $data);
     //         } else {
     //             $data = ['display_name' => '', 'email' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'display_name_err' => '', 'email_err' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
     //             $this->view('users/setting', $data);
-    //         }
-    //     }
-}

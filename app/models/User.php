@@ -47,7 +47,6 @@ class User
         $this->db->query('UPDATE users SET password = :recoverPassword WHERE email = :email');
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':recoverPassword', $data['recoverPassword']);
-        // die(var_dump($data));
         if ($this->db->execute()) {
             return true;
         } else {
@@ -58,16 +57,16 @@ class User
     public function checkEmail($data)
     {
 
-        if (empty($data['email']) || !isset($_POST['email'])) {
-            return ($data['email_err'] = 'Please enter email');
+        if (empty($data['email']) || !isset($data['email'])) {
+            $data['email_err'] = 'Please enter email';
         }
         if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,}\.[\w\-]{2,3})/", $data['email'])) {
-            return ($data['email_err'] = "You Entered An Invalid Email Format");
+            $data['email_err'] = "You Entered An Invalid Email Format";
         }
 
         if ($this->findUserByEmail($data['email'])) {
 
-            return ($data['email_err'] = 'email is already taken');
+            $data['email_err'] = 'email is already taken';
         }
         return ($data);
     }
@@ -75,13 +74,11 @@ class User
     public function checkDisplayName($data)
     {
         if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '25') {
-            return ($data['display_name_err'] = "Your displayName Must Contain more than 3 and 25 Characters!");
+            $data['display_name_err'] = "Your displayName Must Contain more than 3 and 25 Characters!";
         }
-        if ($this->findUserByDisplayName($data)) {
-
-            return ($data['display_name_err'] = 'display name  already taken');
+        if ($this->findUserByDisplayName($data['display_name'])) {
+        $data['display_name_err'] = 'display name  already taken';
         }
-
         return ($data);
     }
 
@@ -110,52 +107,45 @@ class User
         return ($data);
     }
 
-    public function checkChangePassword($data)
-    {
-        die("am here");
-        if (empty($data['currentPassword']) || !isset($_POST['currentPassword'])) {
-            return ($data['currentPassword_err'] = 'Please enter a password');
-        }
-        if ($_SESSION['password'] != $data['currentPassword']) {
-            return ($data['currentPassword_err'] = "Please enter the right current password !");
-        }
-        if (empty($data['newPassword']) || !isset($_POST['newPassword'])) {
-            return ($data['newPassword_err'] = 'Please enter a password');
-        } else {
-            if (strlen($data['newPassword']) < '6') {
-                return ($data['newPassword_err'] = "Password must be at least 6 caracters");
-            } elseif (!preg_match("#[0-9]+#", $data['newPassword'])) {
-                return ($data['newPassword_err'] = "Your Password Must Contain At Least 1 Number!");
-            } elseif (!preg_match("#[A-Z]+#", $data['newPassword'])) {
-                return ($data['newPassword_err'] = "Your Password Must Contain At Least 1 Capital Letter!");
-            }
-        }
-        if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
-            $data['confirmNewPassword_err'] = 'Please confirm password';
-        } else {
-            if ($data['password'] != $data['confirmNewPassword']) {
-                $data['confirmNewPassword_err'] = 'passwords do not match';
-            }
-        }
-        return ($data);
-    }
-
-    // public function newEmail($data)
+    // public function checkChangePassword($data)
     // {
-    //     // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
-
-    //     $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
-    //     $this->db->bind(':email', $data['email']);
-    //     $this->db->bind(':user_id', $_SESSION['user_id']);
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
+    //     if (empty($data['currentPassword']) || !isset($data['currentPassword'])) {
+    //         $data['currentPassword_err'] = 'Please enter a password';
     //     }
+    //     if ($_SESSION['password'] != $data['currentPassword']) {
+    //         $data['currentPassword_err'] = "Please enter the right current password !";
+    //     }
+    //     if (empty($data['newPassword']) || !isset($data['newPassword'])) {
+    //         $data['newPassword_err'] = 'Please enter a password';
+    //     }
+    //     if (strlen($data['newPassword']) < '6') {
+    //         $data['newPassword_err'] = "Password must be at least 6 caracters";
+    //     }
+    //     if (!preg_match("#[0-9]+#", $data['newPassword']) || !preg_match("#[A-Z]+#", $data['newPassword'])) {
+    //         $data['newPassword_err'] = "Password Must Contain At Least 1 Number Contain At Least 1 Capital Letter!";
+    //         } 
+    //         if ($data['newPassword'] == $_SESSION['password'] || $data['confirmNewPassword'] == $_SESSION['password'] ) {
+    //                 $data['newPassword_err'] = 'password must be different than current';
+    //             }
+    //     if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
+    //         $data['confirmNewPassword_err'] = 'Please confirm password';
+    //     }
+    //     return ($data);
     // }
+
+    public function newEmail($data)
+    {
+        $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     // public function newDisplayName($data)
     // {
-    //     // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
 
     //     $this->db->query('UPDATE users SET display_name = :display_name  WHERE id = :user_id');
     //     $this->db->bind(':display_name', $data['display_name']);
