@@ -1,11 +1,10 @@
 <div id="navbar">
     <a href="<?php echo URLROOT; ?>">Home</a>
     <a href="<?php echo URLROOT; ?>/pages/about">About</a>
-    <a href="javascript:void(0)">Contact</a>
     <?php if (isset($_SESSION['user_id'])) : ?>
 
         <div class="dropdown" style="float:right;">
-            <button class="dropbtn">Right</button>
+            <button class="dropbtn">Menu</button>
             <div class="dropdown-content">
                 <a href="<?php echo URLROOT; ?>/posts/me">My Profil</a>
                 <a href="<?php echo URLROOT; ?>/users/changes">Edit Profil</a>
