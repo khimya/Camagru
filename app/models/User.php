@@ -13,11 +13,12 @@ class User
 
         $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
 
-
         $this->db->bind(':display_name', $data['display_name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':cle', $data['cle']);
+        
+        // die(print_r($data));
 
         if ($this->db->execute()) {
             return true;
@@ -104,6 +105,7 @@ class User
         }
         if ($data['password_err'] == '' && $data['confirm_password_err'] == '')
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $data['confirm_password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         return ($data);
     }
 

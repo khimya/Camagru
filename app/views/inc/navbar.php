@@ -8,7 +8,7 @@
             <button class="dropbtn">Right</button>
             <div class="dropdown-content">
                 <a href="<?php echo URLROOT; ?>/posts/me">My Profil</a>
-                <a href="<?php echo URLROOT; ?>/users/setting">Setting</a>
+                <a href="<?php echo URLROOT; ?>/users/changes">Edit Profil</a>
                 <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
             </div>
         </div>
