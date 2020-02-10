@@ -11,21 +11,23 @@ class User
     // register user
     public function register($data)
     {
+
         $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
 
         //binding register values
+
         $this->db->bind(':display_name', $data['display_name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':cle', $data['cle']);
 
-
+        // die("success");
         //execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
-          } else {
+        } else {
             return false;
-          }
+        }
     }
 
 
@@ -33,22 +35,17 @@ class User
     // login user
     public function login($display_name, $password)
     {
-        if (isLoggedIn()) {
-            redirect('posts');
-        } else {
-
             $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
             $this->db->bind(':display_name', $display_name);
 
             $row = $this->db->single();
 
             $hashed_password = $row->password;
-            if (password_verify($password, $hashed_password)) {
+            if ($hashed_password && password_verify($password, $hashed_password)) {
                 return $row;
             } else {
                 return false;
             }
-        }
     }
     public function recover($data)
     {
@@ -73,24 +70,24 @@ class User
         if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,}\.[\w\-]{2,3})/", $data['email'])) {
             return ($data['email_err'] = "You Entered An Invalid Email Format");
         }
-        
+
         if ($this->findUserByEmail($data['email'])) {
-            
+
             return ($data['email_err'] = 'email is already taken');
         }
         return ($data);
     }
-    
+
     public function checkDisplayName($data)
     {
         if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '25') {
             return ($data['display_name_err'] = "Your displayName Must Contain more than 3 and 25 Characters!");
         }
         if ($this->findUserByDisplayName($data)) {
-            
+
             return ($data['display_name_err'] = 'display name  already taken');
         }
-        
+
         return ($data);
     }
 
@@ -144,49 +141,49 @@ class User
             if ($data['password'] != $data['confirmNewPassword']) {
                 $data['confirmNewPassword_err'] = 'passwords do not match';
             }
-        }            
+        }
         return ($data);
     }
 
-    public function newEmail($data)
-    {
-        // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+    // public function newEmail($data)
+    // {
+    //     // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
 
-        $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':user_id', $_SESSION['user_id']);
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function newDisplayName($data)
-    {
-        // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+    //     $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
+    //     $this->db->bind(':email', $data['email']);
+    //     $this->db->bind(':user_id', $_SESSION['user_id']);
+    //     if ($this->db->execute()) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    // public function newDisplayName($data)
+    // {
+    //     // $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
 
-        $this->db->query('UPDATE users SET display_name = :display_name  WHERE id = :user_id');
-        $this->db->bind(':display_name', $data['display_name']);
-        $this->db->bind(':user_id', $_SESSION['user_id']);
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function newPassword($data)
-    {
-        $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+    //     $this->db->query('UPDATE users SET display_name = :display_name  WHERE id = :user_id');
+    //     $this->db->bind(':display_name', $data['display_name']);
+    //     $this->db->bind(':user_id', $_SESSION['user_id']);
+    //     if ($this->db->execute()) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    // public function newPassword($data)
+    // {
+    //     $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
 
-        $this->db->query('UPDATE users SET password = :newPassword  WHERE id = :user_id');
-        $this->db->bind(':newPassword', $data['newPassword']);
-        $this->db->bind(':user_id', $_SESSION['user_id']);
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //     $this->db->query('UPDATE users SET password = :newPassword  WHERE id = :user_id');
+    //     $this->db->bind(':newPassword', $data['newPassword']);
+    //     $this->db->bind(':user_id', $_SESSION['user_id']);
+    //     if ($this->db->execute()) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     //Benbraitit1993*
     public function sendConfirmationEmail($data)
     {
@@ -273,7 +270,6 @@ class User
 
             return false;
         }
-        //execute
     }
 
     public function findUserByDisplayName($data)
@@ -281,7 +277,7 @@ class User
         $this->db->query('SELECT * FROM users WHERE display_name = :display_name');
         $this->db->bind(':display_name', $data);
         $row = $this->db->single();
-        
+
         if ($this->db->rowCount() > 0) {
             return true;
         } else {
