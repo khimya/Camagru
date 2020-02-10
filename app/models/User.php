@@ -8,21 +8,17 @@ class User
         $this->db = new Database;
     }
 
-    // register user
     public function register($data)
     {
 
         $this->db->query('INSERT INTO users (display_name, email, password, cle) VALUES(:display_name, :email, :password, :cle)');
 
-        //binding register values
 
         $this->db->bind(':display_name', $data['display_name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':cle', $data['cle']);
 
-        // die("success");
-        //execute
         if ($this->db->execute()) {
             return true;
         } else {
@@ -30,30 +26,28 @@ class User
         }
     }
 
-
-    ////////////////////////////////////////////////////////////////////////////
-    // login user
     public function login($display_name, $password)
     {
-            $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
-            $this->db->bind(':display_name', $display_name);
+        $this->db->query('SELECT * FROM users WHERE display_name = :display_name AND actif = 1');
+        $this->db->bind(':display_name', $display_name);
 
-            $row = $this->db->single();
+        $row = $this->db->single();
 
-            $hashed_password = $row->password;
-            if ($hashed_password && password_verify($password, $hashed_password)) {
-                return $row;
-            } else {
-                return false;
-            }
+        $hashed_password = $row->password;
+        if ($hashed_password && password_verify($password, $hashed_password)) {
+            return $row;
+        } else {
+            return false;
+        }
     }
+
     public function recover($data)
     {
-        $data['password'] = password_hash($data['recover'], PASSWORD_DEFAULT);
-        $this->db->query('UPDATE users SET recover = :recover, password = :password WHERE email = :email');
-        $this->db->bind(':recover', $data['recover']);
+        $data['recoverPassword'] = password_hash($data['recoverPassword'], PASSWORD_DEFAULT);
+        $this->db->query('UPDATE users SET password = :recoverPassword WHERE email = :email');
         $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':recoverPassword', $data['recoverPassword']);
+        // die(var_dump($data));
         if ($this->db->execute()) {
             return true;
         } else {
@@ -115,6 +109,7 @@ class User
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         return ($data);
     }
+
     public function checkChangePassword($data)
     {
         die("am here");
@@ -184,7 +179,7 @@ class User
     //         return false;
     //     }
     // }
-    //Benbraitit1993*
+
     public function sendConfirmationEmail($data)
     {
         $login = $data['display_name'];
@@ -223,7 +218,7 @@ class User
 
 
 
-            . urlencode($data['recover']) .
+            . urlencode($data['recoverPassword']) .
 
 
 
@@ -260,6 +255,7 @@ class User
             return false;
         }
     }
+
     public function activate($cle)
     {
         $this->db->query('UPDATE users SET actif = 1 WHERE cle = :cle AND actif = 0');

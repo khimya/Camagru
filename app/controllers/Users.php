@@ -120,35 +120,35 @@ class Users extends Controller
         redirect('users/login');
     }
 
-    // public function recover()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_EMAIL);
+    public function recover()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_EMAIL);
 
-    //         $data = ['email' => trim($_POST['email']), 'email_err' => '',];
-    //         if (empty($data['email']) || !isset($data['email'])) {
-    //             $data['email_err'] = 'Please enter email';
-    //         } elseif (!empty($data['email']) && is_string($data['email'])) {
-    //             if ($this->userModel->findUserByEmail($data['email']) && empty($data['email_err'])) {
-    //                 $data['recover'] = md5(microtime(true) * 100000);
+            $data = ['email' => trim($_POST['email']), 'email_err' => '',];
+            if (empty($data['email']) || !isset($data['email'])) {
+                $data['email_err'] = 'Please enter email';
+            } elseif (!empty($data['email']) && is_string($data['email'])) {
+                if ($this->userModel->findUserByEmail($data['email']) && empty($data['email_err'])) {
+                    $data['recoverPassword'] = md5(microtime(true) * 100000);
 
-    //                 if ($this->userModel->recover($data)) {
-    //                     $this->userModel->sendRecoveryEmail($data);
-    //                     redirect('users/login');
-    //                 } else {
-    //                     $data['email_err'] = ' no user registred with this email';
-    //                     redirect('page/recover');
-    //                 }
-    //             } else {
-    //                 $data['email_err'] = ' no user registred with this email';
-    //                 $this->view('users/recover', $data);
-    //             }
-    //         }
-    //     } else {
-    //         $data = ['email' => '', 'email_err' => '',];
-    //         $this->view('users/recover', $data);
-    //     }
-    // }
+                    if ($this->userModel->recover($data)) {
+                        $this->userModel->sendRecoveryEmail($data);
+                        redirect('users/login');
+                    } else {
+                        $data['email_err'] = ' no user registred with this email';
+                        redirect('page/recover');
+                    }
+                } else {
+                    $data['email_err'] = ' no user registred with this email';
+                    $this->view('users/recover', $data);
+                }
+            }
+        } else {
+            $data = ['email' => '', 'email_err' => '',];
+            $this->view('users/recover', $data);
+        }
+    }
 
     //     public function setting()
     //     {
