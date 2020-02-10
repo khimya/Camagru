@@ -3,7 +3,7 @@
     <?php foreach ($data['posts'] as $post) : ?>
 
         <div class="profile block">
-            <form action="<?php echo URLROOT; ?>/posts/delete/<?php echo $data['post']->id; ?>" method="post">
+            <form action="<?php echo URLROOT; ?>/posts/delete/<?php echo $post->id; ?>" method="post">
                 <input type="submit" value="Delete" class="delete">
             </form>
             <!-- <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a> -->

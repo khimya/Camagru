@@ -4,18 +4,19 @@
 <div class="box">
     <h2>Change Settings</h2>
     <p style="color: white;">Fill in just the informations you want to change</p>
-    <form method="POST" action="<?php echo URLROOT; ?>/users/setting">
+    <form method="POST" action="<?php echo URLROOT; ?>/users/changes">
 
 
 
-        <div class="inputBox">
+    <div class="inputBox">
             <?php if (empty($data['display_name_err'])) { ?>
-                <label for="">Username</label>
+                <label for="">username</label>
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo ($data['display_name_err']); ?></label>
             <?php } ?>
-            <input name="display_name" type="text" value="">
+            <input type="text" name="display_name" value="">
         </div>
+
 
 
 

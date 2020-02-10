@@ -109,31 +109,30 @@ class User
         return ($data);
     }
 
-    // public function checkChangePassword($data)
-    // {
-    //     if (empty($data['currentPassword']) || !isset($data['currentPassword'])) {
-    //         $data['currentPassword_err'] = 'Please enter a password';
-    //     }
-    //     if ($_SESSION['password'] != $data['currentPassword']) {
-    //         $data['currentPassword_err'] = "Please enter the right current password !";
-    //     }
-    //     if (empty($data['newPassword']) || !isset($data['newPassword'])) {
-    //         $data['newPassword_err'] = 'Please enter a password';
-    //     }
-    //     if (strlen($data['newPassword']) < '6') {
-    //         $data['newPassword_err'] = "Password must be at least 6 caracters";
-    //     }
-    //     if (!preg_match("#[0-9]+#", $data['newPassword']) || !preg_match("#[A-Z]+#", $data['newPassword'])) {
-    //         $data['newPassword_err'] = "Password Must Contain At Least 1 Number Contain At Least 1 Capital Letter!";
-    //         } 
-    //         if ($data['newPassword'] == $_SESSION['password'] || $data['confirmNewPassword'] == $_SESSION['password'] ) {
-    //                 $data['newPassword_err'] = 'password must be different than current';
-    //             }
-    //     if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
-    //         $data['confirmNewPassword_err'] = 'Please confirm password';
-    //     }
-    //     return ($data);
-    // }
+    public function checkChangePassword($data)
+    {
+        
+        if (empty($data['currentPassword']) || !isset($data['currentPassword'])) {
+            $data['currentPassword_err'] = 'Please enter a password';
+        }
+        if (empty($data['newPassword']) || !isset($data['newPassword'])) {
+            $data['newPassword_err'] = 'Please enter a password';
+        }
+        if (strlen($data['newPassword']) < '6') {
+            $data['newPassword_err'] = "Password must be at least 6 caracters";
+        }
+        if (!preg_match("#[0-9]+#", $data['newPassword']) || !preg_match("#[A-Z]+#", $data['newPassword'])) {
+            $data['newPassword_err'] = "Password Must Contain At Least 1 Number Contain At Least 1 Capital Letter!";
+        } 
+        if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
+            $data['confirmNewPassword_err'] = 'Please confirm password';
+        }
+        if ($data['newPassword'] != $data['confirmNewPassword']) {
+            $data['newPassword_err'] = "new password and confirm new password are different";
+        }
+        // die(var_dump($data));
+        return ($data);
+    }
 
     public function newEmail($data)
     {
@@ -165,31 +164,31 @@ class User
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
     }
-    // public function newDisplayName($data)
-    // {
+    public function newDisplayName($data)
+    {
 
-    //     $this->db->query('UPDATE users SET display_name = :display_name  WHERE id = :user_id');
-    //     $this->db->bind(':display_name', $data['display_name']);
-    //     $this->db->bind(':user_id', $_SESSION['user_id']);
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function newPassword($data)
-    // {
-    //     $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+        $this->db->query('UPDATE users SET display_name = :display_name  WHERE id = :user_id');
+        $this->db->bind(':display_name', $data['display_name']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function newPassword($data)
+    {
+        $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
 
-    //     $this->db->query('UPDATE users SET password = :newPassword  WHERE id = :user_id');
-    //     $this->db->bind(':newPassword', $data['newPassword']);
-    //     $this->db->bind(':user_id', $_SESSION['user_id']);
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+        $this->db->query('UPDATE users SET password = :newPassword  WHERE id = :user_id');
+        $this->db->bind(':newPassword', $data['newPassword']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function sendConfirmationEmail($data)
     {

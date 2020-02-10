@@ -152,52 +152,52 @@ class Users extends Controller
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
-		if ($_SERVER['REQUEST_METHOD'] == 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			///////////// Update email //////////////////////
+
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
-				$data = ['email' => trim($_POST['email']), 'email_err' => '', 'current_email' => $_SESSION['email']];
+				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);
 				if (empty($data['email_err'])) {
 					$this->userModel->newEmail($data);
 					$this->userModel->sendConfirmationNewEmail($data);
 				}
-				// die(var_dump($data));
-		// die("submit the changes form");
-		///////////// Update email //////////////////////
-
 			}
-			redirect('users/changes');
-		} else {
+
+			///////////// display_name //////////////////////
+			if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
+				$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
+				$data = $this->userModel->checkDisplayName($data);
+				if (empty($data['display_name_err'])) {
+					$this->userModel->newDisplayName($data);
+				}
+			}
+			
+			// die('tipicaly changes is working');
+			/////////////// password //////////////////////
+			if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {
+				$data = [
+					'currentPassword' => $_POST['currentPassword'],
+					'currentPassword_err' => '',
+					'newPassword' => $_POST['newPassword'],
+					'newPassword_err' => '',
+					'confirmNewPassword' => $_POST['confirmNewPassword'],
+					'confirmNewPassword_err' => '',
+				];
+				$data = $this->userModel->checkChangePassword($data);
+				if (empty($data['currentPassword_err']) && empty($data['currentPassword_err']) && empty($data['newPassword_err']) && empty($data['confirmNewPassword_err'])) {
+					$this->userModel->newPassword($data);
+				}
+			}
 			$this->view('users/changes', $data);
+		} else {
+			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
+			$this->view('users/changes', $data);
+			//         } else {
+			//             $data = ['display_name' => '', 'email' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'display_name_err' => '', 'email_err' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
+			//             $this->view('users/changes', $data);
 		}
 	}
-
-	/////////////// display_name //////////////////////
-	// if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
-	// 	$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
-	// 	$data = $this->userModel->checkDisplayName($data);
-	// 	if (empty($data['display_name_err']))
-	// 	$this->userModel->newDisplayName($data);
-	// }
-
-
-	// die('tipicaly changes is working');
-	/////////////// password //////////////////////
-	// if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {
-	//     $data = [
-	//         'currentPassword' => $_POST['currentPassword'],
-	//         'currentPassword_err' => '',
-	//         'newPassword' => $_POST['newPassword'],
-	//         'newPassword_err' => '',
-	//         'confirmNewPassword' => $_POST['confirmNewPassword'],
-	//         'confirmNewPassword_err' => '',
-	//     ];
-	//     $data = $this->userModel->checkChangePassword($data);
-	//     $this->userModel->newPassword($data);
-	// }
-	//             }
-	//         } else {
-	//             $data = ['display_name' => '', 'email' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'display_name_err' => '', 'email_err' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
-	//             $this->view('users/changes', $data);
 }
