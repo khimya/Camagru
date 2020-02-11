@@ -72,6 +72,9 @@ class User
 
     public function checkDisplayName($data)
     {
+        if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $data['display_name']) )
+            $data['display_name_err'] = "Your displayName is not valide!";
+
         if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '25') {
             $data['display_name_err'] = "Your displayName Must Contain more than 3 and 25 Characters!";
         }
@@ -83,15 +86,16 @@ class User
 
     public function checkPassword($data)
     {
+        
         if (empty($data['password']) || !isset($_POST['password'])) {
-            return ($data['password_err'] = 'Please enter a password');
+            $data['password_err'] = 'Please enter a password';
         } else {
             if (strlen($data['password']) < '6') {
-                return ($data['password_err'] = "Password must be at least 6 caracters");
+                $data['password_err'] = "Password must be at least 6 caracters";
             } elseif (!preg_match("#[0-9]+#", $data['password'])) {
-                return ($data['password_err'] = "Your Password Must Contain At Least 1 Number!");
+                $data['password_err'] = "Your Password Must Contain At Least 1 Number!";
             } elseif (!preg_match("#[A-Z]+#", $data['password'])) {
-                return ($data['password_err'] = "Your Password Must Contain At Least 1 Capital Letter!");
+                $data['password_err'] = "Your Password Must Contain At Least 1 Capital Letter!";
             }
         }
         if (empty($data['confirm_password']) || !isset($data['confirm_password'])) {
@@ -102,8 +106,8 @@ class User
             }
         }
         if ($data['password_err'] == '' && $data['confirm_password_err'] == '')
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-            $data['confirm_password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['confirm_password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         return ($data);
     }
 
