@@ -130,10 +130,9 @@ class User
         if ($data['newPassword'] != $data['confirmNewPassword']) {
             $data['newPassword_err'] = "new password and confirm new password are different";
         }
-        // die(var_dump($data));
         return ($data);
     }
-
+    
     public function newEmail($data)
     {
         $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
@@ -148,7 +147,7 @@ class User
     public function sendConfirmationNewEmail($data)
     {
         $login = $_SESSION['display_name'];
-        $to = $data['current_email'];
+        $to = $data['email'];
         $subject = "Notification About New Email Adress";
         $message = 'Hello ' . $login . '! ,
  
