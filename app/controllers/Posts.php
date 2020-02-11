@@ -22,6 +22,7 @@ class Posts extends Controller
         $data = [
             'posts' => $posts
         ];
+        // die(var_dump($posts));
         $this->view('posts/me', $data);
     }
 
@@ -82,7 +83,8 @@ class Posts extends Controller
             if ($post->user_id != $_SESSION['user_id']) {
                 redirect('posts');
             }
-
+            
+            // die(var_dump($post->user_id,$_SESSION['user_id']));
             if ($this->postModel->deletePost($id)) {
                 redirect('posts');
             } else {
@@ -98,12 +100,11 @@ class Posts extends Controller
     {
         $post = $this->postModel->getPostById($id);
         $user = $this->userModel->getUserById($post->user_id);
-
+        
         $data = [
             'post' => $post,
             'user' => $user
         ];
-
         $this->view('posts/show', $data);
     }
 }

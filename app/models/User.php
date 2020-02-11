@@ -18,8 +18,6 @@ class User
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':cle', $data['cle']);
         
-        // die(print_r($data));
-
         if ($this->db->execute()) {
             return true;
         } else {
@@ -202,7 +200,7 @@ class User
 
                 to Activate ur account click on the link bellow or just copy/past in your browser.
                  
-                http://10.11.8.2/camagru/users/activation/cle/' . urlencode($cle) . '
+                http://localhost/camagru/users/activation/cle/' . urlencode($cle) . '
                  
                 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
