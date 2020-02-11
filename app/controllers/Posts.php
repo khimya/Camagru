@@ -22,7 +22,6 @@ class Posts extends Controller
         $data = [
             'posts' => $posts
         ];
-        // die(var_dump($posts));
         $this->view('posts/me', $data);
     }
 
@@ -78,13 +77,11 @@ class Posts extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Get existing post from model
             $post = $this->postModel->getPostById($id);
-
             // Check for owner
             if ($post->user_id != $_SESSION['user_id']) {
                 redirect('posts');
             }
-            
-            // die(var_dump($post->user_id,$_SESSION['user_id']));
+
             if ($this->postModel->deletePost($id)) {
                 redirect('posts');
             } else {

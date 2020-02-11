@@ -4,7 +4,7 @@
     <?php if (isset($_SESSION['user_id'])) : ?>
 
         <div class="dropdown" style="float:right;">
-            <button class="dropbtn">Menu</button>
+            <button class="dropbtn"><?php echo $_SESSION['display_name']; ?></button>
             <div class="dropdown-content">
                 <a href="<?php echo URLROOT; ?>/posts/me">My Profil</a>
                 <a href="<?php echo URLROOT; ?>/users/changes">Edit Profil</a>
