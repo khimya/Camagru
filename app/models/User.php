@@ -17,7 +17,7 @@ class User
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':cle', $data['cle']);
-        
+
         if ($this->db->execute()) {
             return true;
         } else {
@@ -59,7 +59,7 @@ class User
         if (empty($data['email']) || !isset($data['email'])) {
             $data['email_err'] = 'Please enter email';
         }
-        if (!empty($data['email']) && !preg_match("/([\w\-]{3,}\@[\w\-]{3,}\.[\w\-]{2,3})/", $data['email'])) {
+        if (!empty($data['email']) && !preg_match("/^[a-zA-Z0-9.!#$%&’*+\=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", $data['email'])) {
             $data['email_err'] = "You Entered An Invalid Email Format";
         }
 
@@ -72,21 +72,21 @@ class User
 
     public function checkDisplayName($data)
     {
-        if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $data['display_name']) )
+        if (!preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $data['display_name']))
             $data['display_name_err'] = "Your displayName is not valide!";
 
         if (strlen($data['display_name']) < '3' || strlen($data['display_name']) > '25') {
             $data['display_name_err'] = "Your displayName Must Contain more than 3 and 25 Characters!";
         }
         if ($this->findUserByDisplayName($data['display_name'])) {
-        $data['display_name_err'] = 'display name  already taken';
+            $data['display_name_err'] = 'display name  already taken';
         }
         return ($data);
     }
 
     public function checkPassword($data)
     {
-        
+
         if (empty($data['password']) || !isset($_POST['password'])) {
             $data['password_err'] = 'Please enter a password';
         } else {
@@ -106,14 +106,14 @@ class User
             }
         }
         if ($data['password_err'] == '' && $data['confirm_password_err'] == '')
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         $data['confirm_password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         return ($data);
     }
 
     public function checkChangePassword($data)
     {
-        
+
         if (empty($data['currentPassword']) || !isset($data['currentPassword'])) {
             $data['currentPassword_err'] = 'Please enter a password';
         }
@@ -125,7 +125,7 @@ class User
         }
         if (!preg_match("#[0-9]+#", $data['newPassword']) || !preg_match("#[A-Z]+#", $data['newPassword'])) {
             $data['newPassword_err'] = "Password Must Contain At Least 1 Number Contain At Least 1 Capital Letter!";
-        } 
+        }
         if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
             $data['confirmNewPassword_err'] = 'Please confirm password';
         }
@@ -134,7 +134,7 @@ class User
         }
         return ($data);
     }
-    
+
     public function newEmail($data)
     {
         $this->db->query('UPDATE users SET email = :email  WHERE id = :user_id');
@@ -153,9 +153,9 @@ class User
         $subject = "Notification About New Email Adress";
         $message = 'Hello ' . $login . '! ,
  
-                Your profil <' .  $login . ' > Email has been changed to this adress.  ' . $data['email'] . 
+                Your profil <' .  $login . ' > Email has been changed to this adress.  ' . $data['email'] .
 
-               '    This message is just an alert
+            '    This message is just an alert
                  
                 Ceci est un mail automatique, Merci de ne pas y répondre.';
 

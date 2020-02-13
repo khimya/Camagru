@@ -1,38 +1,102 @@
-(function() {
-  var width = 320;    // We will scale the photo width to this
-  var height = 0;     // This will be computed based on the input stream
+// Global Vars
+let width = 500,
+    height = 0,
+    filter = 'none',
+    streaming = false;
 
-  var streaming = false;
+// DOM Elements
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const photos = document.getElementById('photos');
+const photoButton = document.getElementById('photo-button');
+const clearButton = document.getElementById('clear-button');
+const photoFilter = document.getElementById('photo-filter');
+const submitPic = document.getElementById('img64');
 
-  var video = null;
-  var canvas = null;
-  var photo = null;
-  var startbutton = null;
+// Get media stream
+navigator.mediaDevices.getUserMedia({video: true, audio: false})
+  .then(function(stream) {
+    // Link to the video source
+    video.srcObject = stream;
+    // Play video
+    video.play();
+  })
+  .catch(function(err) {
+    console.log(`Error: ${err}`);
+  });
 
-  function startup() {
-    video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
-    photo = document.getElementById('photo');
-    startbutton = document.getElementById('startbutton');
+  // Play when ready
+  video.addEventListener('canplay', function(e) {
+    if(!streaming) {
+      // Set video / canvas height
+      height = video.videoHeight / (video.videoWidth / width);
 
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-    .then(function(stream) {
-        video.srcObject = stream;
-        video.play();
-    })
-    .catch(function(err) {
-        console.log("An error occurred: " + err);
-    });
+      video.setAttribute('width', width);
+      video.setAttribute('height', height);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
 
-    video.addEventListener('canplay', function(ev){
-      if (!streaming) {
-        height = video.videoHeight / (video.videoWidth/width);
+      streaming = true;
+    }
+  }, false);
+
+  // Photo button event
+  photoButton.addEventListener('click', function(e) {
+    takePicture();
+
+    e.preventDefault();
+  }, false);
+
+  // Filter event
+  photoFilter.addEventListener('change', function(e) {
+    // Set filter to chosen option
+    filter = e.target.value;
+    // Set filter to video
+    video.style.filter = filter;
+
+    e.preventDefault(); 
+  });
+
+  // Clear event
+  clearButton.addEventListener('click', function(e) {
+    // Clear photos
+    photos.innerHTML = '';
+    // Change filter back to none
+    filter = 'none';
+    // Set video filter
+    video.style.filter = filter;
+    // Reset select list
+    photoFilter.selectedIndex = 0;
+  });
+
+  // Take picture from canvas
+  function takePicture() {
+    // Create canvas
+    const context = canvas.getContext('2d');
+    if(width && height) {
+      // set canvas props
+      canvas.width = width;
+      canvas.height = height;
+      // Draw an image of the video on the canvas
+      context.drawImage(video, 0, 0, width, height);
+
+      // Create image from the canvas
+      const imgUrl = canvas.toDataURL('image/png');
+
+      // Create img element
+      const img = document.createElement('img');
       
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
-    
+      img.style.filter = filter;
+      // Set img src
+      img.setAttribute('src', imgUrl);
+      submitPic.value = imgUrl;
+      submitPic.setAttribute('style',filter);
+  strip.insertBefore(imgUrl, strip.firstChild);
+  strip.style.filter = filter
+
+      // Set image filter
+
+      // Add image to photos
+      photos.appendChild(img);
+    }
+  }

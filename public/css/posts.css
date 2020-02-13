@@ -161,9 +161,9 @@ h1, h2, p, a, span{
 					margin-left: 10%;
 					/* background-color: red; */
 				}
-				.likes{
+				.likes input{
 					background: url(../img/posts/feedback.svg) no-repeat;
-					display: inline-flex;
+					/* display: inline-flex; */
 					margin: 6px 19px 2px 15px;
 
 				}
@@ -172,7 +172,7 @@ h1, h2, p, a, span{
 					display: inline-flex;
 					margin: 6px 19px 2px 15px;
 				}
-				.likes a{
+				.likes input{
 					text-decoration: none;
     color: black;
     font-size: 24px;
