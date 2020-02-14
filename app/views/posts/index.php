@@ -24,18 +24,12 @@
                 <button class="publish"  type="submit">Publish</button>
             </form>
             </div>
-            <div class="reaction">
-                <div class="likes">
                     <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
-                    <button type="submit"><a ><?php echo $post->like_count; ?></a></button>
+                        <button  class="likes" type="submit"><a ><?php echo $post->like_count; ?>  </a></button>
                         <!-- <input type="submit" value="<?php echo $post->like_count; ?>"/> -->
                     </form>
-                </div>
 
-                <div class="comments">
                     <a href=""><?php echo $post->like_count; ?></a>
-                </div>
-            </div>
             <div class="posts_info">
                 <p>
                     Written by <?php echo $post->display_name; ?> on <?php echo $post->created_at; ?>
