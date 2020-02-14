@@ -37,7 +37,7 @@ class Posts extends Controller
     }
     public function cmnt($id)
     {
-
+        die()
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!isLoggedIn()) {
                 redirect('users/login');
