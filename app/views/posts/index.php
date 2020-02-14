@@ -19,6 +19,9 @@
                 <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>"><img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>"></a>
             </div>
             <div class="blabla">
+            <form action="" method="post">
+                <textarea name="blabla" id="blabla" cols="50" rows="1"></textarea>
+            </form>
             </div>
             <div class="reaction">
                 <div class="likes">

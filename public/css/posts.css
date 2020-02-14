@@ -232,5 +232,10 @@ color :white;
 					display: unset;
 					color: white;
 				}
+.blabla {
+	background-color: antiquewhite;
+	width: 20%;
+	padding: 8px;
+}
 				
 				
