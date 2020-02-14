@@ -24,7 +24,6 @@
                 <button class="publish"  type="submit">Publish</button>
             </form>
             </div>
-            <div class="reaction">
                 <div class="likes">
                     <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
                         <input class="likes" type="submit" value="<?php echo $post->like_count; ?>"/>
@@ -33,10 +32,7 @@
                 <div class="comments">
                     <input class="comment"  value="<?php echo $post->like_count; ?>"/>
                 </div>
-                
-                <div class="comments">
-                </div>
-            </div>
+
             <div class="posts_info">
                 <p>
                     Written by <?php echo $post->display_name; ?> on <?php echo $post->created_at; ?>
