@@ -161,7 +161,7 @@ h1, h2, p, a, span{
 					margin-left: 10%;
 					/* background-color: red; */
 				}
-				.likes input{
+				.likes {
 					background: url(../img/posts/feedback.svg) no-repeat;
 					/* display: inline-flex; */
 					margin: 6px 19px 2px 15px;

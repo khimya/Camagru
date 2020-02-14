@@ -27,7 +27,8 @@
             <div class="reaction">
                 <div class="likes">
                     <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
-                        <input type="submit" value="<?php echo $post->like_count; ?>"/>
+                    <button type="submit"><a ><?php echo $post->like_count; ?></a></button>
+                        <!-- <input type="submit" value="<?php echo $post->like_count; ?>"/> -->
                     </form>
                 </div>
 
