@@ -1,5 +1,5 @@
 <div id="navbar">
-    <a href="<?php echo URLROOT; ?>">Home</a>
+    <a href="<?php echo URLROOT; ?>/posts">Home</a>
     <a href="<?php echo URLROOT; ?>/pages/about">About</a>
     <?php if (isset($_SESSION['user_id'])) : ?>
 

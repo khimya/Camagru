@@ -135,7 +135,7 @@ class Posts extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if (!is_numeric(($id)))
+            if (!is_int(($id)))
                 redirect('posts');
             // Get existing post from model
             $post = $this->postModel->getPostById($id);

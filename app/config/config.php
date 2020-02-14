@@ -7,7 +7,7 @@ define('DB_NAME', 'camagru');
 
 define('APPROOT', dirname(dirname(__FILE__)));
 
-define('URLROOT', '/camagru');
+define('URLROOT', '');
 
 define('SITENAME', 'camagru');
 
