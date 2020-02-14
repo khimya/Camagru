@@ -183,8 +183,9 @@ span {
 }
 .comments {
 	color: black;
-	font-size: 24px;
-	padding-top: 38px;
+    font-size: 24px;
+    padding-top: 38px;
+    display: inline-block;
 }
 
 .post_title p {

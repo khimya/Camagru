@@ -30,7 +30,7 @@
                     </form>
                 </div>
                 <div class="comments">
-                    <input class="comment"  value="<?php echo $post->like_count; ?>"/>
+                    <input class="comments"  value="<?php echo $post->like_count; ?>"/>
                 </div>
 
             <div class="posts_info">
