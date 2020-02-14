@@ -19,7 +19,7 @@
                 <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>"><img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>"></a>
             </div>
             <div class="blabla">
-            <form action="" method="post">
+            <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->postId; ?>" method="post">
                 <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
                 <button class="publish"  type="submit">Publish</button>
             </form>
@@ -30,7 +30,7 @@
                     </form>
                 </div>
                 <div class="comments">
-                    <input class="comments"  value="<?php echo $post->like_count; ?>"/>
+                    <input class="comments"  value="<?php echo $post->comnt_count; ?>"/>
                 </div>
 
             <div class="posts_info">
