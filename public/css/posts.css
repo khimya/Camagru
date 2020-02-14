@@ -162,18 +162,19 @@ h1, h2, p, a, span{
 					/* background-color: red; */
 				}
 				.likes input{
+					width: 40px;
 					background: url(../img/posts/feedback.svg) no-repeat;
 					/* display: inline-flex; */
 					margin: 6px 19px 2px 15px;
-
+					display: block;
+					text-decoration: none;
 				}
 				.comments{
 					background: url(../img/posts/comnt.svg) no-repeat;
 					display: inline-flex;
 					margin: 6px 19px 2px 15px;
 				}
-				.likes input{
-					text-decoration: none;
+					
     color: black;
     font-size: 24px;
     padding-top: 38px;
