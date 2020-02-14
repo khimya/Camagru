@@ -21,7 +21,7 @@
             <div class="blabla">
             <form action="" method="post">
                 <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
-                <button class="publish" type="submit">Publish</button>
+                <button class="publish"  type="submit">Publish</button>
             </form>
             </div>
             <div class="reaction">
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="comments">
-                    <a href="">150</a>
+                    <a href=""><?php echo $post->like_count; ?></a>
                 </div>
             </div>
             <div class="posts_info">
