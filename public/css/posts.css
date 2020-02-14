@@ -169,7 +169,7 @@ h1, h2, p, a, span{
 					display: block;
 					text-decoration: none;
 				}
-				.comments{
+				.comments input{
 					background: url(../img/posts/comnt.svg) no-repeat;
 					display: inline-flex;
 					margin: 6px 19px 2px 15px;
