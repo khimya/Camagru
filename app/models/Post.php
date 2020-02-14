@@ -48,10 +48,13 @@ class post
     }
     public function checkCmnt($data)
     {
-        if (!preg_match('/^([\s*\w]+[\.\\\/\-\@\s]*)+[\s\w]$/',$data['blabla']))
-            return(redirect('posts'));
+        
+        if (!preg_match('/^([\s*\w]+[\.\\/\-\@\s]*)+[\s\w]$/',$data['blabla']))
+        die(var_dump(preg_match('/^([\s*\w]+[\.\\\/\-\@\s]*)+[\s\w]$/',$data['blabla'])));
+        // return(redirect('posts'));
         else
-        return true;
+        die(var_dump($data));
+        // return true;
     }
     public function removeLike($id)
     {

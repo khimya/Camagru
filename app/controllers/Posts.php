@@ -37,7 +37,6 @@ class Posts extends Controller
     }
     public function cmnt($id)
     {
-        die()
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!isLoggedIn()) {
                 redirect('users/login');
@@ -49,13 +48,17 @@ class Posts extends Controller
                         if($this->postModel->addCmnt($data,$id))
                         $this->postModel->addCmntcount($data,$id);
                         else
-                            return(redirect('pages/error'));
-                            
+                        return(redirect('pages/error'));
+                        
                     } else
-                        return(redirect('posts'));
+                    return(redirect('posts'));
                 }
                 else
-                return(redirect('posts'));
+                {
+
+                    die("else");
+                    return(redirect('posts'));
+                }
             }
         }
     }
