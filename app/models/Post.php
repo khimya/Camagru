@@ -174,11 +174,10 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
-            $this->db->query('SELECT * FROM cmnt WHERE post_id = :id');
+            $this->db->query('UPDATE posts SET cmnt_count = (cmnt_count + 1) WHERE id = :id');
             $this->db->bind(':id', $id);
         }
         if ($this->db->execute()) {
-            die("yuppppppi!!");
             return true;
         } else {
             return false;
