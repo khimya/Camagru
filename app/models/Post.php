@@ -46,12 +46,11 @@ class post
             return false;
         }
     }
-    public function checkLikes($id)
+    public function checkCmntSurface($id)
     {
         
-        $this->db->query('SELECT * FROM likes WHERE user_id = :user_id AND post_id = :id');
+        $this->db->query('SELECT * FROM post WHERE post_id = :id');
         $this->db->bind(':id', $id);
-        $this->db->bind(':user_id', $_SESSION['user_id']);
         $results = $this->db->resultSet();
         if (count($results) >= 1)
         {
