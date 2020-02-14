@@ -35,6 +35,26 @@ class Posts extends Controller
             }
         }
     }
+    public function cmnt($id)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isLoggedIn()) {
+                redirect('users/login');
+            } else if (isLoggedIn()) {
+
+                if ($this->postModel->checkcmnt($id)) {
+
+                    $this->postModel->removeLike($id);
+                    $this->postModel->removeLikecount($id);
+                } else {
+                    $this->postModel->addLike($id);
+                    $this->postModel->addLikecount($id);
+                }
+                redirect('posts');
+            }
+        }
+    }
 
     public function me()
     {

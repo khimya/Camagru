@@ -30,7 +30,7 @@
                     </form>
                 </div>
                 <div class="comments">
-                    <input class="comments"  value="<?php echo $post->comnt_count; ?>"/>
+                    <input class="comments" type="submit" value="<?php echo $post->cmnt_count; ?>"/>
                 </div>
 
             <div class="posts_info">
