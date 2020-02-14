@@ -234,7 +234,6 @@ color :white;
 				}
 .blabla {
 	float: right;
-    background-color: antiquewhite;
     width: 78%;
     padding: 8px;
 }
@@ -242,15 +241,19 @@ color :white;
 	position: relative;
 
 }
+textarea {
+	height: 149px;
+    overflow: auto;
+    resize: vertical;
+}
 .publish{
 	background-color: black;
-	margin: 31px 31px 0 27px;
-	border-radius: 9px;
-	width: 50px;
-	height: 40px;
-	float: left;
-	display: unset;
-	color: white;
+    margin: 10px 83px 10px 5px;
+    border-radius: 9px;
+    width: 65px;
+    height: 40px;
+    float: right;
+    color: white;
 
 }
 				
