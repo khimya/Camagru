@@ -136,14 +136,15 @@ class post
             return false;
         }
     }
-    public function addLike($data, $id)
+    public function addCmnt($data, $id)
     {
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
-            $this->db->query('INSERT INTO cmnt (post_id, user_id, cmnt) VALUES (:id, :user_id,:cmnt )');
+            $this->db->query('INSERT INTO cmnt (post_id, user_id, cmnt) VALUES (:id, :user_id, :cmnt)');
             $this->db->bind(':id', $id);
             $this->db->bind(':user_id', $_SESSION['user_id']);
+            $this->db->bind(':cmnt', $data['blabla']);
         }
         if ($this->db->execute()) {
             return true;
@@ -159,6 +160,21 @@ class post
             redirect('users/login');
         } elseif (isLoggedIn()) {
             $this->db->query('UPDATE posts SET like_count = (like_count + 1) WHERE id = :id');
+            $this->db->bind(':id', $id);
+        }
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function addCmntcount($id)
+    {
+    
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } elseif (isLoggedIn()) {
+            $this->db->query('UPDATE posts SET cmnt_count = (cmnt_count + 1) WHERE id = :id');
             $this->db->bind(':id', $id);
         }
         if ($this->db->execute()) {
