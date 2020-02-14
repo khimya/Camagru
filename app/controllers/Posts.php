@@ -46,7 +46,10 @@ class Posts extends Controller
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
                         if($this->postModel->addCmnt($data,$id))
-                        $this->postModel->addCmntcount($data,$id);
+                        {
+                            
+                            $this->postModel->addCmntcount($data,$id);
+                        }
                         else
                         return(redirect('pages/error'));
                         

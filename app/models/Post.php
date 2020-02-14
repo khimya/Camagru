@@ -48,13 +48,10 @@ class post
     }
     public function checkCmnt($data)
     {
-        
         if (!preg_match('/^([\s*\w]+[\.\\/\-\@\s]*)+[\s\w]$/',$data['blabla']))
-        die(var_dump(preg_match('/^([\s*\w]+[\.\\\/\-\@\s]*)+[\s\w]$/',$data['blabla'])));
-        // return(redirect('posts'));
+            return(redirect('posts'));
         else
-        die(var_dump($data));
-        // return true;
+        return true;
     }
     public function removeLike($id)
     {
@@ -173,7 +170,7 @@ class post
     }
     public function addCmntcount($id)
     {
-    
+        
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
@@ -181,6 +178,7 @@ class post
             $this->db->bind(':id', $id);
         }
         if ($this->db->execute()) {
+            die("yuppppppi!!");
             return true;
         } else {
             return false;
