@@ -165,29 +165,32 @@ span {
   width: 40px;
   background: url(../img/posts/feedback.svg) no-repeat;
   margin: 6px 19px 2px 15px;
-  display: block;
+  /* display: inline-block; */
   text-decoration: none;
+  color: black;
+  font-size: 24px;
+  padding-top: 38px;
 }
 .comments input {
-	width: 40px;
+  width: 40px;
   background: url(../img/posts/comnt.svg) no-repeat;
   margin: 6px 19px 2px 15px;
-  display: block;
+  /* display: inline-block; */
   text-decoration: none;
+  color: black;
+  font-size: 24px;
+  padding-top: 38px;
 }
-.likes {
-	color: black;
-    font-size: 24px;
-    padding-top: 38px;
-    display: inline-block;
+/* .likes {
 }
 .comments {
-	color: black;
-    font-size: 24px;
-    padding-top: 38px;
-    display: inline-block;
+  color: black;
+  font-size: 24px;
+  padding-top: 38px;
+} */
+.lamrd input {
+  display: inline-block;
 }
-
 .post_title p {
   float: left;
   top: 9px;
@@ -231,9 +234,12 @@ span {
   color: white;
 }
 .blabla {
-  float: right;
+  background-color: cornflowerblue;
+  /* float: right; */
   width: 78%;
-  padding: 8px;
+  height: 69px;
+  /* padding: 8px; */
+  margin: 10px 0px 6px 91px;
 }
 #commntarea {
   position: relative;
@@ -255,5 +261,9 @@ textarea {
 .comments {
   color: black;
   font-size: 24px;
-  padding-top: 38px;
+}
+.lmard {
+  width: 134px;
+    background-color: red;
+    display: inline-flex;
 }

@@ -190,11 +190,13 @@ class Posts extends Controller
     public function show($id)
     {
         $post = $this->postModel->getPostById($id);
+        $cmnt = $this->postModel->getCmntById($id);
         $user = $this->userModel->getUserById($post->user_id);
 
         $data = [
             'post' => $post,
-            'user' => $user
+            'user' => $user,
+            'cmnt' => $cmnt
         ];
         $this->view('posts/show', $data);
     }

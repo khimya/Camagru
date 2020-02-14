@@ -221,6 +221,13 @@ class post
         $row = $this->db->single();
         return $row;
     }
+    public function getCmntById($id)
+    {
+        $this->db->query('SELECT * FROM cmnt WHERE post_id = :id');
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+        return $row;
+    }
 
     public function deletePost($id)
     {

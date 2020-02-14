@@ -19,19 +19,23 @@
                 <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>"><img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>"></a>
             </div>
             <div class="blabla">
-            <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->postId; ?>" method="post">
-                <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
-                <button class="publish"  type="submit">Publish</button>
-            </form>
+                <a style="color: blue;float:right;" href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>">Show All Comments</a>
+                <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->postId; ?>" method="post">
+                    <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
+                    <button class="publish" type="submit">Publish</button>
+                </form>
             </div>
-                <div class="likes">
-                    <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
-                        <input class="likes" type="submit" value="<?php echo $post->like_count; ?>"/>
-                    </form>
-                </div>
+            <div class="lmard">
+
+                <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
+                    <div class="likes">
+                        <input type="submit" value="<?php echo $post->like_count; ?>" />
+                    </div>
+                </form>
                 <div class="comments">
-                    <input class="comments" type="submit" value="<?php echo $post->cmnt_count; ?>"/>
+                    <input type="submit" value="<?php echo $post->cmnt_count; ?>" />
                 </div>
+            </div>
 
             <div class="posts_info">
                 <p>
