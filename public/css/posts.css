@@ -234,9 +234,9 @@ color :white;
 				}
 .blabla {
 	float: right;
-	background-color: antiquewhite;
-	width: 20%;
-	padding: 8px;
+    background-color: antiquewhite;
+    width: 78%;
+    padding: 8px;
 }
 #commntarea	{
 	position: relative;
