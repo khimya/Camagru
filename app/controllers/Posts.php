@@ -42,16 +42,20 @@ class Posts extends Controller
             if (!isLoggedIn()) {
                 redirect('users/login');
             } else if (isLoggedIn()) {
-                if(is_executable($_POST['blabla'])
-                if ($this->postModel->checkCmnt()) {
-
-                    $this->postModel->removeLike($id);
-                    $this->postModel->removeLikecount($id);
-                } else {
-                    $this->postModel->addLike($id);
-                    $this->postModel->addLikecount($id);
+                if(isset($_POST['blabla']) && !empty($_POST['blabla']))
+                {
+                    $data['blabla'] = $_POST['blabla'];
+                    if ($this->postModel->checkCmnt($data)) {
+                        
+                        $this->postModel->removeLike($id);
+                        $this->postModel->removeLikecount($id);
+                    } else {
+                        $this->postModel->addLike($id);
+                        $this->postModel->addLikecount($id);
+                    }
                 }
-                redirect('posts');
+                else
+                return(redirect('posts'));
             }
         }
     }

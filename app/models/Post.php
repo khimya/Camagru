@@ -46,7 +46,7 @@ class post
             return false;
         }
     }
-    public function checkCmnt($id)
+    public function checkCmnt($data)
     {
         if ()
         $this->db->query('SELECT * FROM post WHERE post_id = :id');
