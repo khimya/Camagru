@@ -203,14 +203,13 @@ span {
   font-family: initial;
 }
 .posts_info {
-  margin: 1px 1px 1px 1px;
-  /* float: initial; */
+  margin: 22px 11px 7px 9px;
   float: right;
-  padding: 5px;
+  padding: 0px;
 }
 .posts_info p {
-  color: gray;
-  width: 22vh;
+  color: black;
+  width: 38vh;
 }
 .delete {
   background-color: crimson;
@@ -234,12 +233,18 @@ span {
   color: white;
 }
 .blabla {
-  background-color: cornflowerblue;
-  /* float: right; */
-  width: 78%;
+  float: right;
+  width: 60%;
   height: 69px;
-  /* padding: 8px; */
-  margin: 10px 0px 6px 91px;
+  margin: 35px 0px 6px 91px;
+}
+.blabla input {
+  width: 363px;
+  height: 68px;
+  border-color: black;
+  background-color: black;
+  margin: 2px 0px 0px -113px;
+  color: white;
 }
 #commntarea {
   position: relative;
@@ -251,10 +256,10 @@ textarea {
 }
 .publish {
   background-color: black;
-  margin: 10px 83px 10px 5px;
+  margin: 1px 115px 11px 6px;
   border-radius: 9px;
-  width: 65px;
-  height: 40px;
+  width: 99px;
+  height: 71px;
   float: right;
   color: white;
 }
@@ -264,6 +269,11 @@ textarea {
 }
 .lmard {
   width: 134px;
-    background-color: red;
-    display: inline-flex;
+  display: inline-flex;
+  margin: -6px 1px 0px 84px;
+}
+.showcomments a {
+  color: blue;
+  float: right;
+  margin: 7px 92px 7px 1px;
 }

@@ -15,5 +15,5 @@
         <a style="float:right" href="<?php echo URLROOT; ?>/users/register">Register</a>
         <a style="float:right" href="<?php echo URLROOT; ?>/users/login">Login</a>
     <?php endif; ?>
-    <a style="float: right;" href="<?php echo URLROOT; ?>/posts/add">Add post</a>
+    <a style="float: right;background-color:darkcyan;" href="<?php echo URLROOT; ?>/posts/add">Add post</a>
 </div>

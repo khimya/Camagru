@@ -43,7 +43,7 @@
 
         <div class="inputBox">
             <?php if (empty($data['confirm_password_err'])) { ?>
-                <label style="width: 100%" for="">Repeat Password</label>
+                <label style="width: 100%" for="">Confirm Password</label>
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo $data['confirm_password_err']; ?></label>
             <?php } ?>

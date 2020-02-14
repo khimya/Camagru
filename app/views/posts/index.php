@@ -18,10 +18,13 @@
             <div class="post_img">
                 <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>"><img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>"></a>
             </div>
+            <div class="showcomments">
+                <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>">Show All Comments</a>
+            </div>
             <div class="blabla">
-                <a style="color: blue;float:right;" href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>">Show All Comments</a>
                 <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->postId; ?>" method="post">
-                    <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
+                    <input id="commntarea" name="blabla" type="text" placeholder="enter your comment here...">
+                    <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
                     <button class="publish" type="submit">Publish</button>
                 </form>
             </div>
