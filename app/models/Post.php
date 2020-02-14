@@ -136,12 +136,12 @@ class post
             return false;
         }
     }
-    public function addLike($id)
+    public function addLike($data, $id)
     {
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
-            $this->db->query('INSERT INTO likes (user_id, post_id) VALUES (:user_id, :id)');
+            $this->db->query('INSERT INTO cmnt (post_id, user_id, cmnt) VALUES (:id, :user_id,:cmnt )');
             $this->db->bind(':id', $id);
             $this->db->bind(':user_id', $_SESSION['user_id']);
         }

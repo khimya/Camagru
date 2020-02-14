@@ -47,7 +47,7 @@ class Posts extends Controller
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
                         
-                        $this->postModel->addLike($id);
+                        $this->postModel->addLike($data,$id);
                     } else
                         return(redirect('posts'));
                 }
