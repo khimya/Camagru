@@ -241,5 +241,16 @@ color :white;
 #commntarea	{
 	position: relative;
 
-}			
+}
+.publish{
+	background-color: black;
+	margin: 31px 31px 0 27px;
+	border-radius: 9px;
+	width: 50px;
+	height: 40px;
+	float: left;
+	display: unset;
+	color: white;
+
+}
 				
