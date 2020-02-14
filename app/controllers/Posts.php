@@ -48,7 +48,7 @@ class Posts extends Controller
                         if($this->postModel->addCmnt($data,$id))
                         {
                             
-                            if($this->postModel->addCmntcount($data,$id))
+                            if($this->postModel->addCmntcount($id))
                                 redirect('posts');
 
                         }
