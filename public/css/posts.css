@@ -256,4 +256,94 @@ textarea {
     color: white;
 
 }
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+
+body {
+  font-family: 'roboto';
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.user-comment-card {
+  background: #fff;
+  min-height: 80px;
+  width: 500px;
+  box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 1rem .5rem;
+}
+
+h4.user__name {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+
+.user__comment {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #616161;
+}
+
+.user__comment p {
+  margin: 0;
+}
+
+img.user-avatar {
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: #ddd;
+  margin-right: 1rem;
+}
+
+.user__comment__reaction {
+  margin-top: 0.5rem;
+  font-size: 18px;
+  display: flex;
+  color: #616161;
+  align-items: center;
+}
+
+.ion-md-thumbs-down {
+  margin-left: 1.5rem;
+  margin-top: 4px;
+}
+
+i.icon.ion-md-thumbs-up {
+  color: #4CAF50;
+}
+
+i.icon {
+  margin-right: .5rem;
+  background: white;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 320ms ease-in-out;
+}
+
+i.icon.ion-md-thumbs-up:hover {
+  background: #DCEDC8;
+}
+
+i.icon.ion-md-thumbs-down {
+  color: #e00;
+}
+
+i.icon.ion-md-thumbs-down:hover {
+  background: #FFEBEE; 
+}
 				

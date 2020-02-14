@@ -26,15 +26,15 @@
             </div>
             <div class="reaction">
                         <div class="user__comment__reaction">
-                            <i class="icon ion-md-thumbs-up"></i> <small>34</small>
-                            <i class="icon ion-md-thumbs-down"></i> <small>04</small>
+                            <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
+                            <i class="icon ion-md-thumbs-up"></i> <small><?php echo $post->like_count; ?></small>
+                            <i class="icon ion-md-thumbs-down"></i> <small><?php echo $post->like_count; ?></small>
+                        </form>
                         </div>
                     </div>
                 </div>
-                    <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
                         <button class="likes" type="submit"><a><?php echo $post->like_count; ?> </a></button>
                         <!-- <input type="submit" value="<?php echo $post->like_count; ?>"/> -->
-                    </form>
 
                     <a href=""><?php echo $post->like_count; ?></a>
             </div>
