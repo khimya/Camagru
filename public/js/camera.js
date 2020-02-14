@@ -100,3 +100,4 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
       photos.appendChild(img);
     }
   }
+  
