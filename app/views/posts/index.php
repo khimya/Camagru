@@ -18,26 +18,16 @@
             <div class="post_img">
                 <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>"><img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>"></a>
             </div>
-            <div class="blabla">
-            <form action="" method="post">
-                <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
-                <button class="publish"  type="submit">Publish</button>
-            </form>
-            </div>
+
             <div class="reaction">
-            </style>
-            <div class="likes">
-                <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
-                        <div id="likes">
-                         <input id="like" type="checkbox" name="like" value="like" />
-                          <span id="button"><?php echo $post->like_count; ?> Like <span id="count"></span></span>
-                        </div>
-                        <button id="like"  type="submit"><a ><?php echo $post->like_count; ?>  </a></button>
-                        <!-- <input type="submit" value="<?php echo $post->like_count; ?>"/> -->
+                <div class="likes">
+                    <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
+                        <input type="submit" value="<?php echo $post->like_count; ?>"/>
                     </form>
+                </div>
 
                 <div class="comments">
-                    <a href=""><?php echo $post->like_count; ?></a>
+                    <a href="">150</a>
                 </div>
             </div>
             <div class="posts_info">

@@ -161,31 +161,23 @@ h1, h2, p, a, span{
 					margin-left: 10%;
 					/* background-color: red; */
 				}
+				.likes {
+					background: url(../img/posts/feedback.svg) no-repeat;
+					/* display: inline-flex; */
+					margin: 6px 19px 2px 15px;
 
-				#like {
-					position: absolute;
-					display: block;
-					width: 100%;
-					height: 100%;
-					opacity: 0;
-					cursor: pointer;
-				  }
-				  #button {
-					display: block;
-					width: 100%;
-					height: 100%;
-					background: green;
-				  }
-				  #like:checked ~ #button {
-					background: blue;
-				  }
-	
+				}
 				.comments{
 					background: url(../img/posts/comnt.svg) no-repeat;
 					display: inline-flex;
 					margin: 6px 19px 2px 15px;
 				}
-
+				.likes input{
+					text-decoration: none;
+    color: black;
+    font-size: 24px;
+    padding-top: 38px;
+				}
 				.comments a{
     text-decoration: none;
     color: black;
