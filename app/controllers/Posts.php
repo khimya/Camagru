@@ -47,12 +47,9 @@ class Posts extends Controller
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
                         
-                        $this->postModel->removeLike($id);
-                        $this->postModel->removeLikecount($id);
-                    } else {
                         $this->postModel->addLike($id);
-                        $this->postModel->addLikecount($id);
-                    }
+                    } else
+                        return(redirect('posts'));
                 }
                 else
                 return(redirect('posts'));

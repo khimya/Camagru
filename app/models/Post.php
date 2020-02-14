@@ -49,15 +49,9 @@ class post
     public function checkCmnt($data)
     {
         if (!preg_match('/^([\s*\w]+[\.\\\/\-\@\s]*)+[\s\w]$/',$data['blabla']))
-        $this->db->query('SELECT * FROM post WHERE post_id = :id');
-        $this->db->bind(':id', $id);
-        $results = $this->db->resultSet();
-        if (count($results) >= 1)
-        {
-            return true;
-        } else {
-            return false;
-        }
+            return(redirect('posts'));
+        else
+        return true;
     }
     public function removeLike($id)
     {
@@ -121,6 +115,21 @@ class post
         
         
         //execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function addLike($id)
+    {
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } elseif (isLoggedIn()) {
+            $this->db->query('INSERT INTO likes (user_id, post_id) VALUES (:user_id, :id)');
+            $this->db->bind(':id', $id);
+            $this->db->bind(':user_id', $_SESSION['user_id']);
+        }
         if ($this->db->execute()) {
             return true;
         } else {
