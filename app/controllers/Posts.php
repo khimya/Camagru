@@ -24,7 +24,7 @@ class Posts extends Controller
             } else if (isLoggedIn()) {
 
                 if ($this->postModel->checkLikes($id)) {
-                    $data['blabla'] = 
+
                     $this->postModel->removeLike($id);
                     $this->postModel->removeLikecount($id);
                 } else {
@@ -42,9 +42,8 @@ class Posts extends Controller
             if (!isLoggedIn()) {
                 redirect('users/login');
             } else if (isLoggedIn()) {
-
-                if ($this->postModel->checkCmntSurface($id)) {
-                    $data[]
+                if(is_executable($_POST['blabla'])
+                if ($this->postModel->checkCmnt()) {
 
                     $this->postModel->removeLike($id);
                     $this->postModel->removeLikecount($id);

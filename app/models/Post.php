@@ -46,9 +46,9 @@ class post
             return false;
         }
     }
-    public function checkCmntSurface($id)
+    public function checkCmnt($id)
     {
-        
+        if ()
         $this->db->query('SELECT * FROM post WHERE post_id = :id');
         $this->db->bind(':id', $id);
         $results = $this->db->resultSet();
