@@ -26,16 +26,15 @@
             </div>
             <div class="reaction">
             </style>
-                <div id="likes">
-                 <input id="like" type="checkbox" name="like" value="<?php echo $post->like_count; ?>" />
-                  <span id="button">Like <span id="count"></span></span>
-                </div>
-                <div class="likes">
-                    <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
-                        <button  class="likes" type="submit"><a ><?php echo $post->like_count; ?>  </a></button>
+            <div class="likes">
+                <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
+                        <div id="likes">
+                         <input id="like" type="checkbox" name="like" value="like" />
+                          <span id="button"><?php echo $post->like_count; ?> Like <span id="count"></span></span>
+                        </div>
+                        <button id="like"  type="submit"><a ><?php echo $post->like_count; ?>  </a></button>
                         <!-- <input type="submit" value="<?php echo $post->like_count; ?>"/> -->
                     </form>
-                </div>
 
                 <div class="comments">
                     <a href=""><?php echo $post->like_count; ?></a>
