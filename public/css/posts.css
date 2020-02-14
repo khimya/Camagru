@@ -233,9 +233,13 @@ color :white;
 					color: white;
 				}
 .blabla {
+	float: right;
 	background-color: antiquewhite;
 	width: 20%;
 	padding: 8px;
 }
-				
+#commntarea	{
+	position: relative;
+
+}			
 				

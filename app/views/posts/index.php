@@ -20,7 +20,7 @@
             </div>
             <div class="blabla">
             <form action="" method="post">
-                <textarea name="blabla" id="blabla" cols="50" rows="1"></textarea>
+                <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea>
             </form>
             </div>
             <div class="reaction">
