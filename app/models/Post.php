@@ -48,7 +48,7 @@ class post
     }
     public function checkCmnt($data)
     {
-        if (preg_match('/^[0-9]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$/',$data['blabla']))
+        if (!preg_match('/^([\s*\w]+[\.\\\/\-\@\s]*)+[\s\w]$/',$data['blabla']))
         $this->db->query('SELECT * FROM post WHERE post_id = :id');
         $this->db->bind(':id', $id);
         $results = $this->db->resultSet();
