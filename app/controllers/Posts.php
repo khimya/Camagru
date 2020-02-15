@@ -47,7 +47,7 @@ class Posts extends Controller
                         if ($this->postModel->addCmnt($data, $id)) {
 
                             if ($this->postModel->addCmntcount($id))
-                            return (redirect('posts'));
+                                return (redirect('posts'));
                         } else
                             return (redirect('pages/error'));
                     } else
@@ -95,8 +95,8 @@ class Posts extends Controller
             //make sure there is no error
             if (empty($data['title_err']) && empty($data['image_err'])) {
                 //validated posts
-                if ($this->postModel->addPost($data)) {
-                    flash('post_message', 'Post Added'); ///
+                $imgthing = $this->postModel->saveImage($data, 1);
+                if ($this->postModel->addPost($data, $imgthing)) {
                     redirect('posts');
                 } else {
                     redirect('pages/error');
@@ -158,7 +158,7 @@ class Posts extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if (!is_int(($id)))
+            if (!is_numeric(($id)))
                 redirect('posts');
             // Get existing post from model
             $post = $this->postModel->getPostById($id);
@@ -190,6 +190,7 @@ class Posts extends Controller
             'user' => $user,
             'cmnt' => $cmnt
         ];
+        // die(var_dump($data['post']->image));
         $this->view('posts/show', $data);
     }
 }

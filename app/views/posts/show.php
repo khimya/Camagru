@@ -18,9 +18,9 @@
         <p><?php echo $data['post']->title; ?></p>
     </div>
     <div class="post_img">
-        <img alt="post_picture" src="<?php echo $data['post']->image; ?>">
+        <img alt="post_picture" src="<?php echo "/camagru/public/" . $data['post']->image; ?>">
     </div>
-    <div class="lmard">
+    <div class=" lmard">
 
         <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $data['post']->id; ?>" method="POST">
             <div class="likes">

@@ -25,7 +25,6 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        #userid = 
         $this->db->query("SELECT *
         FROM posts P join users U on P.user_id = U.id
         WHERE P.user_id ='{$_SESSION['user_id']}'");
@@ -97,7 +96,7 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
-    public function addPost($data)
+    public function addPost($data, $imgthing)
     {
         if (!isLoggedIn()) {
             redirect('users/login');
@@ -109,7 +108,7 @@ class post
 
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':user_id', $data['user_id']);
-            $this->db->bind(':image', $data['image']);
+            $this->db->bind(':image', $imgthing);
         }
 
 
@@ -241,5 +240,40 @@ class post
             return false;
         }
     }
-    
+    public function saveImage($data, $num_fil)
+    {
+        if ($num_fil < 1 || $num_fil > 6)
+            return false;
+        // if ($this->is_valid($img) == false)
+        //     return false;
+        $urlfil = './../../public/img/sup/' . $num_fil . '.png';
+        if (!file_exists('upload/'))
+            mkdir("upload/", 0700);
+        $folderPath = "upload/";
+
+        $image_parts = explode(";base64,", $data['image']);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        if (!isset($image_type_aux[1]) || empty($image_type_aux[1]))
+            return false;
+        $image_type = $image_type_aux[1];
+
+        if (!($image_base64 = base64_decode($image_parts[1], true)))
+            return false;
+        $fileName = uniqid() . '.png';
+
+        $file = $folderPath . $fileName;
+        file_put_contents($file, $image_base64);
+
+        // $file = $this->resize_image($file, 800, 600);
+        // die(var_dump($urlfil));
+        $filter = imagecreatefromstring(file_get_contents($urlfil));
+
+        $sx = imagesx($filter);
+        $sy = imagesy($filter);
+        imagecopy($file, $filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
+        imagejpeg($file, $file);
+        imagedestroy($file);
+
+        return ($file);
+    }
 }
