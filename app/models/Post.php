@@ -34,13 +34,12 @@ class post
     }
     public function checkLikes($id)
     {
-        
+
         $this->db->query('SELECT * FROM likes WHERE user_id = :user_id AND post_id = :id');
         $this->db->bind(':id', $id);
         $this->db->bind(':user_id', $_SESSION['user_id']);
         $results = $this->db->resultSet();
-        if (count($results) >= 1)
-        {
+        if (count($results) >= 1) {
             return true;
         } else {
             return false;
@@ -48,10 +47,10 @@ class post
     }
     public function checkCmnt($data)
     {
-        if (!preg_match('/^([\s*\w]+[\.\\/\-\@\s]*)+[\s\w]$/',$data['blabla']))
-            return(redirect('posts'));
+        if (!preg_match('/^([\s*\w]+[\.\\/\-\@\s]*)+[\s\w]$/', $data['blabla']))
+            return (redirect('posts'));
         else
-        return true;
+            return true;
     }
     public function removeLike($id)
     {
@@ -83,15 +82,15 @@ class post
             return false;
         }
     }
-    
+
     public function getsnitching($user_id)
     {
         if (!isLoggedIn()) {
             redirect('users/login');
         }
         if ($_SESSION['user_id'] == $user_id)
-        redirect('posts/me');
-        
+            redirect('posts/me');
+
         $this->db->query("SELECT *
         FROM posts P join users U on P.user_id = U.id
         WHERE P.user_id = $user_id;");
@@ -103,17 +102,17 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
-            
+
             $this->db->query('INSERT INTO posts (title, user_id, image) VALUES(:title, :user_id, :image)');
-            
+
             //binding login values
-            
+
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':image', $data['image']);
         }
-        
-        
+
+
         //execute
         if ($this->db->execute()) {
             return true;
@@ -152,10 +151,10 @@ class post
             return false;
         }
     }
-    
+
     public function addLikeCount($id)
     {
-    
+
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
@@ -170,7 +169,7 @@ class post
     }
     public function addCmntcount($id)
     {
-        
+
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
@@ -225,8 +224,8 @@ class post
     {
         $this->db->query('SELECT * FROM cmnt WHERE post_id = :id');
         $this->db->bind(':id', $id);
-        $row = $this->db->single();
-        return $row;
+        $results = $this->db->resultSet();
+        return $results;
     }
 
     public function deletePost($id)
@@ -242,4 +241,5 @@ class post
             return false;
         }
     }
+    
 }

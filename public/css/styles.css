@@ -29,11 +29,13 @@
 .dialogbox .body {
   position: relative;
   height: auto;
-  margin: 12px 10% 0% 10%;
-  padding: 5px;
+  margin: 23px 12% 2% 8%;
+  /* padding: 5px; */
   background-color: #DADADA;
+  display: inline-block;
   border-radius: 3px;
   border: 5px solid #ccc;
+  width: 80%;
 }
 
 .body .message {

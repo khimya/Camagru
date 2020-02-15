@@ -28,6 +28,7 @@
                     <button class="publish" type="submit">Publish</button>
                 </form>
             </div>
+
             <div class="lmard">
 
                 <form action="<?php echo URLROOT; ?>/posts/like/<?php echo $post->postId; ?>" method="POST">
@@ -35,9 +36,11 @@
                         <input type="submit" value="<?php echo $post->like_count; ?>" />
                     </div>
                 </form>
-                <div class="comments">
-                    <input type="submit" value="<?php echo $post->cmnt_count; ?>" />
-                </div>
+                <form action="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId; ?>" method="POST">
+                    <div class="comments">
+                        <input type="submit" value="<?php echo $post->cmnt_count; ?>" />
+                    </div>
+                </form>
             </div>
 
             <div class="posts_info">

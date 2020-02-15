@@ -41,28 +41,19 @@ class Posts extends Controller
             if (!isLoggedIn()) {
                 redirect('users/login');
             } else if (isLoggedIn()) {
-                if(isset($_POST['blabla']) && !empty($_POST['blabla']))
-                {
+                if (isset($_POST['blabla']) && !empty($_POST['blabla'])) {
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
-                        if($this->postModel->addCmnt($data,$id))
-                        {
-                            
-                            if($this->postModel->addCmntcount($id))
-                                redirect('posts');
+                        if ($this->postModel->addCmnt($data, $id)) {
 
-                        }
-                        else
-                        return(redirect('pages/error'));
-                        
+                            if ($this->postModel->addCmntcount($id))
+                            return (redirect('posts'));
+                        } else
+                            return (redirect('pages/error'));
                     } else
-                    return(redirect('posts'));
-                }
-                else
-                {
-
-                    die("else");
-                    return(redirect('posts'));
+                        return (redirect('posts'));
+                } else {
+                    return (redirect('posts'));
                 }
             }
         }
@@ -191,6 +182,7 @@ class Posts extends Controller
     {
         $post = $this->postModel->getPostById($id);
         $cmnt = $this->postModel->getCmntById($id);
+
         $user = $this->userModel->getUserById($post->user_id);
 
         $data = [

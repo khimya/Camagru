@@ -238,7 +238,22 @@ span {
   height: 69px;
   margin: 35px 0px 6px 91px;
 }
+.blablashow {
+  display: block;
+  float: right;
+  width: 60%;
+  height: 69px;
+  margin: 35px 0px 6px 91px;
+}
 .blabla input {
+  width: 363px;
+  height: 68px;
+  border-color: black;
+  background-color: black;
+  margin: 2px 0px 0px -113px;
+  color: white;
+}
+.blablashow input {
   width: 363px;
   height: 68px;
   border-color: black;

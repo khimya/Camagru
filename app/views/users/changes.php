@@ -14,7 +14,7 @@
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo ($data['display_name_err']); ?></label>
             <?php } ?>
-            <input type="text" name="display_name" value="<?php echo ($_SESSION['display_name']); ?>">
+            <input type="text" name="display_name" value="">
         </div>
 
 
@@ -26,7 +26,7 @@
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo ($data['email_err']); ?></label>
             <?php } ?>
-            <input type="email" name="email" value="<?php echo ($_SESSION['email']); ?>">
+            <input type="email" name="email" value="">
         </div>
 
 

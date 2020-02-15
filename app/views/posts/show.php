@@ -7,11 +7,11 @@
         </form>
     <?php endif; ?>
     <div class="post_profile_pic">
-        <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg"></a> </div>
+        <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $data['post']->user_id; ?>"><img alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg"></a> </div>
     <!-- poste image -->
     <div class="profile_name_posts">
 
-        <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><?php echo $post->display_name; ?></a>
+        <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $data['post']->user_id; ?>"><?php echo $data['user']->display_name; ?></a>
 
     </div>
     <div class="post_title">
@@ -30,14 +30,21 @@
         <div class="comments">
             <input type="submit" value="<?php echo $data['post']->cmnt_count; ?>" />
         </div>
+
     </div>
-    <?php foreach ($data['cmnt'] as $cmnt ) : ?>
-        <?php var_dump($data['cmnt']); ?>
-            <div class="dialogbox">
-                <div class="body">
-                    <span style="color: black;"><?php echo $data['cmnt']->cmnt; ?></span>
-                </div>
+    <div class="blabla">
+        <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $data['post']->id; ?>" method="post">
+            <input id="commntarea" name="blabla" type="text" placeholder="enter your comment here...">
+            <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
+            <button class="publish" type="submit">Publish</button>
+        </form>
+    </div>
+    <?php foreach ($data['cmnt'] as $cmnt) : ?>
+        <div class="dialogbox">
+            <div class="body">
+                <span style="color: black;"><?php echo $cmnt->cmnt; ?></span>
             </div>
+        </div>
     <?php endforeach; ?>
     <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
     </form>
