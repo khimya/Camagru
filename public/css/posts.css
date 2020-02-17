@@ -228,11 +228,10 @@ span {
 }
 
 .posts_info {
-  margin: 22px 11px 7px 9px;
-  float: right;
+  width: 1%;
+  margin: 1% 1% 1% 1%;
   padding: 0px;
 }
-
 .posts_info p {
   color: black;
   width: 38vh;
