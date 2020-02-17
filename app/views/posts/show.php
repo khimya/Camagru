@@ -7,7 +7,8 @@
         </form>
     <?php endif; ?>
     <div class="post_profile_pic">
-    <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> </div>
+    <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $data['post']->user_id; ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> 
+</div>
     <!-- poste image -->
     <div class="profile_name_posts">
 
