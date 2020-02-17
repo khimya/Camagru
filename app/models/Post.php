@@ -312,9 +312,9 @@ class post
         $filter = imagecreatefromstring(file_get_contents($urlfil));
         
         $sx = imagesx($filter);
-        die(var_dump($urlfil));
         $sy = imagesy($filter);
-        imagecopy($file, $filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
+        imagecopy( $file,$filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
+        die("ok");
         imagejpeg($imgTmp, $file);
         imagedestroy($imgTmp);
 
