@@ -17,7 +17,7 @@
             <p><?php echo $post->title; ?></p>
         </div>
         <div class="post_img">
-            <img href alt="Anne Hathaway picture" src="<?php echo $post->$image; ?>">
+            <img  alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
         </div>
         <div class="lmard">
 
@@ -36,7 +36,7 @@
         </div>
         <div class="blabla">
             <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->id; ?>" method="post">
-                <input id="commntarea" name="blabla" type="text" placeholder="enter your comment here...">
+                <input  name="blabla" type="text" placeholder="enter your comment here...">
                 <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
                 <button class="publish" type="submit">Publish</button>
             </form>
@@ -49,7 +49,6 @@
                 Written by <?php echo $post->display_name; ?> on <?php echo $post->created_at; ?>
             </p>
         </div>
-</div>
 <?php endforeach; ?>
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
