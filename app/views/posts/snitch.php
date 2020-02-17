@@ -5,7 +5,7 @@
         <div class="profile block">
             <!-- <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a> -->
             <div class="post_profile_pic">
-                <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> </div>
+                <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo ('hello'); ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> </div>
         </div>
         <!-- poste image -->
         <div class="profile_name_posts">
@@ -17,7 +17,7 @@
             <p><?php echo $post->title; ?></p>
         </div>
         <div class="post_img">
-            <img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>">
+            <img href alt="Anne Hathaway picture" src="<?php echo $post->$image; ?>">
         </div>
         <div class="lmard">
 
