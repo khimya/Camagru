@@ -307,13 +307,14 @@ class post
         $file = $folderPath . $fileName;
         file_put_contents($file, $image_base64);
 
+
         $imgTmp = $file;
         $filter = imagecreatefromstring(file_get_contents($urlfil));
-
+        
         $sx = imagesx($filter);
+        die(var_dump($urlfil));
         $sy = imagesy($filter);
         imagecopy($file, $filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
-        die(var_dump($imgTmp));
         imagejpeg($imgTmp, $file);
         imagedestroy($imgTmp);
 
