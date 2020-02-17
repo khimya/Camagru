@@ -284,6 +284,7 @@ class post
         if ($num_fil < 1 || $num_fil > 6)
             return false;
         $urlfil = '/var/www/html/camagru/public/img/sup/' .  $num_fil . '.png';
+        die(var_dump(file_exists('/var/www/html/camagru/public/upload/5e4a36c24e09f.g')));
         // die(var_dump($urlfil));
         // if (file_exists($urlfil)) {
         //     die('TRUE');
@@ -314,7 +315,7 @@ class post
         $sx = imagesx($filter);
         $sy = imagesy($filter);
         imagecopy( $file,$filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
-        die(imagecopy( $file,$filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy););
+        die("ok");
         imagejpeg($imgTmp, $file);
         imagedestroy($imgTmp);
 
