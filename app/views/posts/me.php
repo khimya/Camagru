@@ -8,7 +8,7 @@
             </form>
             <!-- <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a> -->
             <div class="post_profile_pic">
-                <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg"></a> </div>
+            <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> </div>
             <!-- poste image -->
             <div class="profile_name_posts">
 
@@ -19,7 +19,7 @@
                 <p><?php echo $post->title; ?></p>
             </div>
             <div class="post_img">
-                <img href alt="Anne Hathaway picture" src="<?php echo $post->image; ?>">
+                <img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
             </div>
             <div class="lmard">
 
@@ -35,7 +35,7 @@
             </div>
             <div class="blabla">
                 <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->id; ?>" method="post">
-                    <input id="commntarea" name="blabla" type="text" placeholder="enter your comment here...">
+                    <input  name="blabla" type="text" placeholder="enter your comment here...">
                     <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
                     <button class="publish" type="submit">Publish</button>
                 </form>

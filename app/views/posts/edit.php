@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/header.php'; ?>
+<!-- <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="create_posts_container">
 
     <a href="<?php echo URLROOT; ?>/posts" class="btn btn-light">Back</a>
@@ -14,4 +14,4 @@
         <input type="submit" class="btn btn-success" value="submit">
     </form>
 </div>
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+<?php require APPROOT . '/views/inc/footer.php'; ?> -->

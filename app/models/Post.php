@@ -31,6 +31,7 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
+
     public function checkLikes($id)
     {
 
@@ -44,6 +45,7 @@ class post
             return false;
         }
     }
+
     public function checkCmnt($data)
     {
         if (!preg_match('/^([\s*\w]+[\.\\/\-\@\s]*)+[\s\w]$/', $data['blabla']))
@@ -51,6 +53,7 @@ class post
         else
             return true;
     }
+
     public function removeLike($id)
     {
         if (!isLoggedIn()) {
@@ -96,6 +99,7 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
+
     public function addPost($data, $imgthing)
     {
         if (!isLoggedIn()) {
@@ -104,7 +108,6 @@ class post
 
             $this->db->query('INSERT INTO posts (title, user_id, image) VALUES(:title, :user_id, :image)');
 
-            //binding login values
 
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':user_id', $data['user_id']);
@@ -112,13 +115,13 @@ class post
         }
 
 
-        //execute
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
+
     public function addLike($id)
     {
         if (!isLoggedIn()) {
@@ -134,6 +137,7 @@ class post
             return false;
         }
     }
+
     public function addCmnt($data, $id)
     {
         if (!isLoggedIn()) {
@@ -166,6 +170,7 @@ class post
             return false;
         }
     }
+
     public function addCmntcount($id)
     {
 
@@ -203,7 +208,6 @@ class post
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':image', $data['image']);
-        //execute
         if ($this->db->execute()) {
             return true;
         } else {
@@ -219,6 +223,7 @@ class post
         $row = $this->db->single();
         return $row;
     }
+
     public function getCmntById($id)
     {
         $this->db->query('SELECT * FROM cmnt WHERE post_id = :id');
@@ -230,28 +235,66 @@ class post
     public function deletePost($id)
     {
         $this->db->query('DELETE FROM posts WHERE id = :id');
-        //binding login values
         $this->db->bind(':id', $id);
 
-        //execute
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
-    public function saveImage($data, $num_fil)
+    // public function saveImage($data, $num_fil)
+    // {
+    //     if ($num_fil < 1 || $num_fil > 6)
+    //         return false;
+    //     // if ($this->is_valid($img) == false)
+    //     //     return false;
+    //     $urlfil = '/camagru/public/img/sup/' . $num_fil . '.png';
+    //     if (!file_exists('upload/'))
+    //         mkdir("upload/", 0700);
+    //     $folderPath = "upload/";
+
+    //     $image_parts = explode(";base64,", $data['image']);
+    //     $image_type_aux = explode("image/", $image_parts[0]);
+    //     if (!isset($image_type_aux[1]) || empty($image_type_aux[1]))
+    //         return false;
+    //     $image_type = $image_type_aux[1];
+
+    //     if (!($image_base64 = base64_decode($image_parts[1], true)))
+    //         return false;
+    //     $fileName = uniqid() . '.png';
+
+    //     die(var_dump($fileName));
+    //     $file = $folderPath . $fileName;
+    //     file_put_contents($file, $image_base64);
+
+    //     // $file = $this->resize_image($file, 800, 600);
+    //     // die(var_dump($urlfil));
+    //     $filter = @imagecreatefromstring(file_get_contents($urlfil));
+    //     $sx = imagesx($filter);
+    //     $sy = imagesy($filter);
+    //     imagecopy($file, $filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
+    //     imagejpeg($file, $file);
+    //     imagedestroy($file);
+
+    //     return ($file);
+    // }
+    public function saveImage($img, $num_fil)
     {
         if ($num_fil < 1 || $num_fil > 6)
             return false;
-        // if ($this->is_valid($img) == false)
-        //     return false;
-        $urlfil = './../../public/img/sup/' . $num_fil . '.png';
+        $urlfil = '/var/www/html/camagru/public/img/sup/' .  $num_fil . '.png';
+        // die(var_dump($urlfil));
+        // if (file_exists($urlfil)) {
+        //     die('TRUE');
+        // } else {
+        //     die('FALSE');
+        // }
         if (!file_exists('upload/'))
             mkdir("upload/", 0700);
         $folderPath = "upload/";
 
-        $image_parts = explode(";base64,", $data['image']);
+        $image_parts = explode(";base64,", $img['image']);
         $image_type_aux = explode("image/", $image_parts[0]);
         if (!isset($image_type_aux[1]) || empty($image_type_aux[1]))
             return false;
@@ -264,15 +307,15 @@ class post
         $file = $folderPath . $fileName;
         file_put_contents($file, $image_base64);
 
-        // $file = $this->resize_image($file, 800, 600);
-        // die(var_dump($urlfil));
+        $imgTmp = $file;
         $filter = imagecreatefromstring(file_get_contents($urlfil));
 
         $sx = imagesx($filter);
         $sy = imagesy($filter);
         imagecopy($file, $filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
-        imagejpeg($file, $file);
-        imagedestroy($file);
+        die(var_dump($imgTmp));
+        imagejpeg($imgTmp, $file);
+        imagedestroy($imgTmp);
 
         return ($file);
     }

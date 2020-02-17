@@ -1,11 +1,5 @@
 <?php
-/*
-* PDO Database Class
-* Connect to database
-* Create prepared statment
-* bind values
-* return rows and results
-*/
+
 class Database
 {
     private $host = DB_HOST;
@@ -19,13 +13,11 @@ class Database
 
     public function __construct()
     {
-        //set DSN
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
         $options = array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
-        // Create PDO instance
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
         } catch (PDOException $e) {
@@ -34,13 +26,11 @@ class Database
         }
     }
 
-    //prepare statement=
     public function query($sql)
     {
         $this->stmt = $this->dbh->prepare($sql);
     }
 
-    // bind values
     public function bind($param, $value, $type = null)
     {
         if (is_null($type)) {
@@ -60,12 +50,10 @@ class Database
         }
         $this->stmt->bindValue($param, $value, $type);
     }
-    //execute the prepared statment
     public function execute()
     {
         return $this->stmt->execute();
     }
-    // Get results set as arrat if objects
 
     public function resultSet()
     {
@@ -78,7 +66,6 @@ class Database
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
-    // GEt row count
     public function rowCount()
     {
         return $this->stmt->rowCount();

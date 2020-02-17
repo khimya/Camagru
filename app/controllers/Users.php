@@ -9,7 +9,7 @@ class Users extends Controller
 	public function register()
 	{
 		if (isLoggedIn()) {
-			redirect('posts');
+			return (redirect('posts'));
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -24,7 +24,10 @@ class Users extends Controller
 				'confirm_password_err' => '',
 				'cle' => ''
 			];
-			if (empty($_POST['display_name']) || !isset($_POST['display_name'])) {
+			if (empty($_POST['display_name']) || !isset($_POST['display_name']) || empty($_POST['email']) || !isset($_POST['email']) || empty($_POST['password']) || !isset($_POST['password']) || empty($_POST['confirm_password']) || !isset($_POST['confirm_password'])) {
+				$data['display_name_err'] = 'Please enter a display_name';
+			}
+			if (is_array($_POST['display_name']) || is_array($_POST['email']) || is_array($_POST['password']) || is_array($_POST['confirm_password'])) {
 				$data['display_name_err'] = 'Please enter a display_name';
 			}
 			$data = $this->userModel->checkDisplayName($data);
@@ -73,6 +76,14 @@ class Users extends Controller
 			redirect('posts');
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if (empty($_POST['display_name']) || !isset($_POST['display_name']) || empty($_POST['password']) || !isset($_POST['password'])) {
+				$data['display_name_err'] = 'Please enter a display_name';
+				$data['password_err'] = 'Please enter a display_name';
+			}
+			if (is_array($_POST['display_name']) || is_array($_POST['password'])) {
+				$data['display_name_err'] = 'Please enter a valid display_name';
+				$data['display_name_err'] = 'Please enter a valid password';
+			}
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 			$data = ['display_name' => trim($_POST['display_name']), 'password' => trim($_POST['password']), 'display_name_err' => '', 'password_err' => '',];
@@ -103,6 +114,7 @@ class Users extends Controller
 			$this->view('users/login', $data);
 		}
 	}
+
 	public function createUserSession($user)
 	{
 		$_SESSION['user_id'] = $user->id;
@@ -147,6 +159,7 @@ class Users extends Controller
 			$this->view('users/recover', $data);
 		}
 	}
+
 	public function changes()
 	{
 		if (!isLoggedIn()) {
@@ -154,9 +167,6 @@ class Users extends Controller
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-			///////////// Update email //////////////////////
-
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);
@@ -165,8 +175,6 @@ class Users extends Controller
 					$this->userModel->sendConfirmationNewEmail($data);
 				}
 			}
-
-			///////////// display_name //////////////////////
 			if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
 				$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
 				$data = $this->userModel->checkDisplayName($data);
@@ -174,9 +182,6 @@ class Users extends Controller
 					$this->userModel->newDisplayName($data);
 				}
 			}
-			
-			// die('tipicaly changes is working');
-			/////////////// password //////////////////////
 			if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {
 				$data = [
 					'currentPassword' => $_POST['currentPassword'],
@@ -195,9 +200,6 @@ class Users extends Controller
 		} else {
 			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
 			$this->view('users/changes', $data);
-			//         } else {
-			//             $data = ['display_name' => '', 'email' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'display_name_err' => '', 'email_err' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
-			//             $this->view('users/changes', $data);
 		}
 	}
 }

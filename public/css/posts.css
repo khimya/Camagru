@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
 }
+
 h1 {
   font-size: 23px;
 }
@@ -21,6 +22,7 @@ a {
   text-decoration: none;
   font-size: 15px;
 }
+
 h1,
 h2,
 p,
@@ -28,6 +30,7 @@ a,
 span {
   color: #fff;
 }
+
 .scnd-font-color {
   color: #9099b7;
 }
@@ -39,6 +42,7 @@ span {
 .icon {
   font-size: 25px;
 }
+
 .profile_name_posts a {
   color: black;
 
@@ -58,16 +62,19 @@ span {
   width: 100px;
   height: 100px;
 }
+
 .post_profile_pic img {
   width: 100%;
+  margin: -7px 0px 0px 0px;
 }
 
 .post_img img {
-  margin: 2% 8% 1% 10%;
-  width: 630px;
-  height: 480px;
+  margin: 2% 4% 1% 11%;
+  width: 80%;
   border-style: outset;
   border-radius: 8px;
+  position: relative;
+  display: table-row-group;
 }
 
 .header-menu-number {
@@ -82,16 +89,19 @@ span {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
+
 .header-menu li:hover .header-menu-number {
   text-decoration: none;
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
 }
+
 .profile-menu {
   float: right;
   height: 80px;
   padding-right: 20px;
 }
+
 .profile-menu p {
   font-size: 17px;
   display: inline-block;
@@ -99,16 +109,20 @@ span {
   margin: 0;
   padding-right: 10px;
 }
+
 .profile-menu a {
   padding-left: 5px;
 }
+
 .profile-menu a:hover {
   text-decoration: none;
 }
+
 .small-profile-picture {
   display: inline-block;
   vertical-align: middle;
 }
+
 /** CONTAINERS **/
 .container {
   margin-bottom: 50px;
@@ -120,19 +134,21 @@ span {
   /* position: relative; */
   width: 80%;
 }
+
 .block {
   background: aliceblue;
 }
 
 .profile {
-  margin-top: 84px;
+  margin-top: 73px;
   margin-bottom: 25px;
   margin-left: auto;
   margin-right: auto;
-  width: 795px;
+  width: 45%;
   border-radius: 19px;
   display: flow-root;
 }
+
 .add-button .icon {
   float: right;
   line-height: 18px;
@@ -143,24 +159,29 @@ span {
   text-align: center;
   margin: 10px;
 }
+
 .add-button .icon:hover {
   color: #e64c65;
   border-color: #e64c65;
 }
+
 .user-name {
   margin: 25px 0 16px;
   text-align: center;
 }
+
 .profile-description {
   width: 210px;
   margin: 0 auto;
 }
+
 .reaction ul {
   width: 150px;
   height: 100%;
   margin-left: 10%;
   /* background-color: red; */
 }
+
 .likes input {
   width: 40px;
   background: url(../img/posts/feedback.svg) no-repeat;
@@ -171,6 +192,7 @@ span {
   font-size: 24px;
   padding-top: 38px;
 }
+
 .comments input {
   width: 40px;
   background: url(../img/posts/comnt.svg) no-repeat;
@@ -181,6 +203,7 @@ span {
   font-size: 24px;
   padding-top: 38px;
 }
+
 /* .likes {
 }
 .comments {
@@ -191,6 +214,7 @@ span {
 .lamrd input {
   display: inline-block;
 }
+
 .post_title p {
   float: left;
   top: 9px;
@@ -202,15 +226,18 @@ span {
   font-size: larger;
   font-family: initial;
 }
+
 .posts_info {
   margin: 22px 11px 7px 9px;
   float: right;
   padding: 0px;
 }
+
 .posts_info p {
   color: black;
   width: 38vh;
 }
+
 .delete {
   background-color: crimson;
   margin: 31px 27px 0 0;
@@ -219,9 +246,11 @@ span {
   height: 40px;
   float: right;
 }
+
 .delete a:hover {
   color: white;
 }
+
 .return {
   background-color: black;
   margin: 31px 31px 0 27px;
@@ -232,12 +261,14 @@ span {
   display: unset;
   color: white;
 }
+
 .blabla {
   float: right;
-  width: 60%;
+  width: 78%;
   height: 69px;
-  margin: 35px 0px 6px 91px;
+  margin: 10% 0 2% 0;
 }
+
 .blablashow {
   display: block;
   float: right;
@@ -245,14 +276,16 @@ span {
   height: 69px;
   margin: 35px 0px 6px 91px;
 }
+
 .blabla input {
-  width: 363px;
-  height: 68px;
+  width: 67%;
+  height: 69px;
   border-color: black;
   background-color: black;
-  margin: 2px 0px 0px -113px;
+  margin: 2px 0px 0px 3%;
   color: white;
 }
+
 .blablashow input {
   width: 363px;
   height: 68px;
@@ -261,14 +294,17 @@ span {
   margin: 2px 0px 0px -113px;
   color: white;
 }
+
 #commntarea {
   position: relative;
 }
+
 textarea {
   height: 149px;
   overflow: auto;
   resize: vertical;
 }
+
 .publish {
   background-color: black;
   margin: 1px 115px 11px 6px;
@@ -278,17 +314,20 @@ textarea {
   float: right;
   color: white;
 }
+
 .comments {
   color: black;
   font-size: 24px;
 }
+
 .lmard {
   width: 134px;
   display: inline-flex;
   margin: -6px 1px 0px 84px;
 }
+
 .showcomments a {
   color: blue;
   float: right;
-  margin: 7px 92px 7px 1px;
+  margin: 7px 9% 7px 1px;
 }
