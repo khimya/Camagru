@@ -314,7 +314,7 @@ class post
         $sx = imagesx($filter);
         $sy = imagesy($filter);
         imagecopy( $file,$filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
-        die("ok");
+        die(imagecopy( $file,$filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy););
         imagejpeg($imgTmp, $file);
         imagedestroy($imgTmp);
 
