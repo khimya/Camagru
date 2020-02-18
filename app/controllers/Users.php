@@ -167,6 +167,14 @@ class Users extends Controller
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			$data = [
+				'currentPassword' => '',
+				'currentPassword_err' => '',
+				'newPassword' => $_POST['newPassword'],
+				'newPassword_err' => '',
+				'confirmNewPassword' => $_POST['confirmNewPassword'],
+				'confirmNewPassword_err' => '',
+			];
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);
@@ -191,11 +199,12 @@ class Users extends Controller
 					'confirmNewPassword' => $_POST['confirmNewPassword'],
 					'confirmNewPassword_err' => '',
 				];
-				$data = $this->userModel->checkChangePassword($data);
 				if (empty($data['currentPassword_err']) && empty($data['currentPassword_err']) && empty($data['newPassword_err']) && empty($data['confirmNewPassword_err'])) {
+					$data = $this->userModel->checkChangePassword($data);
 					$this->userModel->newPassword($data);
 				}
 			}
+			else
 			$this->view('users/changes', $data);
 		} else {
 			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
