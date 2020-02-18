@@ -77,7 +77,7 @@ class Posts extends Controller
         $this->view('posts/snitch', $data);
     }
 
-    public function add()
+    public function add($id)
     {
         if (!isLoggedIn()) {
             return (redirect('users/login'));

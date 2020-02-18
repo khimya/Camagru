@@ -170,9 +170,9 @@ class Users extends Controller
 			$data = [
 				'currentPassword' => '',
 				'currentPassword_err' => '',
-				'newPassword' => $_POST['newPassword'],
+				'newPassword' => '',
 				'newPassword_err' => '',
-				'confirmNewPassword' => $_POST['confirmNewPassword'],
+				'confirmNewPassword' => '',
 				'confirmNewPassword_err' => '',
 			];
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
@@ -190,6 +190,7 @@ class Users extends Controller
 					$this->userModel->newDisplayName($data);
 				}
 			}
+			$data = $this->userModel->checkChangePassword($data);
 			if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {
 				$data = [
 					'currentPassword' => $_POST['currentPassword'],
@@ -200,7 +201,6 @@ class Users extends Controller
 					'confirmNewPassword_err' => '',
 				];
 				if (empty($data['currentPassword_err']) && empty($data['currentPassword_err']) && empty($data['newPassword_err']) && empty($data['confirmNewPassword_err'])) {
-					$data = $this->userModel->checkChangePassword($data);
 					$this->userModel->newPassword($data);
 				}
 			}

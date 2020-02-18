@@ -114,23 +114,26 @@ class User
     public function checkChangePassword($data)
     {
 
-        if (empty($data['currentPassword']) || !isset($data['currentPassword'])) {
-            $data['currentPassword_err'] = 'Please enter a password';
-        }
-        if (empty($data['newPassword']) || !isset($data['newPassword'])) {
-            $data['newPassword_err'] = 'Please enter a password';
-        }
-        if (strlen($data['newPassword']) < '6') {
-            $data['newPassword_err'] = "Password must be at least 6 caracters";
-        }
-        if (!preg_match("#[0-9]+#", $data['newPassword']) || !preg_match("#[A-Z]+#", $data['newPassword'])) {
-            $data['newPassword_err'] = "Password Must Contain At Least 1 Number Contain At Least 1 Capital Letter!";
-        }
-        if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
-            $data['confirmNewPassword_err'] = 'Please confirm password';
-        }
-        if ($data['newPassword'] != $data['confirmNewPassword']) {
-            $data['newPassword_err'] = "new password and confirm new password are different";
+        if (isset($data['newPassword']) && isset($data['currentPassword']) && isset($data['confirmNewPassword'])) {
+            if (empty($data['currentPassword']) || !isset($data['currentPassword'])) {
+                $data['currentPassword_err'] = 'Please enter a password';
+            }
+            if (empty($data['newPassword']) || !isset($data['newPassword'])) {
+                $data['newPassword_err'] = 'Please enter a password';
+            }
+            $x = strlen($data['newPassword']);
+            if ($x < 6) {
+                $data['newPassword_err'] = "Password must be at least 6 caracters";
+            }
+            if (!preg_match("#[0-9]+#", $data['newPassword']) || !preg_match("#[A-Z]+#", $data['newPassword'])) {
+                $data['newPassword_err'] = "Password Must Contain At Least 1 Number Contain At Least 1 Capital Letter!";
+            }
+            if (empty($data['confirmNewPassword']) || !isset($data['confirmNewPassword'])) {
+                $data['confirmNewPassword_err'] = 'Please confirm password';
+            }
+            if ($data['newPassword'] != $data['confirmNewPassword']) {
+                $data['newPassword_err'] = "new password and confirm new password are different";
+            }
         }
         return ($data);
     }
