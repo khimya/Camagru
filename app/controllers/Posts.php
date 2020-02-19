@@ -83,18 +83,14 @@ class Posts extends Controller
             return (redirect('users/login'));
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = ['title' => trim($_POST['title']), 'image' => $_POST['image'], 'user_id' => $_SESSION['user_id'], 'title_err' => '', 'image_err' => ''];
-            if (empty($data['title'])) {
+            if (empty($data['title']))
                 $data['title_err'] = 'Please enter a title';
-            }
-            if (empty($data['image'])) {
+            if (empty($data['image']))
                 $data['image_err'] = 'There is an error please try again';
-            }
             if (empty($data['title_err']) && empty($data['image_err'])) {
                 $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
-                // die(var_dump($_POST));
                 if ($this->postModel->addPost($data, $imgthing)) {
                     redirect('posts');
                 } else {
