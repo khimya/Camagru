@@ -74,32 +74,32 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
   radiobutton = document.querySelector('input[name="filter"]:checked').value;
   if (radiobutton == "imoji")
   {
-    document.getElementById('snap').setAttribute('src', 'public/img/sup/1.png');
+    // document.getElementById('snap').setAttribute('src', 'public/img/sup/1.png');
     return 1;
   }
   else if (radiobutton == "dog")
   {
-    document.getElementById('snap').setAttribute('src', 'public/img/sup/2.png');
+    // document.getElementById('snap').setAttribute('src', 'public/img/sup/2.png');
     return 2;
   }
   else if (radiobutton == "pokemon")
   {
-    document.getElementById('snap').setAttribute('src', 'public/img/sup/3.png');
+    // document.getElementById('snap').setAttribute('src', 'public/img/sup/3.png');
     return 3;
   }
   else if (radiobutton == "loki")
   {
-    document.getElementById('snap').setAttribute('src', 'public/img/sup/4.png');
+    // document.getElementById('snap').setAttribute('src', 'public/img/sup/4.png');
     return 4;
   }
   else if (radiobutton == "ndader")
   {
-    document.getElementById('snap').setAttribute('src', 'public/img/sup/5.png');
+    // document.getElementById('snap').setAttribute('src', 'public/img/sup/5.png');
     return 5;
   }
   else
   {
-    document.getElementById('snap').setAttribute('src', 'public/img/sup/6.png');
+    // document.getElementById('snap').setAttribute('src', 'public/img/sup/6.png');
     return 6;
   }
 }
