@@ -65,6 +65,7 @@ class Posts extends Controller
         $data = [
             'posts' => $posts
         ];
+        $data['posts'] =  array_reverse($data['posts']);
         $this->view('posts/me', $data);
     }
 
