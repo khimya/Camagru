@@ -243,19 +243,56 @@ class post
             return false;
         }
     }
+    // public function save_image($img, $num_fil)
+    // {
+    //     if ($num_fil < 1 || $num_fil > 6)
+    //         return false;
+    //     // if ($this->is_valid($img) == false)
+    //     //     return false;
+    //     $urlfil = 'public/img/sup/' . $num_fil . '.png';
+    //     if (!file_exists('upload/'))
+    //         mkdir("upload/", 0700);
+    //     $folderPath = "upload/";
+      
+    //     $image_parts = explode(";base64,", $img);
+    //     $image_type_aux = explode("image/", $image_parts[0]);
+    //     if (!isset($image_type_aux[1]) || empty($image_type_aux[1]))
+    //         return false;
+    //     $image_type = $image_type_aux[1];
+      
+    //     if (!($image_base64 = base64_decode($image_parts[1], true)))
+    //         return false;
+    //     $fileName = uniqid() . '.png';
+
+    //     $file = $folderPath . $fileName;
+    //     file_put_contents($file, $image_base64);
+        
+    //     $imgTmp = $this->resize_image($file, 800, 600);
+    //     $filter = imagecreatefromstring(file_get_contents($urlfil));
+
+    //     $sx = imagesx($filter);
+    //     $sy = imagesy($filter);
+    //     imagecopy($imgTmp, $filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
+    //     imagejpeg($imgTmp, $file);
+    //     imagedestroy($imgTmp);
+
+    //     return ($file);
+    // }
+    public function resize_image($url, $width, $height) {
+        list($width_orig, $height_orig) = getimagesize($url);
+        $ratio_orig = $width_orig / $height_orig;
+        $height = $width / $ratio_orig;
+        $src = imagecreatefromstring(file_get_contents($url));
+        $dst = imagecreatetruecolor($width, $height);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+        return $dst;
+    }
 
     public function saveImage($img, $num_fil)
     {
         if ($num_fil < 1 || $num_fil > 6)
             return false;
-        $urlfil = '/var/www/html/camagru/public/img/sup/' .  $num_fil . '.png';
-        // die(var_dump(file_exists('/var/www/html/camagru/public/upload/5e4a36c24e09f.png')));
-        // die(var_dump($urlfil));
-        // if (file_exists($urlfil)) {
-        //     die('TRUE');
-        // } else {
-        //     die('FALSE');
-        // }
+            $urlfil = 'img/sup/' . $num_fil . '.png';
         if (!file_exists('upload/'))
             mkdir("upload/", 0700);
         $folderPath = "upload/";
@@ -274,12 +311,13 @@ class post
         file_put_contents($file, $image_base64);
 
 
-        $imgTmp = $file;
+        $imgTmp = $this->resize_image($file, 800, 600);
         $filter = imagecreatefromstring(file_get_contents($urlfil));
         
         $sx = imagesx($filter);
         $sy = imagesy($filter);
-        imagecopy( $file,$filter, 400 - ($sx / 2), 300 - ($sy / 2), 0, 0, $sx, $sy);
+        // die(var_dump($urlfil));
+        imagecopy( $imgTmp,$filter, 400 - ($sx / 2), 300 - ($sy / 3), 0, 0, $sx, $sy);
         // die("ok");
         imagejpeg($imgTmp, $file);
         imagedestroy($imgTmp);
