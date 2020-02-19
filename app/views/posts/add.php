@@ -51,6 +51,7 @@
                 <div id="photos"></div>
             </div>
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
+            <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <input type="submit">
         </form>
     </div>

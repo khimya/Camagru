@@ -12,6 +12,7 @@ const photoButton = document.getElementById('photo-button');
 const clearButton = document.getElementById('clear-button');
 const photoFilter = document.getElementById('photo-filter');
 const submitPic = document.getElementById('img64');
+const filter1 = document.getElementById('filter-src');
 
 // Get media stream
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -68,46 +69,6 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     // Reset select list
     photoFilter.selectedIndex = 0;
   });
-
-  // Take picture from canvas
-  function takepicture() {
-    photo.setAttribute('value', data);
-    data = getfilter();
-    filter.setAttribute('value', data);
-    realFileBtn.value = "";
-    customTxt.innerHTML = "No file chosen, yet";
-  }
-  function takePicture() {
-    // Create canvas
-    const context = canvas.getContext('2d');
-    if(width && height) {
-      // set canvas props
-      canvas.width = width;
-      canvas.height = height;
-      // Draw an image of the video on the canvas
-      context.drawImage(video, 0, 0, width, height);
-
-      // Create image from the canvas
-      const imgUrl = canvas.toDataURL('image/png');
-
-      // Create img element
-      const img = document.createElement('img');
-      
-      img.style.filter = filter;
-      // Set img src
-      img.setAttribute('src', imgUrl);
-      submitPic.value = imgUrl;
-      submitPic.setAttribute('style',filter);
-      filter = setAttribute('value', data);
-  strip.insertBefore(imgUrl, strip.firstChild);
-  strip.style.filter = filter
-
-      // Set image filter
-
-      // Add image to photos
-      photos.appendChild(img);
-    }
-  }
   function getfilter()
 {
   radiobutton = document.querySelector('input[name="filter"]:checked').value;
@@ -142,3 +103,45 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     return 6;
   }
 }
+
+  // Take picture from canvas
+  // function takepicture() {
+  //   photo.setAttribute('value', data);
+  //   data = getfilter();
+  //   filter.setAttribute('value', data);
+  //   realFileBtn.value = "";
+  //   customTxt.innerHTML = "No file chosen, yet";
+  // }
+  function takePicture() {
+    // Create canvas
+    var dat = getfilter();
+    console.log(dat);
+  filter1.setAttribute('value', dat);
+    const context = canvas.getContext('2d');
+    if(width && height) {
+      // set canvas props
+      canvas.width = width;
+      canvas.height = height;
+      // Draw an image of the video on the canvas
+      context.drawImage(video, 0, 0, width, height);
+      
+      // Create image from the canvas
+      const imgUrl = canvas.toDataURL('image/png');
+      
+      // Create img element
+      const img = document.createElement('img');
+      
+      img.style.filter = filter;
+      // Set img src
+      img.setAttribute('src', imgUrl);
+      submitPic.value = imgUrl;
+      submitPic.setAttribute('style',filter);
+      filter = setAttribute('value', data);
+      strip.insertBefore(imgUrl, strip.firstChild);
+      strip.style.filter = filter
+      
+      // Set image filter
+      // Add image to photos
+      photos.appendChild(img);
+    }
+  }

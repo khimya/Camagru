@@ -93,7 +93,8 @@ class Posts extends Controller
                 $data['image_err'] = 'There is an error please try again';
             }
             if (empty($data['title_err']) && empty($data['image_err'])) {
-                $imgthing = $this->postModel->saveImage($data, 1);
+                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+                die(var_dump($_POST));
                 if ($this->postModel->addPost($data, $imgthing)) {
                     redirect('posts');
                 } else {
