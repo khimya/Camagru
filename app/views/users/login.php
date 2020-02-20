@@ -9,7 +9,7 @@
             <?php } else { ?>
                 <label style="width: 100%; color:red;" for=""><?php echo ($data['display_name_err']); ?></label>
             <?php } ?>
-            <input type="text" name="display_name" value="<?php echo $data['display_name']; ?>" required>
+            <input type="text" name="display_name" value="" required>
         </div>
         <div class="inputBox">
             <?php if (empty($data['password_err'])) { ?>

@@ -79,28 +79,22 @@ class Users extends Controller
 			if (empty($_POST['display_name']) || !isset($_POST['display_name']) || empty($_POST['password']) || !isset($_POST['password'])) {
 				$data['display_name_err'] = 'Please enter a display_name';
 				$data['password_err'] = 'Please enter a display_name';
+				$this->view('users/login', $data);
 			}
-			if (is_array($_POST['display_name']) || is_array($_POST['password'])) {
+			else if (is_array($_POST['display_name']) || is_array($_POST['password'])) {
 				$data['display_name_err'] = 'Please enter a valid display_name';
 				$data['display_name_err'] = 'Please enter a valid password';
 			}
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-			$data = ['display_name' => trim($_POST['display_name']), 'password' => trim($_POST['password']), 'display_name_err' => '', 'password_err' => '',];
-
-			if (empty($data['display_name']) || !isset($data['display_name'])) {
-				$data['display_name_err'] = 'Please enter ur display name';
-			}
 			if (empty($data['password']) || !isset($data['password'])) {
 				$data['password_err'] = 'Please enter password';
 			}
-			if ($this->userModel->findUserByDisplayName($data['display_name'])) {
-			} else {
-				$data['display_name_err'] = 'No user found';
-			}
+			if 
 			if (empty($data['display_name_err']) && empty($data['password_err'])) {
 				$loggedInUser = $this->userModel->login($data['display_name'], $data['password']);
 				if ($loggedInUser) {
+					$data = ['display_name' => trim($_POST['display_name']), 'password' => trim($_POST['password']), 'display_name_err' => '', 'password_err' => '',];
 					$this->createUserSession($loggedInUser);
 				} else {
 					$data['password_err'] = 'password incorrect or account not activated';
