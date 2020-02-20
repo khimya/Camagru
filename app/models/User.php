@@ -270,6 +270,7 @@ class User
         }
     }
 
+
     public function activate($cle)
     {
         $this->db->query('UPDATE users SET actif = 1 WHERE cle = :cle AND actif = 0');

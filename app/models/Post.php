@@ -143,10 +143,11 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         } elseif (isLoggedIn()) {
-            $this->db->query('INSERT INTO cmnt (post_id, user_id, cmnt) VALUES (:id, :user_id, :cmnt)');
+            $this->db->query('INSERT INTO cmnt (post_id, user_id, cmnt, display_name) VALUES (:id, :user_id, :cmnt , :display_name)');
             $this->db->bind(':id', $id);
             $this->db->bind(':user_id', $_SESSION['user_id']);
             $this->db->bind(':cmnt', $data['blabla']);
+            $this->db->bind(':display_name', $_SESSION['display_name']);
         }
         if ($this->db->execute()) {
             return true;

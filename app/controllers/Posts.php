@@ -139,14 +139,14 @@ class Posts extends Controller
     {
         $post = $this->postModel->getPostById($id);
         $cmnt = $this->postModel->getCmntById($id);
-
         $user = $this->userModel->getUserById($post->user_id);
-
         $data = [
             'post' => $post,
             'user' => $user,
-            'cmnt' => $cmnt
+            'cmnt' => $cmnt,
         ];
+        // die(var_dump($data['user']->display_name));
+        // die(var_dump($data['display_name']->display_name));
         $this->view('posts/show', $data);
     }
 }
