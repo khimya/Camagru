@@ -1,5 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="container">
+    <p>locale_accept_from_http</p>
+</div>
+<div class="container">
     <a href="<?php echo URLROOT; ?>/posts" class="btn_back btn btn-dark">Back</a>
     <div class="main">
         <div class="container bg-secondary text-white  text-center my-3 py-4 rounded-pill">

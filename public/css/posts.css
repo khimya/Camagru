@@ -125,6 +125,7 @@ span {
 
 /** CONTAINERS **/
 .container {
+  display: inline-block;
   margin-bottom: 50px;
   padding: 15px;
   border-style: groove;
