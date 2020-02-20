@@ -43,6 +43,7 @@
     <?php foreach ($data['cmnt'] as $cmnt) : ?>
         <div class="dialogbox">
             <div class="body">
+                <span style="color: black;"><?php echo $cmnt->user_id; ?></span>
                 <span style="color: black;"><?php echo $cmnt->cmnt; ?></span>
             </div>
         </div>

@@ -76,21 +76,33 @@ class Users extends Controller
 			redirect('posts');
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			
 			if (empty($_POST['display_name']) || !isset($_POST['display_name']) || empty($_POST['password']) || !isset($_POST['password'])) {
 				$data['display_name_err'] = 'Please enter a display_name';
-				$data['password_err'] = 'Please enter a display_name';
+				$data['password_err'] = 'Please enter a Password';
 				$this->view('users/login', $data);
 			}
 			else if (is_array($_POST['display_name']) || is_array($_POST['password'])) {
 				$data['display_name_err'] = 'Please enter a valid display_name';
 				$data['display_name_err'] = 'Please enter a valid password';
 			}
-			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+			else{
+				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				
+				$data = [
+					'display_name' => trim($_POST['display_name']),
+					'password' => $_POST['password'],
+					'display_name_err' => '',
+					'password_err' => '',
+				];
+			}
 			if (empty($data['password']) || !isset($data['password'])) {
 				$data['password_err'] = 'Please enter password';
 			}
-			if 
+			// die("good");
+			// die(var_dump($data));
+				if($this->userModel->findUserByDisplayName($data['display_name']) == false)
+					$data['display_name_err'] = "no User Found !";
 			if (empty($data['display_name_err']) && empty($data['password_err'])) {
 				$loggedInUser = $this->userModel->login($data['display_name'], $data['password']);
 				if ($loggedInUser) {
