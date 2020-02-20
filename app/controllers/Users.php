@@ -195,6 +195,12 @@ class Users extends Controller
 				if (empty($data['display_name_err'])) {
 					$this->userModel->newDisplayName($data);
 				}
+				else if (!empty($data['display_name_err']))
+				{
+					// die("am here");
+					$data['display_name_err'] = "name allready taken";
+					return($this->view('users/changes', $data));
+				}
 			}
 			$data = $this->userModel->checkChangePassword($data);
 			if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {

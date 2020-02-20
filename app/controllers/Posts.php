@@ -121,9 +121,8 @@ class Posts extends Controller
                     redirect('posts');
                 $post = $this->postModel->getPostById($id);
                 if ($post->user_id != $_SESSION['user_id']) {
-                    redirect('posts');
+                    return(redirect('posts'));
                 }
-
                 if ($this->postModel->deletePost($id)) {
                     redirect('posts');
                 } else {
