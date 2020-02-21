@@ -83,13 +83,16 @@ class Posts extends Controller
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
+        $post = $this->postModel->getmyposts();
+        $post =  array_reverse($post);
+        // die(var_dump($myposts['posts']));
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = ['title' => trim($_POST['title']), 'image' => $_POST['image'], 'user_id' => $_SESSION['user_id'], 'title_err' => '', 'image_err' => ''];
             if (empty($data['title']))
-                $data['title_err'] = 'Please enter a title';
+            $data['title_err'] = 'Please enter a title';
             if (empty($data['image']))
-                $data['image_err'] = 'There is an error please try again';
+            $data['image_err'] = 'There is an error please try again';
             if (empty($data['title_err']) && empty($data['image_err'])) {
                 $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
                 if ($this->postModel->addPost($data, $imgthing)) {
@@ -104,8 +107,9 @@ class Posts extends Controller
             $data = [
                 'title' => '',
                 'image' => ''
-
+                
             ];
+            die(var_dump($post));
             $this->view('posts/add', $data);
         }
     }
