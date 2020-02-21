@@ -83,9 +83,12 @@ class Posts extends Controller
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
-        $post = $this->postModel->getmyposts();
-        $post =  array_reverse($post);
-        // die(var_dump($myposts['posts']));
+        // $posts = $this->postModel->getmyposts();
+        // $data = [
+        //     'posts' => $posts
+        // ];
+        // $test['posts'] =  array_reverse($data['posts']);
+        // die(var_dump($data['posts']));
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = ['title' => trim($_POST['title']), 'image' => $_POST['image'], 'user_id' => $_SESSION['user_id'], 'title_err' => '', 'image_err' => ''];
@@ -104,12 +107,12 @@ class Posts extends Controller
                 $this->view('posts/add', $data);
             }
         } else {
+            // die(var_dump($post));
             $data = [
                 'title' => '',
                 'image' => ''
                 
             ];
-            die(var_dump($post));
             $this->view('posts/add', $data);
         }
     }
