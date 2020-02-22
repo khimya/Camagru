@@ -99,6 +99,24 @@ class post
         $results = $this->db->resultSet();
         return $results;
     }
+    public function checkadd($data)
+    {
+        if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image']) && isset($_POST['image']))
+        {
+                $data['title'] = trim($_POST['title']);
+                $data['image'] = trim($_POST['image']);
+                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+                if ($this->postModel->addPost($data, $imgthing)) {
+                    return(redirect('posts'));
+                } else {
+                    return(redirect('pages/error'));
+                }
+        }
+        else
+        {
+            return(redirect('posts'));
+        }
+    }
 
     public function addPost($data, $imgthing)
     {
@@ -113,7 +131,6 @@ class post
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':image', $imgthing);
         }
-
 
         if ($this->db->execute()) {
             return true;

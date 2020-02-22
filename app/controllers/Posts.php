@@ -83,40 +83,18 @@ class Posts extends Controller
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
-        // $posts = $this->postModel->getmyposts();
-        // $data = [
-        //     'posts' => $posts
-        // ];
-        // $test['posts'] =  array_reverse($data['posts']);
-        // die(var_dump($data['posts']));
+        $posts = $this->postModel->getmyposts();
+        $posts =  array_reverse( $posts);
+        $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $data = ['title' => trim($_POST['title']), 'image' => $_POST['image'], 'user_id' => $_SESSION['user_id'], 'title_err' => '', 'image_err' => ''];
-            if (empty($data['title']))
-            $data['title_err'] = 'Please enter a title';
-            if (empty($data['image']))
-            $data['image_err'] = 'There is an error please try again';
-            if (empty($data['title_err']) && empty($data['image_err'])) {
-                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
-                if ($this->postModel->addPost($data, $imgthing)) {
-                    redirect('posts');
-                } else {
-                    redirect('pages/error');
-                }
-            } else {
-                $this->view('posts/add', $data);
-            }
-        } else {
-            // die(var_dump($post));
-            $data = [
-                'title' => '',
-                'image' => ''
+            $this->postModel->checkadd($data);
                 
-            ];
-            $this->view('posts/add', $data);
-        }
+            } 
+    }else {
+        $this->view('posts/add', $data);
     }
-
+    }
     public function delete($id)
     {
         if (!isLoggedIn()) {
