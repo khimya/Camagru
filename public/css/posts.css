@@ -331,3 +331,16 @@ textarea {
   float: right;
   margin: 7px 9% 7px 1px;
 }
+.galerie img {
+  margin: 5px;
+  width: 200px;
+}
+.container_galerie{
+  display: inline-block;
+  margin-bottom: 50px;
+  padding: 6px;
+  border-style: groove;
+  border-radius: 20px;
+  background-color: white;
+  margin: 8% 4% 3% 17%;
+}

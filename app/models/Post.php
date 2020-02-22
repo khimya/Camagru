@@ -105,12 +105,7 @@ class post
         {
                 $data['title'] = trim($_POST['title']);
                 $data['image'] = trim($_POST['image']);
-                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
-                if ($this->postModel->addPost($data, $imgthing)) {
-                    return(redirect('posts'));
-                } else {
-                    return(redirect('pages/error'));
-                }
+                return($data);
         }
         else
         {

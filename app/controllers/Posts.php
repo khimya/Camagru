@@ -88,12 +88,15 @@ class Posts extends Controller
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $this->postModel->checkadd($data);
-                
-            } 
-    }else {
-        $this->view('posts/add', $data);
+            $data = $this->postModel->checkadd($data);
+                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+                if ($this->postModel->addPost($data, $imgthing)) {
+                    return(redirect('posts/add'));
+                } else {
+                    return(redirect('pages/error'));
+                }
     }
+    $this->view('posts/add', $data);
     }
     public function delete($id)
     {
