@@ -62,9 +62,11 @@ class Posts extends Controller
     public function me()
     {
         $posts = $this->postModel->getmyposts();
+        
         $data = [
             'posts' => $posts
         ];
+
         $data['posts'] =  array_reverse($data['posts']);
         $this->view('posts/me', $data);
     }
@@ -85,6 +87,11 @@ class Posts extends Controller
         }
         $posts = $this->postModel->getmyposts();
         $posts =  array_reverse( $posts);
+        $post_id = $this->postModel->galerietrick();
+        // foreach($posts as $post)
+        // {
+        //     $post->id = 
+        // }
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

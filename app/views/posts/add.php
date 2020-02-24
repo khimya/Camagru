@@ -2,7 +2,7 @@
 <div class="container_galerie">
 <?php foreach ($data['posts'] as $post) : ?>
     <div class="galerie">
-        <img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
+    <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->id; ?>"><img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
     </div>
     
   
