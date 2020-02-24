@@ -90,26 +90,23 @@ clearButton.addEventListener("click", function(e) {
 });
 function getfilter() {
   radiobutton = document.querySelector('input[name="filter"]:checked').value;
-  if (radiobutton == "imoji") return 1;
-  else if (radiobutton == "dog") return 2;
-  else if (radiobutton == "pokemon") return 3;
-  else if (radiobutton == "loki") return 4;
-  else if (radiobutton == "ndader") return 5;
+  if (radiobutton == "1") return 1;
+  else if (radiobutton == "2") return 2;
+  else if (radiobutton == "3") return 3;
+  else if (radiobutton == "4") return 4;
+  else if (radiobutton == "5") return 5;
   else return 6;
 }
-$(document).ready(function(){
-  $("input:radio[name=option]").click(function() {
-      var value = $(this).val();
-      var image_name;
-      if(value == 'GDP'){
-          image_name = "formula_gdp.gif";
-      }else{
-          if(value == 'Population'){
-              image_name = "formula_pop.gif";
-          }else{
-              image_name = "formula_none.gif";
-          }
-      }
-       $('#formula').attr('src', image_name);
-  });
-});
+function changeFormula(){
+  var radio = document.getElementsByName('radius');
+  var formula = document.getElementsByName('formula')
+  if (radio[1].checked){
+      formula.src = "formula_gdp.gif";
+  }
+  if (radio[2].checked){
+      formula.src = "formula_pop.gif";
+  }
+  if (radio[3].checked){
+      formula.src = "formula_none.gif";
+  }
+}

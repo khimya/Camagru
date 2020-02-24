@@ -14,22 +14,22 @@
         <div class="bg-secondary text-white  text-center my-3 py-4 rounded-pill">
             <div class="row">
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="imoji" checked><img src="/camagru/public/img/sup/1.png" width="50px" height="50px">
+                    <input type="radio" name="filter" value="1" checked><img src="/camagru/public/img/sup/1.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="dog"><img src="/camagru/public/img/sup/2.png" width="50px" height="50px">
+                    <input type="radio" name="filter" value="2"><img src="/camagru/public/img/sup/2.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="pokemon"><img src="/camagru/public/img/sup/3.png" width="50px" height="50px">
+                    <input type="radio" name="filter" value="3"><img src="/camagru/public/img/sup/3.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="loki"><img src="/camagru/public/img/sup/4.png" width="50px" height="50px">
+                    <input type="radio" name="filter" value="4"><img src="/camagru/public/img/sup/4.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="ndader"><img src="/camagru/public/img/sup/5.png" width="50px" height="50px">
+                    <input type="radio" name="filter" value="5"><img src="/camagru/public/img/sup/5.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="jwan"><img src="/camagru/public/img/sup/6.png" width="50px" height="50px">
+                    <input type="radio" name="filter" value="6"><img src="/camagru/public/img/sup/6.png" width="50px" height="50px">
                 </div>
             </div>
         </div>
