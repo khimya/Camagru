@@ -45,7 +45,7 @@ class Posts extends Controller
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
                         if ($this->postModel->addCmnt($data, $id)) {
-
+                                $this->postModel->sendMsgNtf();
                             if ($this->postModel->addCmntcount($id))
                                 return (redirect('posts'));
                         } else

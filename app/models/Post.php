@@ -32,6 +32,16 @@ class post
         return $results;
 
     }
+    public function sendMsgNtf($id)
+    {
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        }
+        $this->db->query('SELECT user_id FROM posts WHERE id = :id');
+        $this->db->bind(':id', $id);
+
+
+    }
     public function galerietrick()
     {
         if (!isLoggedIn()) {

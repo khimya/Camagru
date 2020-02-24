@@ -14,22 +14,22 @@
         <div class="bg-secondary text-white  text-center my-3 py-4 rounded-pill">
             <div class="row">
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="1" checked><img src="/camagru/public/img/sup/1.png" width="50px" height="50px">
+                    <input onclick="changeFormula();" type="radio" name="filter" value="1" checked><img src="/camagru/public/img/sup/1.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="2"><img src="/camagru/public/img/sup/2.png" width="50px" height="50px">
+                    <input onclick="changeFormula();" type="radio" name="filter" value="2"><img src="/camagru/public/img/sup/2.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="3"><img src="/camagru/public/img/sup/3.png" width="50px" height="50px">
+                    <input onclick="changeFormula();" type="radio" name="filter" value="3"><img src="/camagru/public/img/sup/3.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="4"><img src="/camagru/public/img/sup/4.png" width="50px" height="50px">
+                    <input onclick="changeFormula();" type="radio" name="filter" value="4"><img src="/camagru/public/img/sup/4.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="5"><img src="/camagru/public/img/sup/5.png" width="50px" height="50px">
+                    <input onclick="changeFormula();" type="radio" name="filter" value="5"><img src="/camagru/public/img/sup/5.png" width="50px" height="50px">
                 </div>
                 <div class="col-sm-2">
-                    <input type="radio" name="filter" value="6"><img src="/camagru/public/img/sup/6.png" width="50px" height="50px">
+                    <input onclick="changeFormula();" type="radio" name="filter" value="6"><img src="/camagru/public/img/sup/6.png" width="50px" height="50px">
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 
             <div class="top-container">
                 <div class="test">
-                    <img src="/public/img/sup/2.png" id="formula" alt="dd">
+                    <img id="icone" src="/public/img/sup/1.png"  alt="dd">
                     <video id="video">Stream not available...</video>
                 </div>
                 <button id="photo-button" class="btn btn-dark">

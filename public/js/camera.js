@@ -98,15 +98,28 @@ function getfilter() {
   else return 6;
 }
 function changeFormula(){
-  var radio = document.getElementsByName('radius');
-  var formula = document.getElementsByName('formula')
-  if (radio[1].checked){
-      formula.src = "formula_gdp.gif";
+  var value = getfilter();
+  var formula = document.getElementsByid("icone");
+  console.log(formula);
+  if (value == 2) {
+      formula.src = "/public/img/sup/2.png";
+      formula.style = "display:none;";
   }
-  if (radio[2].checked){
-      formula.src = "formula_pop.gif";
+  if (value == 3){
+      formula.src = "/public/img/sup/3.png";
   }
-  if (radio[3].checked){
-      formula.src = "formula_none.gif";
+  if (value == 4){
+      formula.src = "/public/img/sup/4.png";
+  }
+  
+  if (value == 5){
+      formula.src = "/public/img/sup/5.png";
+  }
+  
+  if (value == 6){
+      formula.src = "/public/img/sup/6.png";
+  }
+  if (value == 1){
+      formula.src = "/public/img/sup/1.png";
   }
 }
