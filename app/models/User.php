@@ -31,7 +31,7 @@ class User
         $this->db->bind(':display_name', $display_name);
 
         $row = $this->db->single();
-
+        if($row)
         $hashed_password = $row->password;
         if ($hashed_password && password_verify($password, $hashed_password)) {
             return $row;
@@ -252,7 +252,7 @@ class User
         $subject = "Notification Message";
         $message = 'Hello ' . $login . '! ,
  
-                You got a new comment in your post  go check it out , if you want to disable this future , you can do it in ur profil setting .
+                You got a new comment in your post go check it out , if you want to disable this future , you can do it in ur profil setting .
                 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
         $from = "khimya@camagru.com";
@@ -261,7 +261,17 @@ class User
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
     }
-
+    public function findUserByEmail($email)
+    {
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function findUserBykey($cle)
     {
         $this->db->query('SELECT * FROM users WHERE cle = :cle AND actif = 0');
