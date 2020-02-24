@@ -52,3 +52,14 @@
   width: 500px;
   height: 40px;
 }
+.test img
+{
+  width: 237px;
+  position: fixed;
+  /* left: 10px; */
+  /* bottom: auto; */
+  /* top: 433px; */
+  /* left: 121vh; */
+  /* right: 53%; */
+  margin: 1px 2px 0px 123px;
+}

@@ -97,3 +97,19 @@ function getfilter() {
   else if (radiobutton == "ndader") return 5;
   else return 6;
 }
+$(document).ready(function(){
+  $("input:radio[name=option]").click(function() {
+      var value = $(this).val();
+      var image_name;
+      if(value == 'GDP'){
+          image_name = "formula_gdp.gif";
+      }else{
+          if(value == 'Population'){
+              image_name = "formula_pop.gif";
+          }else{
+              image_name = "formula_none.gif";
+          }
+      }
+       $('#formula').attr('src', image_name);
+  });
+});

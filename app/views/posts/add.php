@@ -40,7 +40,10 @@
         </div>
 
             <div class="top-container">
-                <video id="video">Stream not available...</video>
+                <div class="test">
+                    <img src="/public/img/sup/2.png" id="formula" alt="dd">
+                    <video id="video">Stream not available...</video>
+                </div>
                 <button id="photo-button" class="btn btn-dark">
                     Take Photo
                 </button>
