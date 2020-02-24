@@ -39,8 +39,14 @@ class post
         }
         $this->db->query('SELECT user_id FROM posts WHERE id = :id');
         $this->db->bind(':id', $id);
-
-
+        $user_id = $this->db->resultSet();
+        $user_id = array_shift($user_id);
+        $user_id = $user_id->user_id;
+        die(var_dump($user_id));
+        $this->db->query('SELECT email FROM users WHERE id = :results');
+        $this->db->bind(':results', $user_id);
+        $email = $this->db->resultSet();
+        return($email);
     }
     public function galerietrick()
     {
