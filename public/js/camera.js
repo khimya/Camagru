@@ -99,27 +99,26 @@ function getfilter() {
 }
 function changeFormula(){
   var value = getfilter();
-  var formula = document.getElementsByid("icone");
-  console.log(formula);
-  if (value == 2) {
-      formula.src = "/public/img/sup/2.png";
-      formula.style = "display:none;";
+  
+   var formula = document.getElementById("myicons");
+   if (value == 2) {
+     formula.src = "http://localhost/public/img/sup/2.png";
   }
-  if (value == 3){
-      formula.src = "/public/img/sup/3.png";
+  else if (value == 3){
+      formula.src = "http://localhost/public/img/sup/3.png";
   }
-  if (value == 4){
-      formula.src = "/public/img/sup/4.png";
+  else if  (value == 4){
+      formula.src = "http://localhost/public/img/sup/4.png";
   }
   
-  if (value == 5){
-      formula.src = "/public/img/sup/5.png";
+  else if (value == 5){
+      formula.src = "http://localhost/public/img/sup/5.png";
   }
   
-  if (value == 6){
-      formula.src = "/public/img/sup/6.png";
+  else if (value == 6){
+      formula.src = "http://localhost/public/img/sup/6.png";
   }
-  if (value == 1){
-      formula.src = "/public/img/sup/1.png";
+  else if (value == 1){
+      formula.src = "http://localhost/public/img/sup/1.png";
   }
 }
