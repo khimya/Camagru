@@ -46,8 +46,11 @@ class Posts extends Controller
                     if ($this->postModel->checkCmnt($data)) {
                         if ($this->postModel->addCmnt($data, $id)) {
                             $email =  $this->postModel->sendMsgNtf($id);
-                            if ($email != 0)
-                               $this->userModel->notificationMessage($email);
+                            if ($email != NULL)
+                            {
+                                
+                                $this->userModel->notificationMessage($email);
+                            }
                             if ($this->postModel->addCmntcount($id))
                                 return (redirect('posts'));
                         } else

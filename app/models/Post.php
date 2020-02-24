@@ -43,8 +43,7 @@ class post
         $user_id = array_shift($user_id);
         $user_id = $user_id->user_id;
         if ($user_id == $_SESSION['user_id'])
-            return(0);
-            die("i did not return 0");
+            return(NULL);
         $this->db->query('SELECT email FROM users WHERE id = :user_id');
         $this->db->bind(':user_id', $user_id);
         $email = $this->db->resultSet();
