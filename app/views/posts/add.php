@@ -11,7 +11,7 @@
 <div class="container">
     <a href="<?php echo URLROOT; ?>/posts" class="btn_back btn btn-dark">Back</a>
     <div class="main">
-        <div class="container bg-secondary text-white  text-center my-3 py-4 rounded-pill">
+        <div class="bg-secondary text-white  text-center my-3 py-4 rounded-pill">
             <div class="row">
                 <div class="col-sm-2">
                     <input type="radio" name="filter" value="imoji" checked><img src="/camagru/public/img/sup/1.png" width="50px" height="50px">
@@ -33,8 +33,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
             <label style="margin-right: 50px;" for="title"><b>Title:</b></label>
             <input class="new_post_inputs" type="text" placeholder="Enter the title of ur post" name="title" value="<?php echo $data['title']; ?>" required>

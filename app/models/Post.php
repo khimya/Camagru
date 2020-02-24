@@ -37,15 +37,10 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        $this->db->query("SELECT id
-        FROM posts P join users U on P.user_id = U.id
-        WHERE P.user_id ='{$_SESSION['user_id']}'");
+        $this->db->query("SELECT *
+        FROM posts WHERE posts.user_id ='{$_SESSION['user_id']}'");
         $results = $this->db->resultSet();
-        die(var_dump($posts));
-
-        die(var_dump($results));
         return $results;
-
     }
 
     public function checkLikes($id)

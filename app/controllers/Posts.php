@@ -88,10 +88,12 @@ class Posts extends Controller
         $posts = $this->postModel->getmyposts();
         $posts =  array_reverse( $posts);
         $post_id = $this->postModel->galerietrick();
-        // foreach($posts as $post)
-        // {
-        //     $post->id = 
-        // }
+        $i = 0;
+        foreach($posts as $post)
+        {
+            $post->id = $post_id[$i++]->id;
+        }
+        // die(var_dump($posts));
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
