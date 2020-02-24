@@ -34,8 +34,10 @@
             </div>
         </div>
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
-            <label style="margin-right: 50px;" for="title"><b>Title:</b></label>
-            <input class="new_post_inputs" type="text" placeholder="Enter the title of ur post" name="title" value="<?php echo $data['title']; ?>" required>
+        <div class="post_title_input">
+            <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
+
+        </div>
 
             <div class="top-container">
                 <video id="video">Stream not available...</video>

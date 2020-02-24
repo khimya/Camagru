@@ -46,3 +46,9 @@
   line-height: 1.5;
   color: #797979;
 }
+.post_title_input input{
+  margin-left: 10px;
+  background-color: aliceblue;
+  width: 500px;
+  height: 40px;
+}
