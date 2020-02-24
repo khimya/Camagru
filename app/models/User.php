@@ -244,6 +244,22 @@ class User
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
     }
+    public function notificationMessage($email)
+    {
+        $to = $email;
+        $subject = "You Got A New Comment";
+        $message = 'Hello ' . $email . '! ,
+ 
+                you got a new message go check out ur profile ! :)'
+            . 
+            '<br>  Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+        $from = "khimya@camagru.com";
+        $headers = "MIME-Version: 1.0" . "\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+        $headers .= "From: $from" . "\n";
+        mail($to, $subject, $message, $headers);
+    }
 
     public function findUserByEmail($email)
     {
