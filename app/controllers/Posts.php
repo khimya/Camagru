@@ -15,6 +15,7 @@ class Posts extends Controller
         ];
         $this->view('posts/index', $data);
     }
+    
     public function like($id)
     {
 
@@ -35,6 +36,7 @@ class Posts extends Controller
             }
         }
     }
+
     public function cmnt($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

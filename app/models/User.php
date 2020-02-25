@@ -117,9 +117,9 @@ class User
             $notification = array_shift($notification);
             $notification_value = $notification->notification;
             if ($notification_value == 1)
-                return ("OK");
+                return ("ON");
                 else
-                return NULL;
+                return ("OFF");
     }
     //////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////

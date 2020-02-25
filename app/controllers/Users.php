@@ -138,7 +138,6 @@ class Users extends Controller
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_EMAIL);
-
 			$data = ['email' => trim($_POST['email']), 'email_err' => '',];
 			if (empty($data['email']) || !isset($data['email'])) {
 				$data['email_err'] = 'Please enter email';
@@ -166,39 +165,50 @@ class Users extends Controller
 	public function notification()
 	{
 
-		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
+		$ntf['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			if ($data['notification'] == "OK") {
+			if ($ntf['notification'] == "ON") {
 				$this->userModel->disableNotifications($_SESSION['user_id']);
-
 				return(redirect('posts'));
 			}
-			else if($data['notification'] == NULL)
+			else if($ntf['notification'] == "OFF")
 			{
-				
 				$this->userModel->enableNotifications($_SESSION['user_id']);
 				return(redirect('posts'));
 			}
-
 		}
+		
 	}
+
+	public function notificationDisableButton()
+	{
+
+		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
+			if ($data['notification'] == "ON") 
+				return("ON");
+			else if($data['notification'] == "OFF")
+				return("OFF");
+	}
+	
 	public function changes()
 	{
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
+		$button = $this->notificationDisableButton();
+
 		$this->notification();
+		$data = [
+			'currentPassword' => '',
+			'currentPassword_err' => '',
+			'newPassword' => '',
+			'newPassword_err' => '',
+			'confirmNewPassword' => '',
+			'confirmNewPassword_err' => '',
+		];
+		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-			$data = [
-				'currentPassword' => '',
-				'currentPassword_err' => '',
-				'notification' => '',
-				'newPassword' => '',
-				'newPassword_err' => '',
-				'confirmNewPassword' => '',
-				'confirmNewPassword_err' => '',
-			];
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);
@@ -207,8 +217,6 @@ class Users extends Controller
 					$this->userModel->sendConfirmationNewEmail($data);
 				}
 			}
-			
-
 			if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
 				$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
 				$data = $this->userModel->checkDisplayName($data);

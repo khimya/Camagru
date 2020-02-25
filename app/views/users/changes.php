@@ -64,22 +64,20 @@
 
 
     <form action="<?php echo URLROOT; ?>/users/notification/" method="POST">
-            <div class="inputBox">
-                <label for="">Notification</label>
-                <div class="row">
-                    <div class="col-sm-2">
-                    <form  method="POST">
-                    <div class="likes">
-                        <?php if($data == NULL): ?>
-                            <h1>hello world</h1>
-                            <?php elseif(): ?>
-                            <?php endif ?>
-                    <input type="submit" value="OK">   
-                    </div>
-                    </div>
+        <div class="inputBox">
+            <label for="">Notification</label>
+            <div class="row">
+                <div class="col-sm-2">
+                    <form method="POST">
+                        <div class="likes">
+
+                            <label style="width: 100%; color:red;" for=""><?php var_dump($ntf); ?></label>
+                            <input type="submit" value="">
+                        </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 
 
 </div>
