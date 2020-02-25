@@ -31,16 +31,16 @@
 
 
 
-        <form action="<?php echo URLROOT; ?>/users/changes" method="POST">
+        <form action="<?php echo URLROOT; ?>/users/notification" method="POST">
             <div class="inputBox">
                 <label for="">Notification</label>
                 <div class="row">
                     <div class="col-sm-2">
-                        <?php if($data['notification'] == "OK"): ?>
-                        <input type="submit" name="notification" value="enable">
-                        <?php elseif($data['notification'] == NULL): ?>
-                            <input type="submit" name="notification" value="disable">
-                        <?php endif ?>
+                    <form action="<?php echo URLROOT; ?>/users/notification<?php echo $_SESSION['user_id']; ?>" method="POST">
+                    <div class="likes">
+                        <input type="submit" value="<?php echo $data->notification; ?>" />
+                    </div>
+                </form>
                     </div>
                 </div>
             </div>
