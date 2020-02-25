@@ -36,11 +36,10 @@
                 <label for="">Notification</label>
                 <div class="row">
                     <div class="col-sm-2">
-                        <?php if($data['notification'] == 1): ?>
-                        <input type="submit" name="notification" value="Disable">
-                        <?php endif ?>
-                        <?php if($data['notification'] == 0): ?>
-                            <input type="submit" name="notification" value="Enable">
+                        <?php if($data['notification'] == "OK"): ?>
+                        <input type="submit" name="notification" value="enable">
+                        <?php elseif($data['notification'] == NULL): ?>
+                            <input type="submit" name="notification" value="disable">
                         <?php endif ?>
                     </div>
                 </div>

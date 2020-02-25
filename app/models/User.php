@@ -83,6 +83,21 @@ class User
         }
         return ($data);
     }
+    public function checkNotification($data)
+    {
+        if (!isLoggedIn()) {
+            return(redirect('users/login'));
+        }
+        $this->db->query('SELECT notification FROM users WHERE id = :id');
+        $this->db->bind(':id', $data);
+            $notification = $this->db->resultSet();
+            $notification = array_shift($notification);
+            $notification_value = $notification->notification;
+            if ($notification_value == 1)
+                return ("OK");
+                else
+                return NULL;
+    }
 
     public function checkPassword($data)
     {
