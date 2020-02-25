@@ -165,13 +165,13 @@ class Users extends Controller
 	public function notification()
 	{
 
-		$ntf['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
+		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			if ($ntf['notification'] == "ON") {
+			if ($data['notification'] == "ON") {
 				$this->userModel->disableNotifications($_SESSION['user_id']);
 				return(redirect('posts'));
 			}
-			else if($ntf['notification'] == "OFF")
+			else if($data['notification'] == "OFF")
 			{
 				$this->userModel->enableNotifications($_SESSION['user_id']);
 				return(redirect('posts'));
@@ -206,7 +206,6 @@ class Users extends Controller
 			'confirmNewPassword' => '',
 			'confirmNewPassword_err' => '',
 		];
-		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			if (!empty($_POST['email']) && isset($_POST['email'])) {

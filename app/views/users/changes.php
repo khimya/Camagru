@@ -71,7 +71,7 @@
                     <form method="POST">
                         <div class="likes">
 
-                            <label style="width: 100%; color:red;" for=""><?php var_dump($ntf); ?></label>
+                            <label style="width: 100%; color:red;" for="">
                             <input type="submit" value="">
                         </div>
                 </div>
