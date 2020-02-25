@@ -28,26 +28,6 @@
             <?php } ?>
             <input type="email" name="email" value="">
         </div>
-
-
-
-        <form action="<?php echo URLROOT; ?>/users/notification" method="POST">
-            <div class="inputBox">
-                <label for="">Notification</label>
-                <div class="row">
-                    <div class="col-sm-2">
-                    <form action="<?php echo URLROOT; ?>/users/notification<?php echo $_SESSION['user_id']; ?>" method="POST">
-                    <div class="likes">
-                        <input type="submit" value="<?php echo $data->notification; ?>" />
-                    </div>
-                </form>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-
-
         <div class="inputBox">
             <?php if (empty($data['currentPassword_err'])) { ?>
                 <label for="">CurrentPassword</label>
@@ -79,5 +59,24 @@
         <br>
         <input type="submit" value="apply">
     </form>
+
+
+
+
+    <form action="<?php echo URLROOT; ?>/users/notification/" method="POST">
+            <div class="inputBox">
+                <label for="">Notification</label>
+                <div class="row">
+                    <div class="col-sm-2">
+                    <form  method="POST">
+                    <div class="likes">
+                    <input type="submit" value="OK">   
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

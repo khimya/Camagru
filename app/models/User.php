@@ -94,6 +94,16 @@ class User
             return false;
         }
     }
+    public function enableNotifications($data)
+    {
+        $this->db->query('UPDATE users SET notification = 1  WHERE id = :user_id');
+        $this->db->bind(':user_id', $data);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function checkNotification($data)
     {
         if (!isLoggedIn()) {

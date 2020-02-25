@@ -165,13 +165,26 @@ class Users extends Controller
 			$this->view('users/recover', $data);
 		}
 	}
+	public function notification()
+	{
+		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if ($data['notification'] == "OK") {
+				$this->userModel->disableNotifications($_SESSION['user_id']);
+				redirect('posts');
+			}
+			else
+			$this->userModel->enableNotifications($_SESSION['user_id']);
 
+		}
+		
+	}
 	public function changes()
 	{
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
-		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
+		$this->notification();
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			$data = [
@@ -191,8 +204,7 @@ class Users extends Controller
 					$this->userModel->sendConfirmationNewEmail($data);
 				}
 			}
-			if ($data['notification'] == "OK" && $_POST['notification'] == "disable")
-					$this->userModel->disableNotifications($_SESSION['user_id']);
+			
 
 			if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
 				$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
@@ -223,7 +235,7 @@ class Users extends Controller
 			}
 			else
 			$this->view('users/changes', $data);
-			$this->logout();
+			// $this->logout();
 		} else {
 			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
 			$this->view('users/changes', $data);

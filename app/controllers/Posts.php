@@ -44,12 +44,15 @@ class Posts extends Controller
                 if (isset($_POST['blabla']) && !empty($_POST['blabla']) && !is_array($_POST['blabla'])) {
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
-                        if ($this->postModel->addCmnt($data, $id)) {
-                            $email =  $this->postModel->sendMsgNtf($id);
-                            if ($email != NULL)
-                            {
-                                
-                                $this->userModel->notificationMessage($email);
+                        if ($this->postModel->addCmnt($data, $id) ) {
+                            if($this->userModel->checkNotification($data) == 'OK'){
+
+                                $email =  $this->postModel->getNotifiedEmail($id);
+                                if ($email != NULL)
+                                {
+                                    
+                                    $this->userModel->notificationMessage($email);
+                                }
                             }
                             if ($this->postModel->addCmntcount($id))
                                 return (redirect('posts'));
@@ -98,7 +101,6 @@ class Posts extends Controller
         {
             $post->id = $post_id[$i++]->id;
         }
-        // die(var_dump($posts));
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -112,6 +114,7 @@ class Posts extends Controller
     }
     $this->view('posts/add', $data);
     }
+
     public function delete($id)
     {
         if (!isLoggedIn()) {

@@ -32,7 +32,7 @@ class post
         return $results;
 
     }
-    public function sendMsgNtf($id)
+    public function getNotifiedEmail($id)
     {
         if (!isLoggedIn()) {
             redirect('users/login');
