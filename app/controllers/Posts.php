@@ -149,8 +149,6 @@ class Posts extends Controller
             'user' => $user,
             'cmnt' => $cmnt,
         ];
-        // die(var_dump($data['user']->display_name));
-        // die(var_dump($data['display_name']->display_name));
         $this->view('posts/show', $data);
     }
 }

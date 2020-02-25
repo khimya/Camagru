@@ -94,6 +94,7 @@ class User
             return false;
         }
     }
+    
     public function enableNotifications($data)
     {
         $this->db->query('UPDATE users SET notification = 1  WHERE id = :user_id');
@@ -104,6 +105,7 @@ class User
             return false;
         }
     }
+
     public function checkNotification($data)
     {
         if (!isLoggedIn()) {
@@ -185,6 +187,7 @@ class User
             return false;
         }
     }
+
     public function sendConfirmationNewEmail($data)
     {
         $login = $_SESSION['display_name'];
@@ -204,6 +207,7 @@ class User
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
     }
+
     public function newDisplayName($data)
     {
 
@@ -216,6 +220,7 @@ class User
             return false;
         }
     }
+
     public function newPassword($data)
     {
         $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
@@ -280,6 +285,7 @@ class User
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
     }
+
     public function notificationMessage($email)
     {
         $login = $email;
@@ -297,6 +303,7 @@ class User
         $headers .= "From: $from" . "\n";
         mail($to, $subject, $message, $headers);
     }
+
     public function findUserByEmail($email)
     {
         $this->db->query('SELECT * FROM users WHERE email = :email');
@@ -308,6 +315,7 @@ class User
             return false;
         }
     }
+
     public function findUserBykey($cle)
     {
         $this->db->query('SELECT * FROM users WHERE cle = :cle AND actif = 0');

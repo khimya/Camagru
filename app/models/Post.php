@@ -32,6 +32,7 @@ class post
         return $results;
 
     }
+    
     public function getNotifiedEmail($id)
     {
         if (!isLoggedIn()) {
@@ -51,6 +52,7 @@ class post
         $email = $email->email;
         return($email);
     }
+
     public function galerietrick()
     {
         if (!isLoggedIn()) {

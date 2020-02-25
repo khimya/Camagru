@@ -171,13 +171,16 @@ class Users extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($data['notification'] == "OK") {
 				$this->userModel->disableNotifications($_SESSION['user_id']);
-				redirect('posts');
+				return(redirect('posts'));
 			}
 			else
-			$this->userModel->enableNotifications($_SESSION['user_id']);
+			{
+
+				$this->userModel->enableNotifications($_SESSION['user_id']);
+				return(redirect('posts'));
+			}
 
 		}
-		
 	}
 	public function changes()
 	{
