@@ -36,13 +36,12 @@
                 <label for="">Notification</label>
                 <div class="row">
                     <div class="col-sm-2">
-                        <label for="">ON</label>
-                        <?php if($data['notification'] == 1) ?>
-                        <input  type="radio" name="filter" value="1" checked>
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="">OFF</label>
-                        <input type="radio" name="filter" value="0">
+                        <?php if($data['notification'] == 1): ?>
+                        <input type="submit" name="notification" value="Disable">
+                        <?php endif ?>
+                        <?php if($data['notification'] == 0): ?>
+                            <input type="submit" name="notification" value="Enable">
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
