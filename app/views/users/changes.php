@@ -70,6 +70,10 @@
                     <div class="col-sm-2">
                     <form  method="POST">
                     <div class="likes">
+                        <?php if($data == NULL): ?>
+                            <h1>hello world</h1>
+                            <?php elseif(): ?>
+                            <?php endif ?>
                     <input type="submit" value="OK">   
                     </div>
                     </div>

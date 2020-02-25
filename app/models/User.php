@@ -94,7 +94,7 @@ class User
             return false;
         }
     }
-    
+
     public function enableNotifications($data)
     {
         $this->db->query('UPDATE users SET notification = 1  WHERE id = :user_id');
@@ -121,7 +121,36 @@ class User
                 else
                 return NULL;
     }
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    public function checkNotificationForCmnt($id)
+    {
+        if (!isLoggedIn()) {
+            return(redirect('users/login'));
+        }
+        $this->db->query('SELECT user_id FROM posts WHERE id = :id');
+        $this->db->bind(':id', $id);
+        $user_id = $this->db->resultSet();
+        $user_id = array_shift($user_id);
+        $user_id = $user_id->user_id;
+        $this->db->query('SELECT notification FROM users WHERE id = :id');
+        $this->db->bind(':id', $user_id);
+        $notification = $this->db->resultSet();
+        $notification = array_shift($notification);
+        $notification_value = $notification->notification;
+        if($notification_value == 1)
+        return(1);
+        else if ($notification_value == 0)
+        return(0);
 
+    }
+    
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
     public function checkPassword($data)
     {
 

@@ -99,8 +99,6 @@ class Users extends Controller
 			if (empty($data['password']) || !isset($data['password'])) {
 				$data['password_err'] = 'Please enter password';
 			}
-			// die("good");
-			// die(var_dump($data));
 				if($this->userModel->findUserByDisplayName($data['display_name']) == false)
 					$data['display_name_err'] = "no User Found !";
 			if (empty($data['display_name_err']) && empty($data['password_err'])) {
@@ -167,15 +165,17 @@ class Users extends Controller
 	}
 	public function notification()
 	{
+
 		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($data['notification'] == "OK") {
 				$this->userModel->disableNotifications($_SESSION['user_id']);
+
 				return(redirect('posts'));
 			}
-			else
+			else if($data['notification'] == NULL)
 			{
-
+				
 				$this->userModel->enableNotifications($_SESSION['user_id']);
 				return(redirect('posts'));
 			}
@@ -217,7 +217,6 @@ class Users extends Controller
 				}
 				else if (!empty($data['display_name_err']))
 				{
-					// die("am here");
 					$data['display_name_err'] = "name allready taken";
 					return($this->view('users/changes', $data));
 				}
