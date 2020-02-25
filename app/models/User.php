@@ -83,6 +83,17 @@ class User
         }
         return ($data);
     }
+
+    public function disableNotifications($data)
+    {
+        $this->db->query('UPDATE users SET notification = 0  WHERE id = :user_id');
+        $this->db->bind(':user_id', $data);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function checkNotification($data)
     {
         if (!isLoggedIn()) {

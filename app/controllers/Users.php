@@ -171,8 +171,7 @@ class Users extends Controller
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
-		$data['notification'] = $this->userModel->checkNotification($_SESSION['user_id']);
-		die(var_dump($data['notification']));
+		$data['notification']  = $this->userModel->checkNotification($_SESSION['user_id']);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			$data = [
@@ -184,9 +183,6 @@ class Users extends Controller
 				'confirmNewPassword' => '',
 				'confirmNewPassword_err' => '',
 			];
-			 
-			 	// die(var_dump());
-			 	die("not entred the if");
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);
@@ -196,7 +192,7 @@ class Users extends Controller
 				}
 			}
 			if ($data['notification'] == "OK" && $_POST['notification'] == "disable")
-					$this
+					$this->userModel->disableNotifications($_SESSION['user_id']);
 
 			if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
 				$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
