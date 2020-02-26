@@ -53,17 +53,17 @@
         <input type="submit" value="apply">
     </form>
     <form action="<?php echo URLROOT; ?>/users/notification/" method="POST">
-        <div class="inputBox">
-            <label for="">Notification</label>
-            <div class="row">
-                <div class="col-sm-2">
-                    <form method="POST">
-
-                            <label style="width: 100%; color:red;" for="">
-                            <input type="submit" value="etrdyftuygu">
+            <div class="inputBox">
+                <label for="">Notification</label>
+                <div class="row">
+                    <div class="col-sm-2">
+                    <form  method="POST">
+                    <div class="likes">
+                    <input style="width:100px;" type="submit" value="<?php echo $data; ?>">   
+                    </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+            </form>
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
