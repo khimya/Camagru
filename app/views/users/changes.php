@@ -16,10 +16,6 @@
             <?php } ?>
             <input type="text" name="display_name" value="">
         </div>
-
-
-
-
         <div class="inputBox">
             <?php if (empty($data['email_err'])) { ?>
                 <label for="">Email</label>
@@ -36,9 +32,6 @@
             <?php } ?>
             <input type="password" name="currentPassword" value="">
         </div>
-
-
-
         <div class="inputBox">
             <?php if (empty($data['newPassword_err'])) { ?>
                 <label style="width: 100%" for="">New Password</label>
@@ -59,10 +52,6 @@
         <br>
         <input type="submit" value="apply">
     </form>
-
-
-
-
     <form action="<?php echo URLROOT; ?>/users/notification/" method="POST">
         <div class="inputBox">
             <label for="">Notification</label>
@@ -78,7 +67,5 @@
             </div>
         </div>
     </form>
-
-
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
