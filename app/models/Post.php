@@ -8,6 +8,7 @@ class post
     }
     public function getposts($page)
     {
+        // die(var_dump($page));
         $limite = 5;
         $debut = ($page - 1) * $limite;
         $this->db->query('SELECT *,

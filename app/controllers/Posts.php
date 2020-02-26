@@ -10,11 +10,12 @@ class Posts extends Controller
     public function index()
     {
         $page = (!empty($_GET['page']) ? $_GET['page'] : 1);
-        // die(var_dump($page));
         $posts = $this->postModel->getPosts($page);
         $data = [
+            'page' =>$page,
             'posts' => $posts
         ];
+        // die(var_dump($_GET));
         $this->view('posts/index', $data);
     }
     
