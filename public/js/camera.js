@@ -120,3 +120,17 @@ function changeFormula(){
       formula.src = "http://localhost/public/img/sup/1.png";
   }
 }
+function selectFile() {
+  const file = this.files[0];
+  const fileUrl = URL.createObjectURL(file);
+  canvas.style.backgroundImage = `url(${fileUrl})`;
+  console.log(this.files)
+}
+const fileChooser = document.querySelector('.file-chooser');
+
+  // link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
+
+
+
+
+fileChooser.addEventListener('change', selectFile)

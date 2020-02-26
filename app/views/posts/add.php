@@ -65,9 +65,11 @@
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <div class="col-sm-5 mt-2">
-                        <input type="file" id="real-file" hidden="hidden" accept="image/*">
-                        <button type="button" id="custom-button" class="btn btn-primary">CHOOSE AN IMAGE</button>
-                        <span id="custom-text">No file chosen, yet</span>
+                            <input type="file" id="real-file" hidden="hidden" accept="image/*">
+                        <canvas class="photo"></canvas>
+                            <video class="player"></video>
+                            <div class="strip"></div>
+                        <input type="file" class="file-chooser">
                 </div>
         </form>
         <!-- <form method="post" enctype="multipart/form-data">

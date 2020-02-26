@@ -24,7 +24,14 @@
 .white-font {
   color: white;
 }
-
+canvas {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
 
 .dialogbox .body {
   position: relative;
