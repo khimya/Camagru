@@ -51,4 +51,12 @@
         </div>
     <?php endforeach; ?>
 </div>
+<form action="<?php echo URLROOT; ?>/posts/page ?>" method="POST">
+
+  <div class="pagination">
+    <a href="/page=<?php echo $page - 1; ?>">Page précédente</a>
+    <a href="/page=<?php echo $page + 1; ?>">Page suivante</a>
+  </div>
+  
+</form>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

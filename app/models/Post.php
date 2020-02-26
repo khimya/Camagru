@@ -6,16 +6,20 @@ class post
     {
         $this->db = new Database;
     }
-    public function getposts()
+    public function getposts($page)
     {
+        $limite = 5;
+        $debut = ($page - 1) * $limite;
         $this->db->query('SELECT *,
                             posts.id as postId,
                             users.id as userId
                             FROM posts
                             INNER JOIN users
                             ON posts.user_id = users.id
-                            ORDER BY posts.created_at DESC
+                            ORDER BY posts.created_at DESC LIMIT :limite OFFSET :debut
                             ');
+        $this->db->bind(':limite', $limite);
+        $this->db->bind(':debut', $debut);
         $results = $this->db->resultSet();
         return $results;
     }

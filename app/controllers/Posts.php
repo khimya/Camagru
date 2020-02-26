@@ -9,7 +9,9 @@ class Posts extends Controller
 
     public function index()
     {
-        $posts = $this->postModel->getPosts();
+        $page = (!empty($_GET['page']) ? $_GET['page'] : 1);
+        // die(var_dump($page));
+        $posts = $this->postModel->getPosts($page);
         $data = [
             'posts' => $posts
         ];
