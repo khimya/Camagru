@@ -162,6 +162,7 @@ class Users extends Controller
 			$this->view('users/recover', $data);
 		}
 	}
+	
 	public function notification()
 	{
 
@@ -244,7 +245,7 @@ class Users extends Controller
 			}
 			else
 			$this->view('users/changes', $data);
-			// $this->logout();
+			$this->logout();
 		} else {
 			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
 			$this->view('users/changes', $data);

@@ -15,7 +15,6 @@ class Posts extends Controller
             'page' =>$page,
             'posts' => $posts
         ];
-        // die(var_dump($_GET));
         $this->view('posts/index', $data);
     }
     

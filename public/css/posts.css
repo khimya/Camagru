@@ -174,14 +174,12 @@ span {
   width: 150px;
   height: 100%;
   margin-left: 10%;
-  /* background-color: red; */
 }
 
 .likes input {
   width: 40px;
   background: url(../img/posts/feedback.svg) no-repeat;
   margin: 6px 19px 2px 15px;
-  /* display: inline-block; */
   text-decoration: none;
   color: black;
   font-size: 24px;
@@ -192,27 +190,19 @@ span {
   width: 40px;
   background: url(../img/posts/comnt.svg) no-repeat;
   margin: 6px 19px 2px 15px;
-  /* display: inline-block; */
   text-decoration: none;
   color: black;
   font-size: 24px;
   padding-top: 38px;
 }
 
-/* .likes {
-}
-.comments {
-  color: black;
-  font-size: 24px;
-  padding-top: 38px;
-} */
 .lamrd input {
   display: inline-block;
 }
 
 .post_title p {
   float: left;
-  top: 9px;
+  top: -12px;
   width: 80%;
   height: 100%;
   margin: 0% 0% 0% 10%;

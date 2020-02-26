@@ -44,10 +44,8 @@ function takePicture() {
   filter1.setAttribute("value", dat);
   const context = canvas.getContext("2d");
   if (width && height) {
-    // set canvas props
     canvas.width = width;
     canvas.height = height;
-    // Draw an image of the video on the canvas
     context.drawImage(video, 0, 0, width, height);
 
     const imgUrl = canvas.toDataURL("image/png");

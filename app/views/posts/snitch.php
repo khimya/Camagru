@@ -3,11 +3,9 @@
     <?php foreach ($data['posts'] as $post) : ?>
 
         <div class="profile block">
-            <!-- <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a> -->
             <div class="post_profile_pic">
                 <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo ('hello'); ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> </div>
         </div>
-        <!-- poste image -->
         <div class="profile_name_posts">
 
             <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $post->user_id; ?>"><?php echo $post->display_name; ?></a>
@@ -37,12 +35,9 @@
         <div class="blabla">
             <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->id; ?>" method="post">
                 <input  name="blabla" type="text" placeholder="enter your comment here...">
-                <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
                 <button class="publish" type="submit">Publish</button>
             </form>
         </div>
-
-        <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
         </form>
         <div class="posts_info">
             <p>

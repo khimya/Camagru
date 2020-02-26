@@ -24,7 +24,6 @@
             <div class="blabla">
                 <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $post->postId; ?>" method="post">
                     <input name="blabla" type="text" placeholder="enter your comment here...">
-                    <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
                     <button class="publish" type="submit">Publish</button>
                 </form>
             </div>

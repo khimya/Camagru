@@ -9,7 +9,6 @@
     <div class="post_profile_pic">
     <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $data['post']->user_id; ?>"><img alt="userico" src="/camagru/public/img/user_ico/user_ico.jpg"></a> 
 </div>
-    <!-- poste image -->
     <div class="profile_name_posts">
 
         <a href="<?php echo URLROOT; ?>/posts/snitch/<?php echo $data['post']->user_id; ?>"><?php echo $data['user']->display_name; ?></a>
@@ -36,7 +35,6 @@
     <div class="blabla">
         <form action="<?php echo URLROOT; ?>/posts/cmnt/<?php echo $data['post']->id; ?>" method="post">
             <input id="commntarea" name="blabla" type="text" placeholder="enter your comment here...">
-            <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
             <button class="publish" type="submit">Publish</button>
         </form>
     </div>
@@ -48,7 +46,6 @@
             </div>
         </div>
     <?php endforeach; ?>
-    <!-- <textarea name="blabla" id="commntarea" cols="50" rows="2"></textarea> -->
     </form>
 
     <div class="posts_info">
