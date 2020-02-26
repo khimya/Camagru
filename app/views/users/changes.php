@@ -58,11 +58,9 @@
             <div class="row">
                 <div class="col-sm-2">
                     <form method="POST">
-                        <div class="likes">
 
                             <label style="width: 100%; color:red;" for="">
-                            <input type="submit" value="">
-                        </div>
+                            <input type="submit" value="etrdyftuygu">
                 </div>
             </div>
         </div>
