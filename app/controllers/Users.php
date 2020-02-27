@@ -193,25 +193,24 @@ class Users extends Controller
 	
 	public function changes()
 	{
+
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
-		// $data = $this->notificationDisableButton();
-		// $this->view('users/changes',$data);
+		$notif = $this->notificationDisableButton();
+		if ((!empty($_POST['submitbutton']) && isset($_POST['submitbutton'])))
 		$this->notification();
-		// die("OK");
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			$data = [
 				'currentPassword' => '',
 				'currentPassword_err' => '',
 				'newPassword' => '',
+				'notification' => $notif,
 				'newPassword_err' => '',
 				'confirmNewPassword' => '',
 				'confirmNewPassword_err' => '',
 			];
-			die("OK");
-			// die(var_dump($_POST));
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);
@@ -249,9 +248,11 @@ class Users extends Controller
 			else
 			$this->view('users/changes', $data);
 			$this->logout();
-		} else {
 			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
+		}
+		else{
 			$this->view('users/changes', $data);
 		}
+		// $this->view('users/changes',$data);
 	}
 }
