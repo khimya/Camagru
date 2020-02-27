@@ -120,17 +120,17 @@ function changeFormula(){
       formula.src = "http://localhost/public/img/sup/1.png";
   }
 }
-function selectFile() {
-  const file = this.files[0];
-  const fileUrl = URL.createObjectURL(file);
-  canvas.style.backgroundImage = `url(${fileUrl})`;
-  console.log(this.files)
+window.addEventListener('load', function() {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+          var img = document.querySelector('img');  // $('img')[0]
+          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+          img.onload = imageIsLoaded;
+      }
+  });
+});
+
+function imageIsLoaded() { 
+  alert(this.src);  // blob url
+  // update width and height ...
 }
-const fileChooser = document.querySelector('.file-chooser');
-
-  // link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
-
-
-
-
-fileChooser.addEventListener('change', selectFile)
