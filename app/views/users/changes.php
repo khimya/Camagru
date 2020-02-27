@@ -56,7 +56,7 @@
                     <div class="col-sm-2">
                     <form  method="POST">
                     <div class="likes">
-                    <input style="width:100px;" name="submitbutton" type="submit" value="<?php echo($data); ?>">   
+                    <input style="width:100px;" name="submitbutton" type="submit" value="<?php echo $data['notification']; ?>">   
                     </div>
                     </div>
                 </div>

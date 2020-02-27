@@ -81,6 +81,7 @@ class User
         if ($this->findUserByDisplayName($data['display_name'])) {
             $data['display_name_err'] = 'display name  already taken';
         }
+        // die(var_dump($data['display_name_err']));
         return ($data);
     }
 

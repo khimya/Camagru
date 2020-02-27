@@ -197,50 +197,53 @@ class Users extends Controller
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
-		$notif = $this->notificationDisableButton();
+		$notificationStatus = $this->notificationDisableButton();
 		if ((!empty($_POST['submitbutton']) && isset($_POST['submitbutton'])))
 		$this->notification();
+		$data = [
+			'currentPassword' => '',
+			'currentPassword_err' => '',
+			'newPassword' => '',
+			'notification' => $notificationStatus,
+			'newPassword_err' => '',
+			'confirmNewPassword' => '',
+			'confirmNewPassword_err' => '',
+		];
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-			$data = [
-				'currentPassword' => '',
-				'currentPassword_err' => '',
-				'newPassword' => '',
-				'notification' => $notif,
-				'newPassword_err' => '',
-				'confirmNewPassword' => '',
-				'confirmNewPassword_err' => '',
-			];
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
-				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
+				$data['email'] = trim($_POST['email']);
+				$data['email_err'] = '';
 				$data = $this->userModel->checkEmail($data);
+				// die(var_dump($data));
 				if (empty($data['email_err'])) {
 					$this->userModel->newEmail($data);
 					$this->userModel->sendConfirmationNewEmail($data);
 				}
+				elseif (!empty($data['email_err']))
+					return($this->view('users/changes', $data));
 			}
 			if (!empty($_POST['display_name']) && isset($_POST['display_name'])) {
-				$data = ['display_name' => trim($_POST['display_name']), 'display_name_err' => ''];
+				$data['display_name'] = trim($_POST['display_name']);
+				$data['display_name_err'] = '';
+				// die(var_dump($data));
 				$data = $this->userModel->checkDisplayName($data);
 				if (empty($data['display_name_err'])) {
 					$this->userModel->newDisplayName($data);
 				}
 				else if (!empty($data['display_name_err']))
 				{
-					$data['display_name_err'] = "name allready taken";
 					return($this->view('users/changes', $data));
 				}
 			}
 			$data = $this->userModel->checkChangePassword($data);
 			if (!empty($_POST['currentPassword']) && !empty($_POST['newPassword']) && !empty($_POST['confirmNewPassword']) && isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmNewPassword'])) {
-				$data = [
-					'currentPassword' => $_POST['currentPassword'],
-					'currentPassword_err' => '',
-					'newPassword' => $_POST['newPassword'],
-					'newPassword_err' => '',
-					'confirmNewPassword' => $_POST['confirmNewPassword'],
-					'confirmNewPassword_err' => '',
-				];
+				$data['currentPassword'] = $_POST['currentPassword'];
+				$data['currentPassword_err'] = '';
+				$data['newPassword'] = $_POST['newPassword'];
+				$data['newPassword_err'] = '';
+				$data['confirmNewPassword'] = $_POST['confirmNewPassword'];
+				$data['confirmNewPassword_err'] = '';
 				if (empty($data['currentPassword_err']) && empty($data['currentPassword_err']) && empty($data['newPassword_err']) && empty($data['confirmNewPassword_err'])) {
 					$this->userModel->newPassword($data);
 				}
@@ -250,9 +253,8 @@ class Users extends Controller
 			$this->logout();
 			$data = ['email' => '', 'email_err' => '', 'display_name' => '', 'display_name_err' => '', 'currentPassword' => '', 'newPassword' => '', 'confirmNewPassword' => '', 'currentPassword_err' => '', 'newPassword_err' => '', 'confirmNewPassword_err' => ''];
 		}
-		else{
+		else
 			$this->view('users/changes', $data);
-		}
 		// $this->view('users/changes',$data);
 	}
 }
