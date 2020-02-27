@@ -5,9 +5,6 @@
     <h2>Change Settings</h2>
     <p style="color: white;">Fill in just the informations you want to change</p>
     <form method="POST" action="<?php echo URLROOT; ?>/users/changes">
-
-
-
         <div class="inputBox">
             <?php if (empty($data['display_name_err'])) { ?>
                 <label for="">username</label>
@@ -59,7 +56,8 @@
                     <div class="col-sm-2">
                     <form  method="POST">
                     <div class="likes">
-                    <input style="width:100px;" type="submit" value="<?php echo $data; ?>">   
+                    <input style="width:100px;" type="submit" value="">   
+                  
                     </div>
                     </div>
                 </div>

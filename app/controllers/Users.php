@@ -196,10 +196,12 @@ class Users extends Controller
 		if (!isLoggedIn()) {
 			redirect('users/login');
 		}
-		$data = $this->notificationDisableButton();
-		$this->view('users/changes',$data);
+		// $data = $this->notificationDisableButton();
+		// $this->view('users/changes',$data);
 		$this->notification();
+		// die("OK");
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			$data = [
 				'currentPassword' => '',
 				'currentPassword_err' => '',
@@ -208,7 +210,8 @@ class Users extends Controller
 				'confirmNewPassword' => '',
 				'confirmNewPassword_err' => '',
 			];
-			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			die("OK");
+			// die(var_dump($_POST));
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data = ['email' => trim($_POST['email']), 'email_err' => ''];
 				$data = $this->userModel->checkEmail($data);

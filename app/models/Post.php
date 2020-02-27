@@ -36,7 +36,7 @@ class post
         return $results;
 
     }
-    
+
     public function getNotifiedEmail($id)
     {
         if (!isLoggedIn()) {
