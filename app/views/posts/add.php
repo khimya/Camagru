@@ -2,11 +2,12 @@
 <div class="container_galerie">
 <?php foreach ($data['posts'] as $post) : ?>
     <div class="galerie">
-    <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->id; ?>"><img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
-    </div>
-    
-  
-    <?php endforeach; ?>
+    <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->id; ?>">
+    <img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
+</div>
+
+
+<?php endforeach; ?>
 </div>
 <div class="container">
     <a href="<?php echo URLROOT; ?>/posts" class="btn_back btn btn-dark">Back</a>
@@ -34,11 +35,11 @@
             </div>
         </div>
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
-        <div class="post_title_input">
-            <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
-
-        </div>
-
+            <div class="post_title_input">
+                <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
+                
+            </div>
+            
             <div class="top-container">
                 <div class="test">
                     <img id="myicons" src="/public/img/sup/1.png"  alt="dd">
@@ -62,10 +63,11 @@
             <div class="bottom-container">
                 <div id="photos"></div>
             </div>
+            <img id="myImg" src="<?php echo "/camagru/public/" . $post->image; ?> alt="your image" height=373 width=500>
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <input type='file' />
-<br><img id="myImg" src="#" alt="your image" height=200 width=100>
+            <br>
             <div class="col-sm-5 mt-2">
                         <canvas class="photo"></canvas>
                             <video class="player"></video>

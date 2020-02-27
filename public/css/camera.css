@@ -35,7 +35,9 @@ body {
   color: #fff;
   border: #666 1px solid;
 }
-
+.class_name img[src=""] {
+  display: none;
+}
 .btn-light {
   background: #f4f4f4;
   color: #333;
