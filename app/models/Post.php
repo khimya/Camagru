@@ -29,7 +29,7 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        $this->db->query("SELECT P.id, P.user_id, P.title, P.created_at, P
+        $this->db->query("SELECT P.id, P.user_id, P.title, P.created_at, P.image, P.like_count, P.cmnt_count, U.display_name
         FROM posts P, users U WHERE P.user_id = U.id
         AND P.user_id ='{$_SESSION['user_id']}'");
         $results = $this->db->resultSet();

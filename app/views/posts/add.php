@@ -58,16 +58,14 @@
                     <option value="contrast(200%)">Contrast</option>
                 </select>
                 <button id="clear-button" class="btn btn-light">Clear</button>
-                <canvas id="canvas"></canvas>
             </div>
             <div class="bottom-container">
                 <div id="photos"></div>
             </div>
-            <img id="myImg" src="<?php echo "/camagru/public/" . $post->image; ?> alt="your image" height=373 width=500>
-            <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
+            <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
-            <input type='file' />
+            <input type='file' id="realFileBtn"/>
             <br>
             <div class="col-sm-5 mt-2">
                         <canvas class="photo"></canvas>
@@ -75,12 +73,7 @@
                             <div class="strip"></div>
                 </div>
         </form>
-        <!-- <form method="post" enctype="multipart/form-data">
-      <input type="file" name="files[]" multiple />
-      <input type="submit" value="Upload File" name="submit" />
-    </form> -->
-        
-    </div>
+</div>
     <script src="<?php echo URLROOT; ?>/js/camera.js"></script>
 
     <?php require APPROOT . '/views/inc/footer.php'; ?>
