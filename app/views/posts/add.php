@@ -64,6 +64,7 @@
                 <div id="photos"></div>
             </div>
             <img id="myImg" src="<?php echo "/camagru/public/" . $post->image; ?> alt="your image" height=373 width=500>
+            <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <input type='file' />
