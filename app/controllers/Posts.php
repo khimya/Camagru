@@ -76,6 +76,7 @@ class Posts extends Controller
         $data = [
             'posts' => $posts
         ];
+        // die(var_dump($data['posts']));
 
         $data['posts'] =  array_reverse($data['posts']);
         $this->view('posts/me', $data);
@@ -122,11 +123,11 @@ class Posts extends Controller
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         } else {
-
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (!is_numeric(($id)))
                     redirect('posts');
                 $post = $this->postModel->getPostById($id);
+                // die(var_dump($id));
                 if ($post->user_id != $_SESSION['user_id']) {
                     return(redirect('posts'));
                 }

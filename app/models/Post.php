@@ -29,9 +29,9 @@ class post
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        $this->db->query("SELECT *
-        FROM posts P join users U on P.user_id = U.id
-        WHERE P.user_id ='{$_SESSION['user_id']}'");
+        $this->db->query("SELECT P.id, P.user_id, P.title, P.created_at, P
+        FROM posts P, users U WHERE P.user_id = U.id
+        AND P.user_id ='{$_SESSION['user_id']}'");
         $results = $this->db->resultSet();
         return $results;
 
@@ -255,7 +255,9 @@ class post
     {
         $this->db->query('SELECT * FROM posts WHERE id = :id');
         $this->db->bind(':id', $id);
-        $row = $this->db->single();
+        $row = $this->db->resultSet();
+        die("test");
+        die(var_dump($row));
         return $row;
     }
 
