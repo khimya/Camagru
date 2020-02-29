@@ -62,16 +62,22 @@
             <div class="bottom-container">
                 <div id="photos"></div>
             </div>
-            <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
+            <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
+
+                <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
+                sub
+            </form>
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <input type='file' id="realFileBtn"/>
             <br>
             <div class="col-sm-5 mt-2">
-                        <canvas class="photo"></canvas>
                             <video class="player"></video>
                             <div class="strip"></div>
                 </div>
+                <button id="photo-button" class="btn btn-dark">
+                    Upload picture
+                </button>
         </form>
 </div>
     <script src="<?php echo URLROOT; ?>/js/camera.js"></script>

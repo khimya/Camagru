@@ -118,6 +118,26 @@ class Posts extends Controller
     $this->view('posts/add', $data);
     }
 
+    public function upload()
+    {
+        if (!isLoggedIn()) {
+            return (redirect('users/login'));
+        }
+        $data = ['title' => '', 'image' => ''];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data = $this->postModel->checkadd($data);
+            die(var_dump($data));
+                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+                if ($this->postModel->addPost($data, $imgthing)) {
+                    return(redirect('posts/add'));
+                } else {
+                    return(redirect('pages/error'));
+                }
+             }
+             $this->view('posts/add', $data);
+    }
+
     public function delete($id)
     {
         if (!isLoggedIn()) {

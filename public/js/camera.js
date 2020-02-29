@@ -130,7 +130,7 @@ function uploadpicture(src)
     pic.onload = function()
     {
       // alert(src);
-      canvas.width = 500;
+      canvas.width = 200;
       canvas.height = 500;
       canvas.getContext('2d').drawImage(pic, 0, 0, 500, 500);
       uploaded.setAttribute('value', src);
