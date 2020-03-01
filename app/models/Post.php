@@ -327,7 +327,6 @@ class post
 
     public function saveImage($img, $num_fil)
     {
-        // die(var_dump($num_fil));
         if ($num_fil < 1 || $num_fil > 6)
             return false;
             $urlfil = 'img/sup/' . $num_fil . '.png';

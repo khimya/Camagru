@@ -139,6 +139,7 @@ class Posts extends Controller
              $this->view('posts/add', $data);
     }
 
+
     public function delete($id)
     {
         if (!isLoggedIn()) {
@@ -167,8 +168,7 @@ class Posts extends Controller
         $post = $this->postModel->getPostById($id);
         $cmnt = $this->postModel->getCmntById($id);
         $post = $post[0];
-        die(var_dump($post));
-        $user = $this->userModel->getUserById($post[0]->user_id);
+        $user = $this->userModel->getUserById($post->user_id);
         $data = [
             'post' => $post,
             'user' => $user,
