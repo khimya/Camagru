@@ -117,6 +117,7 @@ class Posts extends Controller
             }
     $this->view('posts/add', $data);
     }
+
     public function upload()
     {
         if (!isLoggedIn()) {
@@ -126,17 +127,40 @@ class Posts extends Controller
             $data = ['title' => '', 'image' => ''];
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             // die("befor check upload");
-            $data = $this->postModel->checkupload($data);
-            die("after check upload");
+            $data = $this->postModel->checkUpload($data);
+            die($_POST["num-fil"]);
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
-            if ($this->postModel->addPost($data, $imgthing)) {
+            if ($this->postModel->addUpload($data, $imgthing)) {
+                die(var_dump($data));
                 return(redirect('posts/add'));
             } else {
+                die("error in add upload");
                 return(redirect('pages/error'));
                 }
              }
              $this->view('posts/add', $data);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function delete($id)
     {

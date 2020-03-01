@@ -12,6 +12,7 @@ const clearButton = document.getElementById("clear-button");
 const photoFilter = document.getElementById("photo-filter");
 const submitPic = document.getElementById("img64");
 const filter1 = document.getElementById("filter-src");
+const filter2 = document.getElementById("filter-up");
 const realFileBtn = document.getElementById("realFileBtn");
 const uploaded = document.getElementById("uploaded");
 
@@ -74,16 +75,6 @@ photoButton.addEventListener(
   false
 );
 
-uploadButton.addEventListener(
-  "click",
-  function(e) {
-    uploadpicture();
-
-    e.preventDefault();
-  },
-  false
-);
-
 photoFilter.addEventListener("change", function(e) {
   filter = e.target.value;
   video.style.filter = filter;
@@ -132,21 +123,8 @@ function changeFormula(){
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function uploadpicture(src)
 {
-  alert("fucking am here");
-console.log(src);
     var pic = new Image();
     pic.src = src;
     pic.onload = function()
@@ -155,23 +133,10 @@ console.log(src);
       canvas.height = 500;
       canvas.getContext('2d').drawImage(pic, 0, 0, width, width);
       uploaded.setAttribute('value', src);
-      data = getfilter();
-      filter1.setAttribute('value', data);
+      data1 = getfilter();
+      filter1.setAttribute('value', data1);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 realFileBtn.addEventListener("change", function(){
   var file = this.files[0];

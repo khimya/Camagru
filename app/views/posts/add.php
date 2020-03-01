@@ -70,35 +70,13 @@
             </div>
 
 
-
-
-
-
-
-
-
             <form action="<?php echo URLROOT; ?>/posts/upload" method="post">
                 <div class="post_title_input"><input type="text" placeholder="Enter the title of ur post" name="title" value="" required></div>
                 <input type="file" id="realFileBtn" />
                 <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
             
                 <button class="btn btn-dark  id="upload-pic" type="submit">Submit uploaded picture</button>
-            </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
+            </form>     
         </div>
     </div>
     <script src="<?php echo URLROOT; ?>/js/camera.js"></script>

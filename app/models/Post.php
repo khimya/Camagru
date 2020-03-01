@@ -148,21 +148,46 @@ class post
             return(redirect('posts'));
         }
     }
-    public function checkupload($data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function checkUpload($data)
     {
-        die(var_dump($_POST));
         if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image2']) && isset($_POST['image2']))
         {
             $data['title'] = trim($_POST['title']);
-            $data['image'] = trim($_POST['image1']);
+            $data['image'] = trim($_POST['image2']);
             return($data);
         }
         else
         {
-            die("inside checkUpload");
             return(redirect('posts'));
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function addPost($data, $imgthing)
     {
@@ -177,6 +202,30 @@ class post
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':image', $imgthing);
         }
+        die(var_dump($data));
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function addUpload($data, $imgthing)
+    {
+        
+        if (!isLoggedIn()) {
+            redirect('users/login');
+        } elseif (isLoggedIn()) {
+            
+            $this->db->query('INSERT INTO posts (title, user_id, image) VALUES(:title, :user_id, :image)');
+            
+            
+            $this->db->bind(':title', $data['title']);
+            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':image', $imgthing);
+        }
+        die(var_dump($data));
 
         if ($this->db->execute()) {
             return true;
@@ -306,6 +355,7 @@ class post
 
     public function saveImage($img, $num_fil)
     {
+        die(var_dump($num_fil));
         if ($num_fil < 1 || $num_fil > 6)
             return false;
             $urlfil = 'img/sup/' . $num_fil . '.png';
