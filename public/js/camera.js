@@ -29,12 +29,10 @@ video.addEventListener(
   function(e) {
     if (!streaming) {
       height = video.videoHeight / (video.videoWidth / width);
-
       video.setAttribute("width", width);
       video.setAttribute("height", height);
       canvas.setAttribute("width", width);
       canvas.setAttribute("height", height);
-
       streaming = true;
     }
   },
@@ -129,10 +127,9 @@ function uploadpicture(src)
     pic.src = src;
     pic.onload = function()
     {
-      // alert(src);
       canvas.width = 200;
       canvas.height = 500;
-      canvas.getContext('2d').drawImage(pic, 0, 0, 500, 500);
+      canvas.getContext('2d').drawImage(pic, 0, 0, width, width);
       uploaded.setAttribute('value', src);
       data = getfilter();
       filter1.setAttribute('value', data);
@@ -148,26 +145,7 @@ realFileBtn.addEventListener("change", function(){
       uploadpicture(this.result);
     });
     reader.readAsDataURL(file);
-    // customTxt.innerHTML = "choosen";
   }
   else
     alert("No file chosen, yet");
 });
-// window.addEventListener('load', function() {
-//   document.querySelector('input[type="file"]').addEventListener('change', function() {
-//       if (this.files && this.files[0]) {
-//         // var img =   document.getElementById("myImg");
-//         //   // var img = document.querySelector('img');  // $('img')[0]
-//         //   img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-//         //   img.onload = imageIsLoaded;
-//         uploadpicture(this.files[0]);
-//       }
-//   });
-// });
-
-
-
-// function imageIsLoaded() { 
-//   alert(this.src);  // blob url
-//   // update width and height ...
-// }
