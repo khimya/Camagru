@@ -7,6 +7,7 @@ const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const photos = document.getElementById("photos");
 const photoButton = document.getElementById("photo-button");
+const uploadButton = document.getElementById("upload-pic");
 const clearButton = document.getElementById("clear-button");
 const photoFilter = document.getElementById("photo-filter");
 const submitPic = document.getElementById("img64");
@@ -67,6 +68,16 @@ photoButton.addEventListener(
   "click",
   function(e) {
     takePicture();
+
+    e.preventDefault();
+  },
+  false
+);
+
+uploadButton.addEventListener(
+  "click",
+  function(e) {
+    uploadpicture();
 
     e.preventDefault();
   },
