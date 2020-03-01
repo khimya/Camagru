@@ -149,18 +149,6 @@ class post
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public function checkUpload($data)
     {
         if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image2']) && isset($_POST['image2']))
@@ -174,20 +162,6 @@ class post
             return(redirect('posts'));
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function addPost($data, $imgthing)
     {
@@ -224,7 +198,6 @@ class post
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':image', $imgthing);
         }
-        die(var_dump($data));
 
         if ($this->db->execute()) {
             return true;

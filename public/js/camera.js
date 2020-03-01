@@ -9,7 +9,7 @@ const photos = document.getElementById("photos");
 const photoButton = document.getElementById("photo-button");
 const uploadButton = document.getElementById("upload-pic");
 const clearButton = document.getElementById("clear-button");
-const photoFilter = document.getElementById("photo-filter");
+// const photoFilter = document.getElementById("photo-filter");
 const submitPic = document.getElementById("img64");
 const filter1 = document.getElementById("filter-src");
 const realFileBtn = document.getElementById("realFileBtn");
@@ -74,19 +74,19 @@ photoButton.addEventListener(
   false
 );
 
-photoFilter.addEventListener("change", function(e) {
-  filter = e.target.value;
-  video.style.filter = filter;
+// photoFilter.addEventListener("change", function(e) {
+//   filter = e.target.value;
+//   video.style.filter = filter;
 
-  e.preventDefault();
-});
+//   e.preventDefault();
+// });
 
-clearButton.addEventListener("click", function(e) {
-  photos.innerHTML = "";
-  filter = "none";
-  video.style.filter = filter;
-  photoFilter.selectedIndex = 0;
-});
+// clearButton.addEventListener("click", function(e) {
+//   photos.innerHTML = "";
+//   filter = "none";
+//   video.style.filter = filter;
+//   photoFilter.selectedIndex = 0;
+// });
 function getfilter() {
   radiobutton = document.querySelector('input[name="filter"]:checked').value;
   if (radiobutton == "1") return 1;
@@ -124,17 +124,19 @@ function changeFormula(){
 
 function uploadpicture(src)
 {
-    var pic = new Image();
-    pic.src = src;
-    pic.onload = function()
-    {
-      canvas.width = 200;
-      canvas.height = 500;
-      canvas.getContext('2d').drawImage(pic, 0, 0, width, width);
-      uploaded.setAttribute('value', src);
-      data1 = getfilter();
-      filter1.setAttribute('value', data);
-    }
+  var pic = new Image();
+  pic.src = src;
+  pic.onload = function()
+  {
+    canvas.width = 200;
+    canvas.height = 500;
+    canvas.getContext('2d').drawImage(pic, 0, 0, width, width);
+    uploaded.setAttribute('value', src);
+    data1 = getfilter();
+    filter1.setAttribute('value', data1);
+    console.log("hello world");
+    console.log(filter1);
+  }
 }
 
 realFileBtn.addEventListener("change", function(){

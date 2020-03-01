@@ -120,18 +120,17 @@ class Posts extends Controller
 
     public function upload()
     {
+        die(var_dump($_POST));
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = ['title' => '', 'image' => ''];
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            // die("befor check upload");
+            die("befor check upload");
             $data = $this->postModel->checkUpload($data);
-            die($_POST["num-fil"]);
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
             if ($this->postModel->addUpload($data, $imgthing)) {
-                die(var_dump($data));
                 return(redirect('posts/add'));
             } else {
                 die("error in add upload");

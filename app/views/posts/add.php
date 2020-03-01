@@ -46,7 +46,7 @@
             <button id="photo-button" class="btn btn-dark">
                 Take Photo
             </button>
-            <select id="photo-filter" class="select">
+            <!-- <select id="photo-filter" class="select">
                 <option value="none">Normal</option>
                 <option value="grayscale(100%)">Grayscale</option>
                 <option value="sepia(100%)">Sepia</option>
@@ -54,17 +54,17 @@
                 <option value="hue-rotate(90deg)">Hue</option>
                 <option value="blur(10px)">Blur</option>
                 <option value="contrast(200%)">Contrast</option>
-            </select>
-            <button id="clear-button" class="btn btn-light">Clear</button>
+            </select> -->
+            <!-- <button id="clear-button" class="btn btn-light">Clear</button> -->
             <canvas id="canvas"></canvas>
         </div>
         <div class="bottom-container">
             <div id="photos"></div>
-            <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <video class="player"></video>
             <div class="strip"></div>
         </form>
+        <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
         <br>
         <div class="col-sm-5 mt-2">
             </div>
