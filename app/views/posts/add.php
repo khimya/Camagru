@@ -1,12 +1,11 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="container_galerie">
-    <?php foreach ($data['posts'] as $post) : ?>
-        <div class="galerie">
-            <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->id; ?>">
-                <img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
-        </div>
-
-
+<?php foreach ($data['posts'] as $post) : ?>
+    <div class="galerie">
+    <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->id; ?>"><img href alt="Anne Hathaway picture" src="<?php echo "/camagru/public/" . $post->image; ?>">
+    </div>
+    
+  
     <?php endforeach; ?>
 </div>
 <div class="container">
@@ -35,47 +34,73 @@
             </div>
         </div>
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
-            <div class="post_title_input">
-                <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
+        <div class="post_title_input">
+            <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
 
+        </div>
+        <div class="top-container">
+            <div class="test">
+                <img id="myicons" src="/public/img/sup/1.png"  alt="dd">
+                <video id="video">Stream not available...</video>
             </div>
-
-            <div class="top-container">
-                <div class="test">
-                    <img id="myicons" src="/public/img/sup/1.png" alt="dd">
-                    <video id="video">Stream not available...</video>
-                </div>
-                <button id="photo-button" class="btn btn-dark">
-                    Take Photo
-                </button>
-                <select id="photo-filter" class="select">
-                    <option value="none">Normal</option>
-                    <option value="grayscale(100%)">Grayscale</option>
-                    <option value="sepia(100%)">Sepia</option>
-                    <option value="invert(100%)">Invert</option>
-                    <option value="hue-rotate(90deg)">Hue</option>
-                    <option value="blur(10px)">Blur</option>
-                    <option value="contrast(200%)">Contrast</option>
-                </select>
-                <button id="clear-button" class="btn btn-light">Clear</button>
-            </div>
-            <div class="bottom-container">
-                <div id="photos"></div>
-            </div>
+            <button id="photo-button" class="btn btn-dark">
+                Take Photo
+            </button>
+            <select id="photo-filter" class="select">
+                <option value="none">Normal</option>
+                <option value="grayscale(100%)">Grayscale</option>
+                <option value="sepia(100%)">Sepia</option>
+                <option value="invert(100%)">Invert</option>
+                <option value="hue-rotate(90deg)">Hue</option>
+                <option value="blur(10px)">Blur</option>
+                <option value="contrast(200%)">Contrast</option>
+            </select>
+            <button id="clear-button" class="btn btn-light">Clear</button>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="bottom-container">
+            <div id="photos"></div>
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
-            <input type='file' id="realFileBtn" />
-            <br>
-            <div class="col-sm-5 mt-2">
-                <video class="player"></video>
-                <div class="strip"></div>
+            <video class="player"></video>
+            <div class="strip"></div>
+        </form>
+        <br>
+        <div class="col-sm-5 mt-2">
             </div>
+
+
+
+
+
+
+
+
+
             <form action="<?php echo URLROOT; ?>/posts/upload" method="post">
+                <div class="post_title_input"><input type="text" placeholder="Enter the title of ur post" name="title" value="" required></div>
+                <input type="file" id="realFileBtn" />
                 <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
+            
                 <button class="btn btn-dark  id="upload-pic" type="submit">Submit uploaded picture</button>
             </form>
-        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        </div>
     </div>
     <script src="<?php echo URLROOT; ?>/js/camera.js"></script>
-
+    
     <?php require APPROOT . '/views/inc/footer.php'; ?>

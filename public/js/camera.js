@@ -132,8 +132,21 @@ function changeFormula(){
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 function uploadpicture(src)
 {
+  alert("fucking am here");
+console.log(src);
     var pic = new Image();
     pic.src = src;
     pic.onload = function()
@@ -146,6 +159,19 @@ function uploadpicture(src)
       filter1.setAttribute('value', data);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 realFileBtn.addEventListener("change", function(){
   var file = this.files[0];

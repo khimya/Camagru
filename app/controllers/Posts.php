@@ -76,7 +76,6 @@ class Posts extends Controller
         $data = [
             'posts' => $posts
         ];
-        // die(var_dump($data['posts']));
 
         $data['posts'] =  array_reverse($data['posts']);
         $this->view('posts/me', $data);
@@ -91,6 +90,7 @@ class Posts extends Controller
         $this->view('posts/snitch', $data);
     }
 
+    
     public function add()
     {
         if (!isLoggedIn()) {
@@ -108,31 +108,31 @@ class Posts extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = $this->postModel->checkadd($data);
-                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
-                if ($this->postModel->addPost($data, $imgthing)) {
+            $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+            if ($this->postModel->addPost($data, $imgthing)) {
                     return(redirect('posts/add'));
                 } else {
                     return(redirect('pages/error'));
                 }
-    }
+            }
     $this->view('posts/add', $data);
     }
-
     public function upload()
     {
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
-        $data = ['title' => '', 'image' => ''];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = ['title' => '', 'image' => ''];
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $data = $this->postModel->checkadd($data);
-            die(var_dump($data));
-                $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
-                if ($this->postModel->addPost($data, $imgthing)) {
-                    return(redirect('posts/add'));
-                } else {
-                    return(redirect('pages/error'));
+            // die("befor check upload");
+            $data = $this->postModel->checkupload($data);
+            die("after check upload");
+            $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+            if ($this->postModel->addPost($data, $imgthing)) {
+                return(redirect('posts/add'));
+            } else {
+                return(redirect('pages/error'));
                 }
              }
              $this->view('posts/add', $data);
@@ -147,7 +147,6 @@ class Posts extends Controller
                 if (!is_numeric(($id)))
                     redirect('posts');
                 $post = $this->postModel->getPostById($id);
-                // die(var_dump($id));
                 if ($post->user_id != $_SESSION['user_id']) {
                     return(redirect('posts'));
                 }

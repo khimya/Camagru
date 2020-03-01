@@ -148,6 +148,21 @@ class post
             return(redirect('posts'));
         }
     }
+    public function checkupload($data)
+    {
+        die(var_dump($_POST));
+        if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image2']) && isset($_POST['image2']))
+        {
+            $data['title'] = trim($_POST['title']);
+            $data['image'] = trim($_POST['image1']);
+            return($data);
+        }
+        else
+        {
+            die("inside checkUpload");
+            return(redirect('posts'));
+        }
+    }
 
     public function addPost($data, $imgthing)
     {
@@ -256,8 +271,6 @@ class post
         $this->db->query('SELECT * FROM posts WHERE id = :id');
         $this->db->bind(':id', $id);
         $row = $this->db->resultSet();
-        die("test");
-        die(var_dump($row));
         return $row;
     }
 
