@@ -173,7 +173,7 @@ class post
 
 
             $this->db->bind(':title', $data['title']);
-            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':user_id', $_SESSION['user_id']);
             $this->db->bind(':image', $imgthing);
         }
 
@@ -195,10 +195,10 @@ class post
             
             
             $this->db->bind(':title', $data['title']);
-            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':user_id', $_SESSION['user_id']);
             $this->db->bind(':image', $imgthing);
         }
-
+        
         if ($this->db->execute()) {
             return true;
         } else {

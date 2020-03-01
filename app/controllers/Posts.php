@@ -106,7 +106,6 @@ class Posts extends Controller
         }
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            die(var_dump($_POST));
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = $this->postModel->checkadd($data);
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
@@ -127,9 +126,9 @@ class Posts extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = ['title' => '', 'image' => ''];
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            die("befor check upload");
             $data = $this->postModel->checkUpload($data);
-            $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
+            
+            $imgthing = $this->postModel->saveImage($data, $_POST["num-fill"]);
             if ($this->postModel->addUpload($data, $imgthing)) {
                 return(redirect('posts/add'));
             } else {
@@ -167,7 +166,9 @@ class Posts extends Controller
     {
         $post = $this->postModel->getPostById($id);
         $cmnt = $this->postModel->getCmntById($id);
-        $user = $this->userModel->getUserById($post->user_id);
+        $post = $post[0];
+        die(var_dump($post));
+        $user = $this->userModel->getUserById($post[0]->user_id);
         $data = [
             'post' => $post,
             'user' => $user,

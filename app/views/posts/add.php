@@ -36,7 +36,6 @@
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
         <div class="post_title_input">
             <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
-
         </div>
         <div class="top-container">
             <div class="test">
@@ -46,6 +45,7 @@
             <button id="photo-button" class="btn btn-dark">
                 Take Photo
             </button>
+            <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
             <!-- <select id="photo-filter" class="select">
                 <option value="none">Normal</option>
                 <option value="grayscale(100%)">Grayscale</option>
@@ -64,24 +64,24 @@
             <video class="player"></video>
             <div class="strip"></div>
         </form>
-        <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
         <br>
         <div class="col-sm-5 mt-2">
             </div>
-
-
-
-
-
-
-
-
-
-            <form action="<?php echo URLROOT; ?>/posts/upload" method="post">
             
+            
+            
+            
+            
+            
+            
+            
+            
+            <form action="<?php echo URLROOT; ?>/posts/upload" method="post">
+                
                 <div class="post_title_input"><input type="text" placeholder="Enter the title of ur post" name="title" value="" required></div>
                 <input type="file" id="realFileBtn" />
                 <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
+                <input id="filter-upload" type="hidden" name="num-fill" class="filter-tag">
             
                 <button class="btn btn-dark  id="upload-pic" type="submit">Submit uploaded picture</button>
             </form>     
