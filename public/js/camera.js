@@ -12,7 +12,6 @@ const clearButton = document.getElementById("clear-button");
 const photoFilter = document.getElementById("photo-filter");
 const submitPic = document.getElementById("img64");
 const filter1 = document.getElementById("filter-src");
-const filter2 = document.getElementById("filter-up");
 const realFileBtn = document.getElementById("realFileBtn");
 const uploaded = document.getElementById("uploaded");
 
@@ -134,7 +133,7 @@ function uploadpicture(src)
       canvas.getContext('2d').drawImage(pic, 0, 0, width, width);
       uploaded.setAttribute('value', src);
       data1 = getfilter();
-      filter1.setAttribute('value', data1);
+      filter1.setAttribute('value', data);
     }
 }
 

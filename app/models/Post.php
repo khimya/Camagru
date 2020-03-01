@@ -202,7 +202,6 @@ class post
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':image', $imgthing);
         }
-        die(var_dump($data));
 
         if ($this->db->execute()) {
             return true;
@@ -355,7 +354,7 @@ class post
 
     public function saveImage($img, $num_fil)
     {
-        die(var_dump($num_fil));
+        // die(var_dump($num_fil));
         if ($num_fil < 1 || $num_fil > 6)
             return false;
             $urlfil = 'img/sup/' . $num_fil . '.png';

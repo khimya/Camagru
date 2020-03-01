@@ -70,6 +70,13 @@
             </div>
 
 
+
+
+
+
+
+
+
             <form action="<?php echo URLROOT; ?>/posts/upload" method="post">
                 <div class="post_title_input"><input type="text" placeholder="Enter the title of ur post" name="title" value="" required></div>
                 <input type="file" id="realFileBtn" />
