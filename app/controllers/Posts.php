@@ -106,6 +106,7 @@ class Posts extends Controller
         }
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            die(var_dump($_POST));
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = $this->postModel->checkadd($data);
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
@@ -120,7 +121,6 @@ class Posts extends Controller
 
     public function upload()
     {
-        die(var_dump($_POST));
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
@@ -139,27 +139,6 @@ class Posts extends Controller
              }
              $this->view('posts/add', $data);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function delete($id)
     {

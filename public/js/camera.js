@@ -134,8 +134,6 @@ function uploadpicture(src)
     uploaded.setAttribute('value', src);
     data1 = getfilter();
     filter1.setAttribute('value', data1);
-    console.log("hello world");
-    console.log(filter1);
   }
 }
 
