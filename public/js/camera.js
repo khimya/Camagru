@@ -84,7 +84,7 @@ function manage(title){
 
 uploadButton.disabled  = true;
 function manage1(title1){
-  if(title1.value != "")
+  if(title1.value != "" &&  uploaded.value != "")
     uploadButton.disabled  = false;
   else
     uploadButton.disabled  = true;
@@ -146,7 +146,6 @@ function changeFormula(){
       formula.src = "http://localhost/public/img/sup/1.png";
   }
 }
-
 function uploadpicture(src)
 {
   var pic = new Image();
