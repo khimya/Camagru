@@ -1,9 +1,3 @@
-/var/log/apache2/error.log
-
-service apache2 stop
-bash -c 'echo > /var/log/apache2/error.log'
-service apache2 start
-
 const canvas      = document.querySelector('canvas'),
       ctx         = canvas.getContext('2d'),
       fileChooser = document.querySelector('.file-chooser'),
@@ -116,5 +110,3 @@ getVideo();
 
 fileChooser.addEventListener('change', selectFile)
 video.addEventListener('canplay', paintToCanvas);
-
-
