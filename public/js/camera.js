@@ -49,20 +49,20 @@ function takePicture() {
   filter2.setAttribute("value", dat);
   const context = canvas.getContext("2d");
   if (width && height) {
-    alert(console.log(canvas));
     canvas.width = width;
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
-
+    
     const imgUrl = canvas.toDataURL("image/png");
     // alert(dat);
-
+    
     // const img = document.createElement("img");
-
+    
     // img.style.filter = filter;
     // img.setAttribute("src", imgUrl);
     submitPic.value = imgUrl;
     submitPic.setAttribute("style", filter);
+    alert(console.log(submitPic));
     // strip.insertBefore(imgUrl, strip.firstChild);
     // strip.style.filter = setAttribute("value", dat);
     // photos.appendChild(img);
