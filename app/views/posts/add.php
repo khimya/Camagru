@@ -40,7 +40,7 @@
 
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
             <div class="post_title_input">
-                <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
+                <input id="title" type="text" placeholder="Enter the title of ur post"  onkeyup="manage(this)" name="title" value="" required>
             </div>
             <div class="top-container">
                 <div class="test">
@@ -56,10 +56,9 @@
                 <canvas id="canvas"></canvas>
             </div>
             <div class="bottom-container">
-                <!-- <div id="photos"></div> -->
                 <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
                 <video class="player"></video>
-                <!-- <div  id="strip" class="strip"></div> -->
+                <div  id="strip" class="strip"></div>
         </form>
 
 
@@ -82,12 +81,14 @@
             
             <form action="<?php echo URLROOT; ?>/posts/upload" method="post">
                 
-                <div class="post_title_input"><input type="text" placeholder="Enter the title of ur post" name="title" value="" required></div>
+                <div class="post_title_input">
+                    <input onkeyup="manage1(this)" id="title1"  type="text" placeholder="Enter the title of ur post" name="title" value="" required>
+                </div>
                 <input type="file" id="realFileBtn" />
                 <input name="image2" type="hidden" value="<?php echo $data['image']; ?>" id="uploaded" required>
                 <input id="filter-upload" type="hidden" name="num-fill" class="filter-tag">
             
-                <button class="btn btn-dark  id="upload-pic" type="submit">Submit uploaded picture</button>
+                <button class="btn btn-dark"  id="upload-pic"  type="submit">Submit uploaded picture</button>
             </form>     
         </div>
     </div>

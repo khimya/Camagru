@@ -1,11 +1,11 @@
 let width = 500,
   height = 0,
-  filter = "none",
+  // filter = "none",
   streaming = false;
 
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
-const photos = document.getElementById("photos");
+// const photos = document.getElementById("photos");
 const photoButton = document.getElementById("photo-button");
 const uploadButton = document.getElementById("upload-pic");
 const clearButton = document.getElementById("clear-button");
@@ -15,6 +15,9 @@ const filter1 = document.getElementById("filter-src");
 const filter2 = document.getElementById("filter-upload");
 const realFileBtn = document.getElementById("realFileBtn");
 const uploaded = document.getElementById("uploaded");
+const strip = document.getElementById("strip");
+const title = document.getElementById("title");
+const title1 = document.getElementById("title1");
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -55,27 +58,46 @@ function takePicture() {
 
     const img = document.createElement("img");
 
-    img.style.filter = filter;
+    // img.style.filter = filter;
     img.setAttribute("src", imgUrl);
     submitPic.value = imgUrl;
-    submitPic.setAttribute("style", filter);
-    console.log(dat);
-    filter = setAttribute("value", dat);
+    // submitPic.setAttribute("style", filter);
+    // filter = setAttribute("value", dat);
     strip.insertBefore(imgUrl, strip.firstChild);
     strip.style.filter = filter;
-    photos.appendChild(img);
+    // photos.appendChild(img);
   }
 }
 
-photoButton.addEventListener(
-  "click",
-  function(e) {
-    takePicture();
 
-    e.preventDefault();
-  },
-  false
-);
+photoButton.disabled  = true;
+function manage(title){
+  if(title.value != "")
+    photoButton.disabled  = false;
+  else
+    photoButton.disabled  = true;
+}
+
+
+
+
+
+uploadButton.disabled  = true;
+function manage1(title1){
+  if(title1.value != "")
+    uploadButton.disabled  = false;
+  else
+    uploadButton.disabled  = true;
+}
+  photoButton.addEventListener(
+    "click",
+    function(e) {
+      takePicture();
+      
+      e.preventDefault();
+    },
+    false
+    );
 
 // photoFilter.addEventListener("change", function(e) {
 //   filter = e.target.value;
