@@ -34,7 +34,7 @@ class Posts extends Controller
                     $this->postModel->addLike($id);
                     $this->postModel->addLikecount($id);
                 }
-                redirect('posts');
+                return (redirect('posts'));
             }
         }
     }
@@ -99,6 +99,8 @@ class Posts extends Controller
         $posts = $this->postModel->getmyposts();
         $posts =  array_reverse( $posts);
         $post_id = $this->postModel->galerietrick();
+        $post_id =  array_reverse( $post_id);
+        
         $i = 0;
         foreach($posts as $post)
         {

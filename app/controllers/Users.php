@@ -36,9 +36,9 @@ class Users extends Controller
 			if (empty($data['email_err']) && empty($data['display_name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
 				$data = $this->userModel->sendConfirmationEmail($data);
 				if ($this->userModel->register($data)) {
-					redirect('users/login');
+					return(redirect('users/login'));
 				} else {
-					redirect('pages/error');
+					return(redirect('pages/error'));
 				}
 			} else {
 				$this->view('users/register', $data);
@@ -57,23 +57,23 @@ class Users extends Controller
 
 		if (empty($data['cle']) || !isset($data['cle'])) {
 			$data['cle_err'] = 'wrong verification link';
-			redirect('users/register');
+			return(redirect('users/register'));
 		}
 		if ($this->userModel->findUserBykey($data['cle']) && empty($data['cle_err'])) {
 			if ($this->userModel->activate($data['cle'])) {
-				redirect('users/login');
+				return(redirect('users/login'));
 			} else {
-				redirect('pages/error');
+				return(redirect('pages/error'));
 			}
 		} else {
-			redirect('users/register');
+			return(redirect('users/register'));
 		}
 	}
 
 	public function login()
 	{
 		if (isLoggedIn()) {
-			redirect('posts');
+			return(redirect('posts'));
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			
@@ -123,7 +123,7 @@ class Users extends Controller
 	{
 		$_SESSION['user_id'] = $user->id;
 		$_SESSION['display_name'] = $user->display_name;
-		redirect('posts');
+		return(redirect('posts'));
 	}
 
 	public function logout()
@@ -131,7 +131,7 @@ class Users extends Controller
 		unset($_SESSION['user_id']);
 		unset($_SESSION['display_name']);
 		session_destroy();
-		redirect('users/login');
+		return(redirect('users/login'));
 	}
 
 	public function recover()
@@ -147,10 +147,10 @@ class Users extends Controller
 
 					if ($this->userModel->recover($data)) {
 						$this->userModel->sendRecoveryEmail($data);
-						redirect('users/login');
+						return(redirect('users/login'));
 					} else {
 						$data['email_err'] = ' no user registred with this email';
-						redirect('page/recover');
+						return(redirect('page/recover'));
 					}
 				} else {
 					$data['email_err'] = ' no user registred with this email';
@@ -195,7 +195,7 @@ class Users extends Controller
 	{
 
 		if (!isLoggedIn()) {
-			redirect('users/login');
+			return(redirect('users/login'));
 		}
 		$notificationStatus = $this->notificationDisableButton();
 		if ((!empty($_POST['submitbutton']) && isset($_POST['submitbutton'])))
@@ -211,6 +211,9 @@ class Users extends Controller
 		];
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			if (is_array($_POST['email']) || is_array($_POST['currentPassword']) || is_array($_POST['newPassword']) || is_array($_POST['confirmNewPassword'])) {
+				$data['display_name_err'] = 'Please enter a display_name';
+			}
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data['email'] = trim($_POST['email']);
 				$data['email_err'] = '';

@@ -27,7 +27,7 @@ class post
     public function getmyposts()
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         }
         $this->db->query("SELECT P.id, P.user_id, P.title, P.created_at, P.image, P.like_count, P.cmnt_count, U.display_name
         FROM posts P, users U WHERE P.user_id = U.id
@@ -40,7 +40,7 @@ class post
     public function getNotifiedEmail($id)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         }
         $this->db->query('SELECT user_id FROM posts WHERE id = :id');
         $this->db->bind(':id', $id);
@@ -60,7 +60,7 @@ class post
     public function galerietrick()
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         }
         $this->db->query("SELECT *
         FROM posts WHERE posts.user_id ='{$_SESSION['user_id']}'");
@@ -93,7 +93,7 @@ class post
     public function removeLike($id)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             $this->db->query('UPDATE posts SET like_count = (like_count - 1) WHERE id = :id');
         }
@@ -108,7 +108,7 @@ class post
     public function removeLikeCount($id)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             $this->db->query('DELETE FROM likes WHERE user_id = :user_id AND post_id = :id');
             $this->db->bind(':id', $id);
@@ -124,10 +124,10 @@ class post
     public function getsnitching($user_id)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         }
         if ($_SESSION['user_id'] == $user_id)
-            redirect('posts/me');
+        return(redirect('posts/me'));
 
         $this->db->query("SELECT *
         FROM posts P join users U on P.user_id = U.id
@@ -137,7 +137,7 @@ class post
     }
     public function checkadd($data)
     {
-        if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image']) && isset($_POST['image']))
+        if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image']) && isset($_POST['image']) && !is_array($_POST['title']))
         {
                 $data['title'] = trim($_POST['title']);
                 $data['image'] = trim($_POST['image']);
@@ -151,7 +151,7 @@ class post
 
     public function checkUpload($data)
     {
-        if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image2']) && isset($_POST['image2']))
+        if (!empty($_POST['title']) && isset($_POST['title']) && !empty($_POST['image2']) && isset($_POST['image2']) && !is_array($_POST['image2']) && !is_array($_POST['title']))
         {
             $data['title'] = trim($_POST['title']);
             $data['image'] = trim($_POST['image2']);
@@ -166,7 +166,7 @@ class post
     public function addPost($data, $imgthing)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
 
             $this->db->query('INSERT INTO posts (title, user_id, image) VALUES(:title, :user_id, :image)');
@@ -188,7 +188,7 @@ class post
     {
         
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             
             $this->db->query('INSERT INTO posts (title, user_id, image) VALUES(:title, :user_id, :image)');
@@ -209,7 +209,7 @@ class post
     public function addLike($id)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             $this->db->query('INSERT INTO likes (user_id, post_id) VALUES (:user_id, :id)');
             $this->db->bind(':id', $id);
@@ -225,7 +225,7 @@ class post
     public function addCmnt($data, $id)
     {
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             $this->db->query('INSERT INTO cmnt (post_id, user_id, cmnt, display_name) VALUES (:id, :user_id, :cmnt , :display_name)');
             $this->db->bind(':id', $id);
@@ -244,7 +244,7 @@ class post
     {
 
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             $this->db->query('UPDATE posts SET like_count = (like_count + 1) WHERE id = :id');
             $this->db->bind(':id', $id);
@@ -260,7 +260,7 @@ class post
     {
 
         if (!isLoggedIn()) {
-            redirect('users/login');
+            return(redirect('users/login'));
         } elseif (isLoggedIn()) {
             $this->db->query('UPDATE posts SET cmnt_count = (cmnt_count + 1) WHERE id = :id');
             $this->db->bind(':id', $id);
