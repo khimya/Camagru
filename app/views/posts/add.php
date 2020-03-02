@@ -33,29 +33,30 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
         <div class="post_title_input">
+            <br>
             <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
+            <br>
+            <br>
+            <br>
         </div>
         <div class="top-container">
             <div class="test">
                 <img id="myicons" src="/public/img/sup/1.png"  alt="dd">
                 <video id="video">Stream not available...</video>
             </div>
-            <button id="photo-button" class="btn btn-dark">
+            <!-- <button id="photo-button" class="btn btn-dark">
                 Take Photo
-            </button>
+            </button> -->
+            <input type="submit" name="ok" id="photo-button" class="btn btn-dark">
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
-            <!-- <select id="photo-filter" class="select">
-                <option value="none">Normal</option>
-                <option value="grayscale(100%)">Grayscale</option>
-                <option value="sepia(100%)">Sepia</option>
-                <option value="invert(100%)">Invert</option>
-                <option value="hue-rotate(90deg)">Hue</option>
-                <option value="blur(10px)">Blur</option>
-                <option value="contrast(200%)">Contrast</option>
-            </select> -->
-            <!-- <button id="clear-button" class="btn btn-light">Clear</button> -->
+
             <canvas id="canvas"></canvas>
         </div>
         <div class="bottom-container">
@@ -64,6 +65,13 @@
             <video class="player"></video>
             <div class="strip"></div>
         </form>
+
+
+
+
+
+
+
         <br>
         <div class="col-sm-5 mt-2">
             </div>

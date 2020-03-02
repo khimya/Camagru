@@ -1,11 +1,11 @@
-let width = 500,
+var width = 500,
   height = 0,
   filter = "none",
   streaming = false;
 
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
-const photos = document.getElementById("photos");
+// const photos = document.getElementById("photos");
 const photoButton = document.getElementById("photo-button");
 const uploadButton = document.getElementById("upload-pic");
 const clearButton = document.getElementById("clear-button");
@@ -15,6 +15,8 @@ const filter1 = document.getElementById("filter-src");
 const filter2 = document.getElementById("filter-upload");
 const realFileBtn = document.getElementById("realFileBtn");
 const uploaded = document.getElementById("uploaded");
+// const strip = document.getElementById("strip");
+
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -59,10 +61,9 @@ function takePicture() {
     img.setAttribute("src", imgUrl);
     submitPic.value = imgUrl;
     submitPic.setAttribute("style", filter);
-    filter = setAttribute("value", dat);
-    strip.insertBefore(imgUrl, strip.firstChild);
-    strip.style.filter = filter;
-    photos.appendChild(img);
+    // strip.insertBefore(imgUrl, strip.firstChild);
+    // strip.style.filter = setAttribute("value", dat);
+    // photos.appendChild(img);
   }
 }
 

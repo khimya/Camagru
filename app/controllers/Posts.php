@@ -151,6 +151,8 @@ class Posts extends Controller
                 if (!is_numeric(($id)))
                     redirect('posts');
                 $post = $this->postModel->getPostById($id);
+                $post = $post[0];
+                // die(var_dump($post));
                 if ($post->user_id != $_SESSION['user_id']) {
                     return(redirect('posts'));
                 }

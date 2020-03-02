@@ -213,6 +213,7 @@ class Users extends Controller
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			if (is_array($_POST['email']) || is_array($_POST['currentPassword']) || is_array($_POST['newPassword']) || is_array($_POST['confirmNewPassword'])) {
 				$data['display_name_err'] = 'Please enter a display_name';
+				return(redirect('users/changes'));
 			}
 			if (!empty($_POST['email']) && isset($_POST['email'])) {
 				$data['email'] = trim($_POST['email']);
