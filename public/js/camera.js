@@ -15,7 +15,7 @@ const filter1 = document.getElementById("filter-src");
 const filter2 = document.getElementById("filter-upload");
 const realFileBtn = document.getElementById("realFileBtn");
 const uploaded = document.getElementById("uploaded");
-// const strip = document.getElementById("strip");
+const strip = document.getElementById("strip");
 
 
 navigator.mediaDevices
@@ -49,16 +49,18 @@ function takePicture() {
   filter2.setAttribute("value", dat);
   const context = canvas.getContext("2d");
   if (width && height) {
+    alert(console.log(canvas));
     canvas.width = width;
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
 
     const imgUrl = canvas.toDataURL("image/png");
+    // alert(dat);
 
-    const img = document.createElement("img");
+    // const img = document.createElement("img");
 
-    img.style.filter = filter;
-    img.setAttribute("src", imgUrl);
+    // img.style.filter = filter;
+    // img.setAttribute("src", imgUrl);
     submitPic.value = imgUrl;
     submitPic.setAttribute("style", filter);
     // strip.insertBefore(imgUrl, strip.firstChild);
@@ -76,6 +78,7 @@ photoButton.addEventListener(
   },
   false
 );
+
 
 // photoFilter.addEventListener("change", function(e) {
 //   filter = e.target.value;

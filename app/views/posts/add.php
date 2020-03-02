@@ -40,30 +40,26 @@
 
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
         <div class="post_title_input">
-            <br>
             <input type="text" placeholder="Enter the title of ur post" name="title" value="" required>
-            <br>
-            <br>
-            <br>
         </div>
         <div class="top-container">
             <div class="test">
                 <img id="myicons" src="/public/img/sup/1.png"  alt="dd">
                 <video id="video">Stream not available...</video>
             </div>
-            <!-- <button id="photo-button" class="btn btn-dark">
+            <button id="photo-button" class="btn btn-dark" type="submit">
                 Take Photo
-            </button> -->
-            <input type="submit" name="ok" id="photo-button" class="btn btn-dark">
+            </button>
+            <!-- <input type="submit" name="ok" id="photo-button" class="btn btn-dark"> -->
             <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
 
             <canvas id="canvas"></canvas>
         </div>
         <div class="bottom-container">
-            <div id="photos"></div>
+            <!-- <div id="photos"></div> -->
             <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
             <video class="player"></video>
-            <div class="strip"></div>
+            <!-- <div  id="strip" class="strip"></div> -->
         </form>
 
 
