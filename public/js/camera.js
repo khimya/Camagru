@@ -3,21 +3,19 @@ let width = 500,
   // filter = "none",
   streaming = false;
 
-const video = document.getElementById("video");
-const canvas = document.getElementById("canvas");
-// const photos = document.getElementById("photos");
-const photoButton = document.getElementById("photo-button");
-const uploadButton = document.getElementById("upload-pic");
-const clearButton = document.getElementById("clear-button");
-// const photoFilter = document.getElementById("photo-filter");
-const submitPic = document.getElementById("img64");
-const filter1 = document.getElementById("filter-src");
-const filter2 = document.getElementById("filter-upload");
-const realFileBtn = document.getElementById("realFileBtn");
-const uploaded = document.getElementById("uploaded");
-const strip = document.getElementById("strip");
-const title = document.getElementById("title");
-const title1 = document.getElementById("title1");
+  const video = document.getElementById("video"),
+  canvas = document.getElementById("canvas"),
+  photoButton = document.getElementById("photo-button"),
+  uploadButton = document.getElementById("upload-pic"),
+  clearButton = document.getElementById("clear-button"),
+  submitPic = document.getElementById("img64"),
+  filter1 = document.getElementById("filter-src"),
+  filter2 = document.getElementById("filter-upload"),
+  realFileBtn = document.getElementById("realFileBtn"),
+  uploaded = document.getElementById("uploaded"),
+  // strip = document.getElementById("strip"),
+  title = document.getElementById("title"),
+  title1 = document.getElementById("title1");
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -63,11 +61,18 @@ function takePicture() {
     submitPic.value = imgUrl;
     // submitPic.setAttribute("style", filter);
     // filter = setAttribute("value", dat);
-    strip.insertBefore(imgUrl, strip.firstChild);
-    strip.style.filter = filter;
+    // console.log(strip);
+    // strip.
+    // strip.insertBefore(imgUrl, strip.firstChild);
+    // console.log(strip);
+    console.log("hello world");
+      strip.style.filter = filter;
+    
+    console.log("hello world2");
     // photos.appendChild(img);
   }
 }
+
 
 
 photoButton.disabled  = true;
@@ -89,6 +94,11 @@ function manage1(title1){
   else
     uploadButton.disabled  = true;
 }
+
+
+
+
+
   photoButton.addEventListener(
     "click",
     function(e) {
@@ -99,19 +109,7 @@ function manage1(title1){
     false
     );
 
-// photoFilter.addEventListener("change", function(e) {
-//   filter = e.target.value;
-//   video.style.filter = filter;
 
-//   e.preventDefault();
-// });
-
-// clearButton.addEventListener("click", function(e) {
-//   photos.innerHTML = "";
-//   filter = "none";
-//   video.style.filter = filter;
-//   photoFilter.selectedIndex = 0;
-// });
 function getfilter() {
   radiobutton = document.querySelector('input[name="filter"]:checked').value;
   if (radiobutton == "1") return 1;
@@ -121,6 +119,7 @@ function getfilter() {
   else if (radiobutton == "5") return 5;
   else return 6;
 }
+
 function changeFormula(){
   var value = getfilter();
   
@@ -146,6 +145,9 @@ function changeFormula(){
       formula.src = "http://localhost/public/img/sup/1.png";
   }
 }
+
+
+
 function uploadpicture(src)
 {
   var pic = new Image();
@@ -160,6 +162,7 @@ function uploadpicture(src)
     filter2.setAttribute('value', data1);
   }
 }
+
 
 realFileBtn.addEventListener("change", function(){
   var file = this.files[0];
