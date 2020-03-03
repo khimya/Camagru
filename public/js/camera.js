@@ -15,7 +15,8 @@ const video = document.getElementById("video"),
   uploaded = document.getElementById("uploaded"),
   strip = document.getElementById("strip"),
   title = document.getElementById("title"),
-  title1 = document.getElementById("title1");
+  title1 = document.getElementById("title1"),
+  takePictureForm = document.getElementById("takePictureForm");
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -69,6 +70,7 @@ video.addEventListener(
 } */
 
 function takePicture() {
+  alert("dsdfsfsfsfs");
   const context = canvas.getContext("2d");
   context.drawImage(video, 0, 0, width, height);
   canvas.style.display = "block";
@@ -76,6 +78,7 @@ function takePicture() {
   filter1.setAttribute("value", dat);
   filter2.setAttribute("value", dat);
   submitPic.value = canvas.toDataURL("image/png");
+  takePictureForm.submit();
 }
 
 photoButton.disabled = true;

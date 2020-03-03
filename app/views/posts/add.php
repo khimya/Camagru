@@ -46,7 +46,7 @@
 
         <button id="clear-button" class="btn btn-light">Clear</button>
 
-        <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
+        <form id="takePictureForm" action="<?php echo URLROOT; ?>/posts/add" method="POST">
             <div class="post_title_input">
                 <input id="title" type="text" placeholder="Enter the title of ur post" onkeyup="manage(this)" name="title" value="" required>
             </div>
@@ -63,9 +63,10 @@
                 <canvas id="canvas"></canvas>
             </div>
             <div class="bottom-container">
-                <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
+                <input name="image" type="hiddens" value="<?php echo $data['image']; ?>" id="img64" required>
                 <video class="player"></video>
                 <div id="strip"></div>
+            </div>
         </form>
 
 
@@ -97,6 +98,21 @@
 
             <button class="btn btn-dark" id="upload-pic" type="submit">Submit uploaded picture</button>
         </form>
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </div>
 </div>
 <script src="<?php echo URLROOT; ?>/js/camera.js"></script>

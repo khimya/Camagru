@@ -12,12 +12,12 @@ class Posts extends Controller
         $page = (!empty($_GET['page']) ? $_GET['page'] : 1);
         $posts = $this->postModel->getPosts($page);
         $data = [
-            'page' =>$page,
+            'page' => $page,
             'posts' => $posts
         ];
         $this->view('posts/index', $data);
     }
-    
+
     public function like($id)
     {
 
@@ -48,11 +48,10 @@ class Posts extends Controller
                 if (isset($_POST['blabla']) && !empty($_POST['blabla']) && !is_array($_POST['blabla'])) {
                     $data['blabla'] = $_POST['blabla'];
                     if ($this->postModel->checkCmnt($data)) {
-                        if ($this->postModel->addCmnt($data, $id) ) {
-                            if($this->userModel->checkNotificationForCmnt($id) == 1){
+                        if ($this->postModel->addCmnt($data, $id)) {
+                            if ($this->userModel->checkNotificationForCmnt($id) == 1) {
                                 $email =  $this->postModel->getNotifiedEmail($id);
-                                if ($email != NULL)
-                                {
+                                if ($email != NULL) {
                                     $this->userModel->notificationMessage($email);
                                 }
                             }
@@ -72,7 +71,7 @@ class Posts extends Controller
     public function me()
     {
         $posts = $this->postModel->getmyposts();
-        
+
         $data = [
             'posts' => $posts
         ];
@@ -90,35 +89,37 @@ class Posts extends Controller
         $this->view('posts/snitch', $data);
     }
 
-    
+
     public function add()
     {
+        error_log(print_r("-------------------------", 1));
+        // error_log(print_r("adddddd",1));
         if (!isLoggedIn()) {
             return (redirect('users/login'));
         }
         $posts = $this->postModel->getmyposts();
-        $posts =  array_reverse( $posts);
+        $posts =  array_reverse($posts);
         $post_id = $this->postModel->galerietrick();
-        $post_id =  array_reverse( $post_id);
-        
+        $post_id =  array_reverse($post_id);
+
         $i = 0;
-        foreach($posts as $post)
-        {
+        foreach ($posts as $post) {
             $post->id = $post_id[$i++]->id;
         }
-        $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
+        $data = ['title' => '', 'image' => '', 'posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            error_log(print_r("ddddddddddddddddddd", 1));
             // die(var_dump($_POST));
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = $this->postModel->checkadd($data);
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
             if ($this->postModel->addPost($data, $imgthing)) {
-                    return(redirect('posts/add'));
-                } else {
-                    return(redirect('pages/error'));
-                }
+                return (redirect('posts/add'));
+            } else {
+                return (redirect('pages/error'));
             }
-    $this->view('posts/add', $data);
+        }
+        $this->view('posts/add', $data);
     }
 
     public function upload()
@@ -130,16 +131,16 @@ class Posts extends Controller
             $data = ['title' => '', 'image' => ''];
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = $this->postModel->checkUpload($data);
-            
+
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fill"]);
             if ($this->postModel->addUpload($data, $imgthing)) {
-                return(redirect('posts/add'));
+                return (redirect('posts/add'));
             } else {
                 die("error in add upload");
-                return(redirect('pages/error'));
-                }
-             }
-             $this->view('posts/add', $data);
+                return (redirect('pages/error'));
+            }
+        }
+        $this->view('posts/add', $data);
     }
 
 
@@ -155,7 +156,7 @@ class Posts extends Controller
                 $post = $post[0];
                 // die(var_dump($post));
                 if ($post->user_id != $_SESSION['user_id']) {
-                    return(redirect('posts'));
+                    return (redirect('posts'));
                 }
                 if ($this->postModel->deletePost($id)) {
                     redirect('posts');
