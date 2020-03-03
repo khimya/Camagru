@@ -1,7 +1,7 @@
 let width = 500,
-    height = 0,
-    filter = 'none',
-    streaming = false;
+  height = 0,
+  // filter = "none",
+  streaming = false;
 
 const video = document.getElementById("video"),
 canvas = document.getElementById("canvas"),
@@ -15,8 +15,7 @@ realFileBtn = document.getElementById("realFileBtn"),
 uploaded = document.getElementById("uploaded"),
 strip = document.getElementById("strip"),
 title = document.getElementById("title"),
-title1 = document.getElementById("title1"),
-photoFilter = document.getElementById("photo-filter");
+title1 = document.getElementById("title1");
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -25,35 +24,9 @@ navigator.mediaDevices
     video.play();
   })
   .catch(function(err) {
-    console.log(`Error: err`);
+    console.log(`Error: ${err}`);
   });
 
-
-
-
-
-
-
-// Filter event
-photoFilter.addEventListener('change', function(e) {
-  // Set filter to chosen option
-  filter = e.target.value;
-  // Set filter to video
-  video.style.filter = filter;
-
-  e.preventDefault(); 
-});
-
-
-
-
-
-
-
-
-
-
-  
 video.addEventListener(
   "canplay",
   function(e) {
@@ -80,17 +53,16 @@ function takePicture() {
     context.drawImage(video, 0, 0, width, height);
 
     const imgUrl = canvas.toDataURL("image/png");
-    const link = document.createElement('a');
+
     const img = document.createElement("img");
 
     // img.style.filter = filter;
     img.setAttribute("src", imgUrl);
     submitPic.value = imgUrl;
     // submitPic.setAttribute("style", filter);
-      filter[0].setAttribute("value", dat);
-    strip.firstChild = imgUrl;
-    strip.style = filter;
-    strip.setAttribute("style", filter);
+    // filter = setAttribute("value", dat);
+    strip.insertBefore(imgUrl, strip.firstChild);
+    strip.style.filter = filter;
     // photos.appendChild(img);
   }
 }
