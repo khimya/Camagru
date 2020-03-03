@@ -34,9 +34,17 @@
             </div>
         </div>
 
+        <select id="photo-filter" class="select">
+      <option value="none">Normal</option>
+      <option value="grayscale(100%)">Grayscale</option>
+      <option value="sepia(100%)">Sepia</option>
+      <option value="invert(100%)">Invert</option>
+      <option value="hue-rotate(90deg)">Hue</option>
+      <option value="blur(10px)">Blur</option>
+      <option value="contrast(200%)">Contrast</option>
+    </select>
 
-
-
+    <button id="clear-button" class="btn btn-light">Clear</button>
 
         <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
             <div class="post_title_input">
