@@ -1,21 +1,21 @@
 let width = 500,
   height = 0,
-  // filter = "none",
+  filter = "none",
   streaming = false;
 
 const video = document.getElementById("video"),
-canvas = document.getElementById("canvas"),
-photoButton = document.getElementById("photo-button"),
-uploadButton = document.getElementById("upload-pic"),
-clearButton = document.getElementById("clear-button"),
-submitPic = document.getElementById("img64"),
-filter1 = document.getElementById("filter-src"),
-filter2 = document.getElementById("filter-upload"),
-realFileBtn = document.getElementById("realFileBtn"),
-uploaded = document.getElementById("uploaded"),
-strip = document.getElementById("strip"),
-title = document.getElementById("title"),
-title1 = document.getElementById("title1");
+  canvas = document.getElementById("canvas"),
+  photoButton = document.getElementById("photo-button"),
+  uploadButton = document.getElementById("upload-pic"),
+  clearButton = document.getElementById("clear-button"),
+  submitPic = document.getElementById("img64"),
+  filter1 = document.getElementById("filter-src"),
+  filter2 = document.getElementById("filter-upload"),
+  realFileBtn = document.getElementById("realFileBtn"),
+  uploaded = document.getElementById("uploaded"),
+  strip = document.getElementById("strip"),
+  title = document.getElementById("title"),
+  title1 = document.getElementById("title1");
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -42,7 +42,8 @@ video.addEventListener(
   false
 );
 
-function takePicture() {
+/* function takePicture() {
+  alert("dsdsdsdsd");
   var dat = getfilter();
   filter1.setAttribute("value", dat);
   filter2.setAttribute("value", dat);
@@ -65,37 +66,38 @@ function takePicture() {
     strip.style.filter = filter;
     // photos.appendChild(img);
   }
+} */
+
+function takePicture() {
+  const context = canvas.getContext("2d");
+  context.drawImage(video, 0, 0, width, height);
+  canvas.style.display = "block";
+  var dat = getfilter();
+  filter1.setAttribute("value", dat);
+  filter2.setAttribute("value", dat);
+  submitPic.value = canvas.toDataURL("image/png");
 }
 
-
-photoButton.disabled  = true;
-function manage(title){
-  if(title.value != "")
-    photoButton.disabled  = false;
-  else
-    photoButton.disabled  = true;
+photoButton.disabled = true;
+function manage(title) {
+  if (title.value != "") photoButton.disabled = false;
+  else photoButton.disabled = true;
 }
 
-
-
-
-
-uploadButton.disabled  = true;
-function manage1(title1){
-  if(title1.value != "" &&  uploaded.value != "")
-    uploadButton.disabled  = false;
-  else
-    uploadButton.disabled  = true;
+uploadButton.disabled = true;
+function manage1(title1) {
+  if (title1.value != "" && uploaded.value != "") uploadButton.disabled = false;
+  else uploadButton.disabled = true;
 }
-  photoButton.addEventListener(
-    "click",
-    function(e) {
-      takePicture();
-      
-      e.preventDefault();
-    },
-    false
-    );
+photoButton.addEventListener(
+  "click",
+  function(e) {
+    takePicture();
+
+    e.preventDefault();
+  },
+  false
+);
 
 // photoFilter.addEventListener("change", function(e) {
 //   filter = e.target.value;
@@ -119,56 +121,44 @@ function getfilter() {
   else if (radiobutton == "5") return 5;
   else return 6;
 }
-function changeFormula(){
+function changeFormula() {
   var value = getfilter();
-  
-   var formula = document.getElementById("myicons");
-   if (value == 2) {
-     formula.src = "http://localhost/public/img/sup/2.png";
-  }
-  else if (value == 3){
-      formula.src = "http://localhost/public/img/sup/3.png";
-  }
-  else if  (value == 4){
-      formula.src = "http://localhost/public/img/sup/4.png";
-  }
-  
-  else if (value == 5){
-      formula.src = "http://localhost/public/img/sup/5.png";
-  }
-  
-  else if (value == 6){
-      formula.src = "http://localhost/public/img/sup/6.png";
-  }
-  else if (value == 1){
-      formula.src = "http://localhost/public/img/sup/1.png";
+
+  var formula = document.getElementById("myicons");
+  if (value == 2) {
+    formula.src = "http://localhost/public/img/sup/2.png";
+  } else if (value == 3) {
+    formula.src = "http://localhost/public/img/sup/3.png";
+  } else if (value == 4) {
+    formula.src = "http://localhost/public/img/sup/4.png";
+  } else if (value == 5) {
+    formula.src = "http://localhost/public/img/sup/5.png";
+  } else if (value == 6) {
+    formula.src = "http://localhost/public/img/sup/6.png";
+  } else if (value == 1) {
+    formula.src = "http://localhost/public/img/sup/1.png";
   }
 }
-function uploadpicture(src)
-{
+function uploadpicture(src) {
   var pic = new Image();
   pic.src = src;
-  pic.onload = function()
-  {
+  pic.onload = function() {
     canvas.width = 200;
     canvas.height = 500;
-    canvas.getContext('2d').drawImage(pic, 0, 0, width, width);
-    uploaded.setAttribute('value', src);
+    canvas.getContext("2d").drawImage(pic, 0, 0, width, width);
+    uploaded.setAttribute("value", src);
     data1 = getfilter();
-    filter2.setAttribute('value', data1);
-  }
+    filter2.setAttribute("value", data1);
+  };
 }
 
-realFileBtn.addEventListener("change", function(){
+realFileBtn.addEventListener("change", function() {
   var file = this.files[0];
-  if (file)
-  {
+  if (file) {
     var reader = new FileReader();
-    reader.addEventListener("load", function(){
+    reader.addEventListener("load", function() {
       uploadpicture(this.result);
     });
     reader.readAsDataURL(file);
-  }
-  else
-    alert("No file chosen, yet");
+  } else alert("No file chosen, yet");
 });
