@@ -47,11 +47,10 @@
                     <img id="myicons" src="/public/img/sup/1.png"  alt="dd">
                     <video id="video">Stream not available...</video>
                 </div>
-                <button id="photo-button" class="btn btn-dark" >
-                    Take Photo
-                </button>
+                <button  id="photo-button" class="btn btn-dark" >Take Photo</button>
                 <!-- <input type="submit" name="ok" id="photo-button" class="btn btn-dark"> -->
                 <input id="filter-src" type="hidden" name="num-fil" class="filter-tag">
+                <div id="photo"></div>
 
                 <canvas id="canvas"></canvas>
             </div>

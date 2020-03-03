@@ -56,9 +56,11 @@ function takePicture() {
 
     const img = document.createElement("img");
 
+
     img.setAttribute("src", imgUrl);
     submitPic.value = imgUrl;
-    strip.insertBefore(imgUrl,);
+
+    strip.insertBefore(imgUrl, strip.firstChild);
     strip.style.filter = filter;
   }
 }
