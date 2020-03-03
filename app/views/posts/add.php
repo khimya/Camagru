@@ -58,7 +58,7 @@
             <div class="bottom-container">
                 <input name="image" type="hidden" value="<?php echo $data['image']; ?>" id="img64" required>
                 <video class="player"></video>
-                <div  id="strip" class="strip"></div>
+                <div id="strip"></div>
         </form>
 
 

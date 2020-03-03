@@ -108,7 +108,7 @@ class Posts extends Controller
         }
         $data = ['title' => '', 'image' => '','posts' => $posts, 'user_id' => $_SESSION['user_id']];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // die(var_dump($_POST));
+            die(var_dump($_POST));
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = $this->postModel->checkadd($data);
             $imgthing = $this->postModel->saveImage($data, $_POST["num-fil"]);
